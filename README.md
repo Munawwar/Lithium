@@ -1,6 +1,7 @@
 # Ion Plugins for jQuery
 
 Ion adds the following useful APIs to jQuery:
+
 1. Data related methods. isDefined,isElement...
 2. Things like fbind,inherit,namepsace,augment...
 3. Observable (Publisher-subscriber pattern) that can be used to communicate between loosly coupled modules/components.
