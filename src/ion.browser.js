@@ -5,14 +5,14 @@
 /**
  * Browser information. This object has 3 sub-properties: name, version and OS.<br/>
  * Overrides jQuery.browser.
- * You also get three 'is' prefixed boolean properties attached to Cu:<br/>
- * 1. for OS (e.g Cu.isWindows), 2. for browser vendor (e.g Cu.isIE), and 3. vendor+version (e.g Cu.isIE8).
+ * You also get three 'is' prefixed boolean properties attached to ion:<br/>
+ * 1. for OS (e.g ion.isWindows), 2. for browser vendor (e.g ion.isIE), and 3. vendor+version (e.g ion.isIE8).
  * @property browser
  * @type Object
  * @final
  * @credits Modified code from from http://www.quirksmode.org/js/detect.html.
  */
-(function ($) {
+(function (ion) {
     var agent = navigator.userAgent.toLowerCase(),
         it, match,
         name, version, OS, OSVersion,
@@ -48,15 +48,15 @@
     }
 
     if (name) {
-        Cu["is" + name] = true;
+        ion["is" + name] = true;
         if (version) {
-            Cu["is" + name + parseInt(version, 10)] = true;
+            ion["is" + name + parseInt(version, 10)] = true;
         }
     }
 
-    Cu.isWebKit = Cu.isChrome || Cu.isSafari || Cu.isWebKit;
-    Cu.isGecko = Cu.isFirefox || Cu.isGecko;
-    Cu.isIOS = Cu.isIPhone || Cu.isIPad;
+    ion.isWebKit = ion.isChrome || ion.isSafari || ion.isWebKit;
+    ion.isGecko = ion.isFirefox || ion.isGecko;
+    ion.isIOS = ion.isIPhone || ion.isIPad;
 
     //TODO: Detect IE compatibility mode
 
@@ -71,22 +71,22 @@
         }
     }
     if (OS) {
-        Cu["is" + OS] = true;
+        ion["is" + OS] = true;
     }
 
     //Bug that WebKit is being detected as Safari on non-iOS phones/tablets
-    if (Cu.isSafari && (Cu.isAndroid || Cu.isBlackBerry || Cu.isSymbian)) {
-        delete Cu.isSafari;
-        delete Cu["is" + name + parseInt(version, 10)];
+    if (ion.isSafari && (ion.isAndroid || ion.isBlackBerry || ion.isSymbian)) {
+        delete ion.isSafari;
+        delete ion["is" + name + parseInt(version, 10)];
         name = 'WebKit';
         version = agent.match(/applewebkit.([\d\.]+)/)[1];
-        Cu["is" + name + parseInt(version, 10)] = true;
+        ion["is" + name + parseInt(version, 10)] = true;
     }
 
-    Cu.browser = {
+    ion.browser = {
         name: name,
         version: version,
         OS: OS,
         OSVersion: OSVersion
     };
-}(jQuery));
+}(window.ion));

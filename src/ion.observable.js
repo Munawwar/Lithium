@@ -5,7 +5,7 @@
  * @title CopperJS Observable
  */
 
-(function ($) {
+(function (ion) {
     /**
      * Makes a constructor or object an event 'publisher'. Hence all instances created from this constructor ('class' in C++ terms),
      * will follow the Observer (also known as publisher-subscriber) design pattern.<br/>
@@ -30,7 +30,7 @@
                 var i, len,
                     events = this.$_eventMap[eventType];
                 for (i = 0, len = events.length; i < len; i += 1) {
-                    events[i].fn.apply(events[i].scope, $.slice(arguments, 1));
+                    events[i].fn.apply(events[i].scope, ion.slice(arguments, 1));
                 }
             }
         },
@@ -87,7 +87,7 @@
          */
         relayEvents: (function () {
             var relayThis = function (eventType) {
-                var args = $.slice(arguments, 1);
+                var args = ion.slice(arguments, 1);
                 this.fireEvent.apply(this, ([eventType]).join(args));
             };
             return function (observable, eventTypes) {
@@ -98,7 +98,7 @@
                 var i, len = eventTypes.length, eventType;
                 for (i = 0; i < len; i += 1) {
                     eventType = eventTypes[i];
-                    observable.on(eventType, $.fbind(relayThis, null, false, eventType), this);
+                    observable.on(eventType, ion.bind(relayThis, null, false, eventType), this);
                 }
             };
         }()),
@@ -151,7 +151,7 @@
      *      $.observable(this.Observable, []);
      */
     //TODO: Update tests on case when constructorFuncOrObj is an object instance.
-    $.observable = (function () {
+    ion.observable = (function () {
         var P = function () {}; //Proxy
         return function (constructorFuncOrObj, eventTypes) {
             var c = constructorFuncOrObj, x, i, len;
@@ -196,12 +196,12 @@
      * @param {Object} publisher Must be an observable
      * @param {String} eventType Event to listen to
      * @param {Object} scope The scope in which the listener will be called. Generally this would be the instance of a class
-     * @param {Function} listenerFunction Function that does something when event gets fired. Generally this would be a method of a class instance.
+     * @param {Function} handler Function that does something when event gets fired. Generally this would be a method of a class instance.
      * I advise not to use anonymous function here, as a convention. If you need to use anonymous function, then use publisher.on method directly.<br/>
      * Example: $.connect(obj1, 'save', obj2, obj2.onSave);
      * @method connect
      */
-    $.connect = function (publisher, eventType, scope, listenerFunction) {
-        publisher.on(eventType, listenerFunction, scope);
+    ion.connect = function (publisher, eventType, scope, handler) {
+        publisher.on(eventType, handler, scope);
     };
-}(jQuery));
+}(window.ion));

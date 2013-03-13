@@ -81,7 +81,7 @@
          */
         lastIndexOf: function (value, from) {
             var array = this, i, len = array.length;
-            if (!Cu.isDefined(from)) {
+            if (typeof from === 'undefined') {
                 from = len - 1;
             }
             if (from < len) {
@@ -131,7 +131,7 @@
          */
         reduce: function (accumulator, initval) {
             var i = 0, len = this.length, curr;
-            if (Cu.isNumber(initval)) {
+            if (typeof initval === 'number') {
                 curr = initval;
             } else {
                 curr = this[0];
@@ -150,7 +150,7 @@
          */
         reduceRight: function (accumulator, initval) {
             var i = this.length - 1, curr;
-            if (Cu.isNumber(initval)) {
+            if (typeof initval === 'number') {
                 curr = initval;
             } else {
                 curr = this[0];
