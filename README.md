@@ -1,14 +1,14 @@
-# Ion JS for jQuery
+# Ion for jQuery
 
-Ion adds the following useful APIs to jQuery:
+Ion adds the following useful APIs to be used along with jQuery:
 
-1. Data related methods. isDefined,isElement...
-2. Things like bind,inherit,namepsace,augment...
+1. Data type assertion: isDefined,isElement...
+2. Things like bind,inherit,namespace...
 3. Observable (Publisher-subscriber pattern) that can be used to communicate between loosly coupled modules/components.
 3. IE8 JS 1.6 and JS 1.8 polyfills, like string trim, array forEach,lastIndexOf,filter,reduce...
-4. Browser detection (which is still useful is rare cases..like for statistics).
+4. Browser detection (which is still useful in rare cases..like for statistics).
 
-Ion is seperated into modules, so you use only what you need.
+Ion depends on jQuery. Ion is seperated into modules, so you use only what you need.
 
 ## Browser support
 
@@ -26,7 +26,7 @@ ion.isNaN(val) - Returns true if val is NaN.
 
 ### Patterns
 
-* ion.namepsace(string) - Creates a global namespace.
+* ion.namespace(string) - Creates a global namespace.
 
   ``ion.namespace('app.utils');``
 
