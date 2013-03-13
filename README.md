@@ -94,6 +94,9 @@ $.isNaN(val) - Returns true if val is NaN.
 
 ### Browser Detection
 
+Note: ion.browser.js will override the default jQuery $.browser object. So add it *only* if you need it and *only* if you know whats happening.
+Also I don't gaurantee ion.browser 
+
 <pre><code>$.browser.isIE - will be set when browser is MS IE.
 $.browser.isIE9 - will be set when browser is MS IE.
 $.browser.isChrome
