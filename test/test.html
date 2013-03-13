@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="../src/ie.lang.js"></script>
+        <script type="text/javascript" src="jquery-1.8.3-dev.js"></script>
+        <script type="text/javascript" src="../src/ion.js"></script>
+        <script type="text/javascript" src="../src/ion.observable.js"></script>
+        <script type="text/javascript" src="../src/ion.browser.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function assert(result, message) {
+                if (result) {
+                    console.log('Pass: ' + message);
+                } else {
+                    console.error('Fail: ' + message);
+                }
+            }
+
+            (function () {
+                var check = true;
+                (['a', 'b', 'c']).forEach(function(v, i, a) {
+                    if (a[i] !== v) {
+                        check = false;
+                    }
+                });
+                assert(check, "Array.forEach test");
+
+                ion.namespace('blah.space.test');
+                assert(blah && blah.space && blah.space.test, "ion.namespace test");
+
+                var myClass = ion.extend(Object, {
+                    constructor: function (cfg) {
+                        $.extend(this, cfg);
+                        //superclass test
+                        myClass.superclass.call(this);
+                    },
+                    prop: 45,
+                    statics: {
+                        prop: 45
+                    }
+                });
+                var x = new myClass({prop2: 'blah'});
+                assert(x.prop && x.prop2 && myClass.prop, "ion.extend test");
+
+
+                ion.lbind(function (v) {
+                    assert((v === 10 && this === document.body), "ion.lbind test");
+                }, document.body, 10)();
+
+                var html = '<p>"&"</p>';
+                assert(ion.string.htmlDecode(ion.string.htmlEncode(html)) === html, "htmlEncode/htmlDecode test");
+
+                assert(!!ion.uuid().match(/^[\w]+$/), 'uuid test');
+            }());
+        </script>
+    </body>
+</html>
