@@ -16,7 +16,7 @@ Latest Chrome,Firefox,Safari,Opera and IE8+.
 
 ## API
 
-### Lang
+### Data types
 
 ion.isDefined(val) - Returns true if val isn't undefined.
 
@@ -93,9 +93,6 @@ ion.isNaN(val) - Returns true if val is NaN.
 * ion.string.htmlEncode and ion.string.htmlDecode - Encodes/DEcodes >,<," and &.
 
 ### Browser Detection
-
-Note: ion.browser.js will override the default jQuery ion.browser object. So add it *only* if you need it and *only* if you know whats happening.
-Also note ion's ion.browser isn't having the same API as jQuery's default ion.browser.
 
 <pre><code>ion.browser.isIE - will be set when browser is MS IE.
 ion.isIE9 - will be set when browser is MS IE.
