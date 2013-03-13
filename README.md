@@ -32,32 +32,29 @@ $.isNaN(val) - Returns true if val is NaN.
 
 * $.inherit(base, obj) - Classical inheritence
 
-    <pre><code>myClass = $.inherit(Object, {
+    <pre><code>var myClass = $.inherit(Object, {
         constructor: function (cfg) {
             $.extend(this, cfg);
-    
         },
-    
         prop: "Ion",
-    
         method: function () {/*...*/},
-    
-        statics: { //Special proeprty that is
+        statics: { //Special property to defined static methods/properties
+            staticProp: "prop"
         }
-    });</code></pre>
+  });</code></pre>
 
 * Observable
 
-    <pre><code>var Restaurant = Cu.extend(Object, {
+    <pre><code>var Restaurant = $.inherit(Object, {
             //Methods
             salesOffer: function () {
                 this.fireEvent('freefood', '1.00 PM');
             }
         });
-    Cu.observable(Restaurant, ['freefood']); //Make class a publisher
+    $.observable(Restaurant, ['freefood']); //Make class a publisher
     
     /*Subscriber/Listener*/
-    var HungryMan = Cu.extend(Object, {
+    var HungryMan = $.inherit(Object, {
         constructor: function (name, restaurant) {
             this.name = name;
             //Add listener
