@@ -12,7 +12,7 @@
  * @final
  * @credits Modified code from from http://www.quirksmode.org/js/detect.html.
  */
-(function (ion) {
+(function (Li) {
     var agent = navigator.userAgent.toLowerCase(),
         it, match,
         name, version, OS, OSVersion,
@@ -48,15 +48,15 @@
     }
 
     if (name) {
-        ion["is" + name] = true;
+        Li["is" + name] = true;
         if (version) {
-            ion["is" + name + parseInt(version, 10)] = true;
+            Li["is" + name + parseInt(version, 10)] = true;
         }
     }
 
-    ion.isWebKit = ion.isChrome || ion.isSafari || ion.isWebKit;
-    ion.isGecko = ion.isFirefox || ion.isGecko;
-    ion.isIOS = ion.isIPhone || ion.isIPad;
+    Li.isWebKit = Li.isChrome || Li.isSafari || Li.isWebKit;
+    Li.isGecko = Li.isFirefox || Li.isGecko;
+    Li.isIOS = Li.isIPhone || Li.isIPad;
 
     //TODO: Detect IE compatibility mode
 
@@ -71,22 +71,22 @@
         }
     }
     if (OS) {
-        ion["is" + OS] = true;
+        Li["is" + OS] = true;
     }
 
     //Bug that WebKit is being detected as Safari on non-iOS phones/tablets
-    if (ion.isSafari && (ion.isAndroid || ion.isBlackBerry || ion.isSymbian)) {
-        delete ion.isSafari;
-        delete ion["is" + name + parseInt(version, 10)];
+    if (Li.isSafari && (Li.isAndroid || Li.isBlackBerry || Li.isSymbian)) {
+        delete Li.isSafari;
+        delete Li["is" + name + parseInt(version, 10)];
         name = 'WebKit';
         version = agent.match(/applewebkit.([\d\.]+)/)[1];
-        ion["is" + name + parseInt(version, 10)] = true;
+        Li["is" + name + parseInt(version, 10)] = true;
     }
 
-    ion.browser = {
+    Li.browser = {
         name: name,
         version: version,
         OS: OS,
         OSVersion: OSVersion
     };
-}(window.ion));
+}(window.Li));

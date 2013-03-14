@@ -1,6 +1,6 @@
-# Ion for jQuery
+# Lithium for jQuery
 
-Ion adds the following useful APIs to be used along with jQuery:
+Lithium adds the following useful APIs to be used along with jQuery:
 
 1. Data type assertion: isDefined,isElement...
 2. Things like bind,inherit,namespace...
@@ -8,7 +8,7 @@ Ion adds the following useful APIs to be used along with jQuery:
 3. IE8 JS 1.6 and JS 1.8 polyfills, like string trim, array forEach,lastIndexOf,filter,reduce...
 4. Browser detection (which is still useful in rare cases..like for statistics).
 
-Ion depends on jQuery. Ion is seperated into modules, so you use only what you need.
+Lithium depends on jQuery. Lithium is seperated into modules, so you use only what you need.
 
 ## Browser support
 
@@ -18,21 +18,21 @@ Latest Chrome,Firefox,Safari,Opera and IE8+.
 
 ### Data types
 
-ion.isDefined(val) - Returns true if val isn't undefined.
+Li.isDefined(val) - Returns true if val isn't undefined.
 
-ion.isElement(o) - Returns true if o is an instance of HTMLElement
+Li.isElement(o) - Returns true if o is an instance of HTMLElement
 
-ion.isNaN(val) - Returns true if val is NaN.
+Li.isNaN(val) - Returns true if val is NaN.
 
 ### Patterns
 
-* ion.namespace(string) - Creates a global namespace.
+* Li.namespace(string) - Creates a global namespace.
 
-  ``ion.namespace('app.utils');``
+  ``Li.namespace('app.utils');``
 
-* ion.extend(base, obj) - Classical inheritence
+* Li.extend(base, obj) - Classical inheritence
 
-    <pre><code>var myClass = ion.extend(Object, {
+    <pre><code>var myClass = Li.extend(Object, {
         constructor: function (cfg) {
             $.extend(this, cfg);
         },
@@ -45,16 +45,16 @@ ion.isNaN(val) - Returns true if val is NaN.
 
 * Observable
 
-    <pre><code>var Restaurant = ion.extend(Object, {
+    <pre><code>var Restaurant = Li.extend(Object, {
             //Methods
             salesOffer: function () {
                 this.fireEvent('freefood', '1.00 PM');
             }
         });
-    ion.observable(Restaurant, ['freefood']); //Make class a publisher
+    Li.observable(Restaurant, ['freefood']); //Make class a publisher
 
     /*Subscriber/Listener*/
-    var HungryMan = ion.extend(Object, {
+    var HungryMan = Li.extend(Object, {
         constructor: function (name, restaurant) {
             this.name = name;
             //Add listener
@@ -76,32 +76,32 @@ ion.isNaN(val) - Returns true if val is NaN.
     //man1 says: Yay! free food!
     //man2 says: Yay! free food!</code></pre>
 
-* ion.lbind(fn [, context, args...]) - Binds context and arguments to a function (like the [JS.1.8.1 Function.bind](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind)). Argument list is prepended to fn.
+* Li.lbind(fn [, context, args...]) - Binds context and arguments to a function (like the [JS.1.8.1 FunctLi.bind](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind)). Argument list is prepended to fn.
 
-    <pre><code>element.onclick = ion.rbind(function (val, e) {
+    <pre><code>element.onclick = Li.rbind(function (val, e) {
       console.log(this ===  element); //true
       console.log(val); //10
       console.log(e); //If IE9+, you'll get event.
     }, element, 10);</code></pre>
 
-* ion.rbind - Same as lbind, except that arguments are appended to fn arugment list.
+* Li.rbind - Same as lbind, except that arguments are appended to fn arugment list.
 
-* ion.forEach(obj [, callback, context]) - forEach on any object. For arrays, Array.forEach is called internally.
-* ion.uuid([len=10, hypenate=false]) - Returns a random UID with length 'len' and hyphenated if hypenate=true, as string.
-* ion.object.value(obj) - Returns all values of an object. Object.keys(obj) would return keys of an object.
-* ion.object.size(obj) - Returns the number of enumerable properties of the object.
-* ion.string.htmlEncode and ion.string.htmlDecode - Encodes/DEcodes >,<," and &.
+* Li.forEach(obj [, callback, context]) - forEach on any object. For arrays, Array.forEach is called internally.
+* Li.uuid([len=10, hypenate=false]) - Returns a random UID with length 'len' and hyphenated if hypenate=true, as string.
+* Li.object.value(obj) - Returns all values of an object. Object.keys(obj) would return keys of an object.
+* Li.object.size(obj) - Returns the number of enumerable properties of the object.
+* Li.string.htmlEncode and Li.string.htmlDecode - Encodes/DEcodes >,<," and &.
 
 ### Browser Detection
 
-<pre><code>ion.browser.isIE - will be set when browser is MS IE.
-ion.isIE9 - will be set when browser is MS IE.
-ion.isChrome
-ion.isWebKit
+<pre><code>Li.isIE - will be set when browser is MS IE.
+Li.isIE9 - will be set when browser is MS IE.
+Li.isChrome
+Li.isWebKit
 ...similar for other browsers and versions
 Additionally:
-ion.browser.name - e.g. 'IE'
-ion.browser.version - e.g. '9'
-ion.browser.OS - e.g. 'Windows'
-ion.browser.OSVersion (set if available) - e.g. '6.1'
+Li.browser.name - e.g. 'IE'
+Li.browser.version - e.g. '9'
+Li.browser.OS - e.g. 'Windows'
+Li.browser.OSVersion (set if available) - e.g. '6.1'
 </code></pre>

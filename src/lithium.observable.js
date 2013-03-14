@@ -5,7 +5,7 @@
  * @title CopperJS Observable
  */
 
-(function (ion) {
+(function (Li) {
     /**
      * Makes a constructor or object an event 'publisher'. Hence all instances created from this constructor ('class' in C++ terms),
      * will follow the Observer (also known as publisher-subscriber) design pattern.<br/>
@@ -30,7 +30,7 @@
                 var i, len,
                     events = this.$_eventMap[eventType];
                 for (i = 0, len = events.length; i < len; i += 1) {
-                    events[i].fn.apply(events[i].scope, ion.slice(arguments, 1));
+                    events[i].fn.apply(events[i].scope, Li.slice(arguments, 1));
                 }
             }
         },
@@ -87,7 +87,7 @@
          */
         relayEvents: (function () {
             var relayThis = function (eventType) {
-                var args = ion.slice(arguments, 1);
+                var args = Li.slice(arguments, 1);
                 this.fireEvent.apply(this, ([eventType]).join(args));
             };
             return function (observable, eventTypes) {
@@ -98,7 +98,7 @@
                 var i, len = eventTypes.length, eventType;
                 for (i = 0; i < len; i += 1) {
                     eventType = eventTypes[i];
-                    observable.on(eventType, ion.bind(relayThis, null, false, eventType), this);
+                    observable.on(eventType, Li.bind(relayThis, null, false, eventType), this);
                 }
             };
         }()),
@@ -151,7 +151,7 @@
      *      $.observable(this.Observable, []);
      */
     //TODO: Update tests on case when constructorFuncOrObj is an object instance.
-    ion.observable = (function () {
+    Li.observable = (function () {
         var P = function () {}; //Proxy
         return function (constructorFuncOrObj, eventTypes) {
             var c = constructorFuncOrObj, x, i, len;
@@ -201,7 +201,7 @@
      * Example: $.connect(obj1, 'save', obj2, obj2.onSave);
      * @method connect
      */
-    ion.connect = function (publisher, eventType, scope, handler) {
+    Li.connect = function (publisher, eventType, scope, handler) {
         publisher.on(eventType, handler, scope);
     };
-}(window.ion));
+}(window.Li));

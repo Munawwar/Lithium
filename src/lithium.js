@@ -2,7 +2,7 @@
  * @author Munawwar Firoz
  * @version 1.0.0
  * MIT License
- * Ion for jQuery. Aimed at making JavaScripting easier.
+ * Lithium for jQuery. Aimed at making software development easier.
  */
 
 /**
@@ -18,7 +18,7 @@
      * @static
      */
 
-    var ion = {
+    var Li = {
         /**
          * Checks whether a variable is defined.
          * @param {Any} val
@@ -65,10 +65,10 @@
          * @method bind
          */
         bind: function (func, context, append) {
-            var outerArgs = ion.slice(arguments, 3);
-            append = ion.isDefined(append) ? append : false;
+            var outerArgs = Li.slice(arguments, 3);
+            append = Li.isDefined(append) ? append : false;
             return function () {
-                var args = ion.slice(arguments);
+                var args = Li.slice(arguments);
                 args = append ? args.concat(outerArgs) : outerArgs.concat(args);
                 return func.apply(context || this, args);
             };
@@ -162,7 +162,7 @@
          */
         decorator: function (instance, methodName, func) {
             var old = instance[methodName] || $.noop;
-            return (instance[methodName] = ion.lbind(func, instance, old));
+            return (instance[methodName] = Li.lbind(func, instance, old));
         },
 
         /**
@@ -214,8 +214,8 @@
      * @param {Any} [...] Any number of arguments to be binded to func.
      * @method lbind
      */
-    ion.lbind = function (func, context) {
-        return ion.bind.apply(null, ([func, context, false]).concat(ion.slice(arguments, 2)));
+    Li.lbind = function (func, context) {
+        return Li.bind.apply(null, ([func, context, false]).concat(Li.slice(arguments, 2)));
     };
     /**
      * 'Right' bind<br/>
@@ -225,8 +225,8 @@
      * @param {Any} [...] Any number of arguments to be binded to func.
      * @method rbind
      */
-    ion.rbind = function (func, context) {
-        return ion.bind.apply(null, ([func, context, true]).concat(ion.slice(arguments, 2)));
+    Li.rbind = function (func, context) {
+        return Li.bind.apply(null, ([func, context, true]).concat(Li.slice(arguments, 2)));
     };
 
     /**
@@ -234,7 +234,7 @@
      * @class jQuery.object
      * @static
      */
-    ion.object = {
+    Li.object = {
         /**
          * Get a list of all enumerable values of the object. Doesn't include prototype's properties.
          * @param {Object} obj An object.
@@ -243,7 +243,7 @@
          */
         values: function (obj) {
             var values = [];
-            ion.forEach(obj, function (value) {
+            Li.forEach(obj, function (value) {
                 values.push(value);
             });
             return values;
@@ -256,7 +256,7 @@
          */
         size: function (obj) {
             var count = 0;
-            ion.forEach(obj, function () {
+            Li.forEach(obj, function () {
                 count += 1;
             });
             return count;
@@ -270,7 +270,7 @@
      * @class jQuery.string
      * @static
      */
-    ion.string = {
+    Li.string = {
         /**
          * Encodes &,<,> and ".
          * @method htmlEncode
@@ -292,5 +292,5 @@
         }
     };
 
-    window.ion = ion;
+    window.Li = Li;
 }(jQuery));
