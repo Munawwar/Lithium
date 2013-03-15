@@ -35,7 +35,7 @@
      * Adds a few missing standard JavaScript methods on Array for older browsers.
      * @class Array
      */
-    apply(Array, {
+    apply(Array.prototype, {
         /**
          * Iterates through array item and calls the given callback for each item.<br/>
          * @param {Function} callback Callback function. Item, index and a reference to the array are passed as parameters (in order) to the callback.
@@ -195,7 +195,7 @@
      * Adds a few missing standard JavaScript methods on built-in String type for older browsers.
      * @class String
      */
-    apply(String, {
+    apply(String.prototype, {
         /**
          * Removes trailing and leading spaces
          * @return {String} "Trimmed" string

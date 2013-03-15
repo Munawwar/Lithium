@@ -3,9 +3,9 @@
     <head>
         <script type="text/javascript" src="../src/ie.lang.js"></script>
         <script type="text/javascript" src="jquery-1.8.3-dev.js"></script>
-        <script type="text/javascript" src="../src/ion.js"></script>
-        <script type="text/javascript" src="../src/ion.observable.js"></script>
-        <script type="text/javascript" src="../src/ion.browser.js"></script>
+        <script type="text/javascript" src="../src/lithium.js"></script>
+        <script type="text/javascript" src="../src/lithium.observable.js"></script>
+        <script type="text/javascript" src="../src/lithium.browser.js"></script>
     </head>
     <body>
         <script type="text/javascript">
@@ -26,10 +26,10 @@
                 });
                 assert(check, "Array.forEach test");
 
-                ion.namespace('blah.space.test');
-                assert(blah && blah.space && blah.space.test, "ion.namespace test");
+                Li.namespace('blah.space.test');
+                assert(blah && blah.space && blah.space.test, "Li.namespace test");
 
-                var myClass = ion.extend(Object, {
+                var myClass = Li.extend(Object, {
                     constructor: function (cfg) {
                         $.extend(this, cfg);
                         //superclass test
@@ -41,17 +41,17 @@
                     }
                 });
                 var x = new myClass({prop2: 'blah'});
-                assert(x.prop && x.prop2 && myClass.prop, "ion.extend test");
+                assert(x.prop && x.prop2 && myClass.prop, "Li.extend test");
 
 
-                ion.lbind(function (v) {
-                    assert((v === 10 && this === document.body), "ion.lbind test");
+                Li.lbind(function (v) {
+                    assert((v === 10 && this === document.body), "Li.lbind test");
                 }, document.body, 10)();
 
                 var html = '<p>"&"</p>';
-                assert(ion.string.htmlDecode(ion.string.htmlEncode(html)) === html, "htmlEncode/htmlDecode test");
+                assert(Li.string.htmlDecode(Li.string.htmlEncode(html)) === html, "htmlEncode/htmlDecode test");
 
-                assert(!!ion.uuid().match(/^[\w]+$/), 'uuid test');
+                assert(!!Li.uuid().match(/^[\w]+$/), 'uuid test');
             }());
         </script>
     </body>
