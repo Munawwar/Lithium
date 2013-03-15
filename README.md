@@ -36,21 +36,21 @@ Li.isNaN(val) - Returns true if val is NaN.
         constructor: function (cfg) {
             $.extend(this, cfg);
         },
-        prop: "Ion",
+        prop: "Lithium",
         method: function () {/*...*/},
         statics: { //Special property to defined static methods/properties
             staticProp: "prop"
         }
-  });</code></pre>
+    });</code></pre>
 
 * Observable
 
     <pre><code>var Restaurant = Li.extend(Object, {
-            //Methods
-            salesOffer: function () {
-                this.fireEvent('freefood', '1.00 PM');
-            }
-        });
+        //Methods
+        salesOffer: function () {
+            this.fireEvent('freefood', '1.00 PM');
+        }
+    });
     Li.observable(Restaurant, ['freefood']); //Make class a publisher
 
     /*Subscriber/Listener*/
@@ -76,7 +76,7 @@ Li.isNaN(val) - Returns true if val is NaN.
     //man1 says: Yay! free food!
     //man2 says: Yay! free food!</code></pre>
 
-* Li.lbind(fn [, context, args...]) - Binds context and arguments to a function (like the [JS.1.8.1 FunctLi.bind](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind)). Argument list is prepended to fn.
+* Li.lbind(fn [, context, args...]) - Binds context and arguments to a function (like the [JS.1.8.1 Function.bind](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind)). Argument list is prepended to fn.
 
     <pre><code>element.onclick = Li.rbind(function (val, e) {
       console.log(this ===  element); //true
