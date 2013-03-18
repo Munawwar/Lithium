@@ -22,13 +22,14 @@
          */
         fireEvent: function (eventType) {
             eventType = eventType.toLowerCase();
-            this.$_eventMap = this.$_eventMap || {};
-            if ((!this.$_eventTypes || !this.$_eventTypes[eventType])) {
-                console.warn(eventType + "? This event type has not been registered.");
-            }
-            if (!this.$_suspendEvents && this.$_eventMap[eventType]) {
+            this._eventMap = this._eventMap || {};
+            //TODO: Think of a way to enable debugging on development mode
+            //if ((!this._eventTypes || !this._eventTypes[eventType])) {
+                //console.warn(eventType + "? This event type has not been registered.");
+            //}
+            if (!this._suspendEvents && this._eventMap[eventType]) {
                 var i, len,
-                    events = this.$_eventMap[eventType];
+                    events = this._eventMap[eventType];
                 for (i = 0, len = events.length; i < len; i += 1) {
                     events[i].fn.apply(events[i].scope, Li.slice(arguments, 1));
                 }
@@ -38,7 +39,7 @@
         /**
          * Adds a listener.
          * @param {Object} object The object which you want to listen to.
-         * This object's constructor (or any ancestor) must have been initialized with {{#crossLink "$.observable"}}{{/crossLink}}.<br/>
+         * This object's constructor (or any ancestor) must have been initialized with {{#crossLink "Li.observable"}}{{/crossLink}}.<br/>
          * You can also subscribe for an event that has not yet been registered as an event. Hence the order of registeration is not a concern.
          * @method on
          * @alias addListener
@@ -48,8 +49,8 @@
             var uuidGen = 1;
             //TODO: Also set config like onetime = true etc
             return function (eventType, handler, scope) {
-                this.$_eventMap = this.$_eventMap || {};
-                var events = this.$_eventMap,
+                this._eventMap = this._eventMap || {};
+                var events = this._eventMap,
                     id = 'ls' + (uuidGen++);
                 events[eventType] = events[eventType] || [];
                 events[eventType].push({
@@ -66,7 +67,7 @@
          * @method suspendEvents
          */
         suspendEvents: function () {
-            this.$_suspendEvents = true;
+            this._suspendEvents = true;
         },
 
         /**
@@ -74,7 +75,7 @@
          * @method resumeEvents
          */
         resumeEvents: function () {
-            this.$_suspendEvents = false;
+            this._suspendEvents = false;
         },
 
         /**
@@ -91,10 +92,10 @@
                 this.fireEvent.apply(this, ([eventType]).join(args));
             };
             return function (observable, eventTypes) {
-                if (!observable.$_eventTypes) {
+                if (!observable._eventTypes) {
                     throw new Error('Object passed is not a publisher');
                 }
-                eventTypes = eventTypes || Object.keys(observable.$_eventTypes);
+                eventTypes = eventTypes || Object.keys(observable._eventTypes);
                 var i, len = eventTypes.length, eventType;
                 for (i = 0; i < len; i += 1) {
                     eventType = eventTypes[i];
@@ -114,8 +115,8 @@
         off: function (eventType, uuidORfunc) {
             eventType = eventType.toLowerCase();
             var found = false;
-            if (this.$_eventMap) {
-                var events = this.$_eventMap[eventType], i, len,
+            if (this._eventMap) {
+                var events = this._eventMap[eventType], i, len,
                     type = typeof uuidORfunc === 'string' ? "uuid" : "fn",
                     value = uuidORfunc;
                 if (events) {
@@ -133,7 +134,7 @@
     };
 
     /**
-     * When $.observable() is called on a function or object, methods are added to that function/object to make it an observable/publisher.<br/>
+     * When Li.observable() is called on a function or object, methods are added to that function/object to make it an observable/publisher.<br/>
      * All the other methods listed here are methods that are added to the object.<br/>
      * <br/>
      * If you dislike this idea of dynamically adding methods to an object, then you could create an observable base class for yourself.
@@ -142,13 +143,13 @@
      * @method observable
      * @example
      *      obj = {}, myClass = function() {};
-     *      $.observable(obj, ['hide']);
-     *      $.observable(myClass, ['show']);
+     *      Li.observable(obj, ['hide']);
+     *      Li.observable(myClass, ['show']);
      *
      * @example
      *      Create an observable base class:
-     *      this.Observable = $.inherit(Object, {});
-     *      $.observable(this.Observable, []);
+     *      this.Observable = Li.extend(Object, {});
+     *      Li.observable(this.Observable, []);
      */
     //TODO: Update tests on case when constructorFuncOrObj is an object instance.
     Li.observable = (function () {
@@ -158,22 +159,22 @@
             if (typeof constructorFuncOrObj === 'function') {
                 //Make a copy of event types from prototype chain
                 P.prototype = constructorFuncOrObj.prototype;
-                var types = (new P()).$_eventTypes;
+                var types = (new P())._eventTypes;
                 if (types) {
                     for (x in types) {
                         if (types.hasOwnProperty(x)) {
                             types[x] = true;
                         }
                     }
-                    constructorFuncOrObj.prototype.$_eventTypes = types;
+                    constructorFuncOrObj.prototype._eventTypes = types;
                 }
                 c = constructorFuncOrObj.prototype;
             }
-            c.$_eventTypes = c.$_eventTypes || {};
+            c._eventTypes = c._eventTypes || {};
             var temp;
             for (i = 0, len = eventTypes.length; i < len; i += 1) {
                 temp = eventTypes[i].toLowerCase();
-                c.$_eventTypes[temp] = true;
+                c._eventTypes[temp] = true;
             }
             c.fireEvent = methods.fireEvent;
             c.on = methods.on;
@@ -198,7 +199,7 @@
      * @param {Object} scope The scope in which the listener will be called. Generally this would be the instance of a class
      * @param {Function} handler Function that does something when event gets fired. Generally this would be a method of a class instance.
      * I advise not to use anonymous function here, as a convention. If you need to use anonymous function, then use publisher.on method directly.<br/>
-     * Example: $.connect(obj1, 'save', obj2, obj2.onSave);
+     * Example: Li.connect(obj1, 'save', obj2, obj2.onSave);
      * @method connect
      */
     Li.connect = function (publisher, eventType, scope, handler) {
