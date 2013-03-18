@@ -78,7 +78,7 @@ Li.isNaN(val) - Returns true if val is NaN.
 
 * Li.lbind(fn [, context, args...]) - Binds context and arguments to a function (like the [JS.1.8.1 Function.bind](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind)). Argument list is prepended to fn.
 
-    <pre><code>element.onclick = Li.rbind(function (val, e) {
+    <pre><code>element.onclick = Li.lbind(function (val, e) {
       console.log(this ===  element); //true
       console.log(val); //10
       console.log(e); //If IE9+, you'll get event.
