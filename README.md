@@ -99,6 +99,11 @@ Li.isIE9 - will be set when browser is MS IE.
 Li.isChrome
 Li.isWebKit
 ...similar for other browsers and versions
+Li.isAndroid
+Li.isIPhone
+Li.isIPad
+Lis.isMobile - True if iPhone, Android, BlackBerry, Windows Phone or Symbian.
+
 Additionally:
 Li.browser.name - e.g. 'IE'
 Li.browser.version - e.g. '9'

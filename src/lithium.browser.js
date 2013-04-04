@@ -57,6 +57,7 @@
     Li.isWebKit = Li.isChrome || Li.isSafari || Li.isWebKit;
     Li.isGecko = Li.isFirefox || Li.isGecko;
     Li.isIOS = Li.isIPhone || Li.isIPad;
+    Li.isMobile = Li.isAndroid || Li.isIPhone || Li.isBlackBerry || Li.WindowsPhone || Li.isSymbian;
 
     //TODO: Detect IE compatibility mode
 
