@@ -102,7 +102,7 @@ Li.isWebKit
 Li.isAndroid
 Li.isIPhone
 Li.isIPad
-Lis.isMobile - True if iPhone, Android, BlackBerry, Windows Phone or Symbian.
+Li.isMobile - True if iPhone, Android, BlackBerry, Windows Phone or Symbian.
 
 Additionally:
 Li.browser.name - e.g. 'IE'
