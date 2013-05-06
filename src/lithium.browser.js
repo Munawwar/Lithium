@@ -58,6 +58,11 @@
     Li.isGecko = Li.isFirefox || Li.isGecko;
     Li.isIOS = Li.isIPhone || Li.isIPad;
     Li.isMobile = Li.isAndroid || Li.isIPhone || Li.isBlackBerry || Li.isWindowsPhone || Li.isSymbian;
+    //Detecting ' mobile ' from user agent isn't perfect but good enough.
+    //http://stackoverflow.com/questions/5341637/how-do-detect-android-tablets-in-general-useragent
+    if ((Li.isAndroid || Li.isBlackBerry) && !(/ mobile /).test(agent)) {
+        delete Li.isMobile;
+    }
 
     //TODO: Detect IE compatibility mode
 
