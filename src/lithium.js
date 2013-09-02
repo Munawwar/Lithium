@@ -239,6 +239,27 @@
         },
 
         /**
+         * Converts html string to a document fragment.<br/>
+         * The html string and arguments are first sent to Li.format to get the
+         * final html string.
+         * @param {String} html
+         * @param {...} Any number of arguments that will be passed on to Li.format. Check Li.format documentation for more information.
+         * @returns {DocumentFragment}
+         * @method dom
+         */
+        dom: function (html) {
+            var frag = document.createDocumentFragment(),
+                tmp = document.createElement('body'),
+                childNodes, child;
+            tmp.innerHTML = Li.format.apply(this, arguments);
+            childNodes = Li.slice(tmp.childNodes);
+            while ((child = childNodes.shift())) {
+                frag.appendChild(child);
+            }
+            return frag;
+        },
+
+        /**
          * Same as Array.slice except that it can work on array-like data types (i.e arguments, element.childNodes, NodeList...)
          * @method slice
          */
