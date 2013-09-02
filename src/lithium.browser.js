@@ -64,6 +64,7 @@
         delete Li.isMobile;
     }
 
+    //TODO: Detect Googlebot
     //TODO: Detect IE compatibility mode
 
     while ((it = OSList.shift())) {

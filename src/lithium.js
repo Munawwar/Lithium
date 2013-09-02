@@ -75,6 +75,30 @@
         },
 
         /**
+         * 'Left' bind<br/>
+         * Same as bind, except that arguments are always prepended.
+         * @param {Function} func Function to bind
+         * @param {Object|null} [context] The context in which func is to be called. null would default to the global object.
+         * @param {Any} [...] Any number of arguments to be binded to func.
+         * @method lbind
+         */
+        lbind: function (func, context) {
+            return Li.bind.apply(null, ([func, context, false]).concat(Li.slice(arguments, 2)));
+        },
+
+        /**
+         * 'Right' bind<br/>
+         * Same as bind, except that arguments are always appended.
+         * @param {Function} func Function to bind
+         * @param {Object|null} [context] The context in which func is to be called. null would default to the global object.
+         * @param {Any} [...] Any number of arguments to be binded to func.
+         * @method rbind
+         */
+        rbind: function (func, context) {
+            return Li.bind.apply(null, ([func, context, true]).concat(Li.slice(arguments, 2)));
+        },
+
+        /**
          * Classical inheritence, where only prototype is inherited.
          * @param {Function} baseC The constructor to be inherited from (the parent)
          * @param {Object} derived The object which has a constructor and methods/properties. This will be the derived class.
@@ -85,21 +109,31 @@
          */
         //TODO: Use Object.create after dropping support for IE8.
         extend: (function () {
+            function superFunc(args) {
+                var fn = superFunc.caller;
+                return fn._class_[fn._methodName_].apply(this, args);
+            };
             var P = function () {}; //proxy
             return function (baseC, derived) {
                 derived = derived || {};
                 //constructor property always exists, hence the hasOwnProperty check.
                 var derivedC = derived.hasOwnProperty('constructor') ? derived.constructor : function () {
-                        derivedC.superclass.apply(this, arguments);
+                        baseC.apply(this, arguments);
                     }, //'C' suffix is for 'Constructor'
                     statics = derived.statics;
 
                 P.prototype = baseC.prototype;
                 derivedC.prototype = new P();
-                derivedC.superclass = derivedC.prototype.superclass = baseC;
+                derivedC.super = baseC.prototype;
+                derivedC.prototype.super = superFunc;
 
-                //Add/Override prototype of base constructor
-                $.extend(derivedC.prototype, derived);
+                Li.forEach(derived, function (val, prop) {
+                    if ($.isFunction(val)) {
+                        val._methodName_ = prop;
+                        val._class_ = baseC.prototype;
+                    }
+                    derivedC.prototype[prop] = val;
+                });
 
                 //Add static properties to constructor
                 if (statics) {
@@ -110,6 +144,25 @@
                 return derivedC;
             };
         }()),
+
+        /**
+         * Move properties from one object to another.
+         * Property is only moved if source.hasOwnProperty(property).
+         * @param {Object} target Object to which properties are to be moved
+         * @param {Object} source Object from which properties are to moved.
+         * @param {Array[string]} props Array of properties to move.
+         * @returns {Object} target Returns target object
+         * @method move
+         */
+        move: function (target, source, props) {
+            props.forEach(function (prop) {
+                if (source.hasOwnProperty(prop)) {
+                    target[prop] = source[prop];
+                    delete source[prop];
+                }
+            });
+            return target;
+        },
 
         /**
          * Iterate through an array or object.<br/>
@@ -166,6 +219,26 @@
         },
 
         /**
+         * String formatting
+         * @param {String} str String with placeholders
+         * @param {Object|...} arg If object then you can use {propertyName} as placeholder.
+         * Else you can supply n number of args as use {argument index} as placholder
+         * @example
+         * Li.format('<div class="{0}">, 'box');
+         * Li.format('<div class="{cls}">, {cls: 'box'});
+         * //output of both: <div class="box">
+         */
+        format: function (str, arg) {
+            if (typeof arg !== 'object') {
+                arg = Li.slice(arguments, 1);
+            }
+            return str.replace(/(^|[^\\])\{(\w+)\}/g, function (m, p, index) {
+                var x = arg[index];
+                return (p || '') + (x !== undefined ? x : '');
+            });
+        },
+
+        /**
          * Same as Array.slice except that it can work on array-like data types (i.e arguments, element.childNodes, NodeList...)
          * @method slice
          */
@@ -203,31 +276,29 @@
                 return ((count++ % 5) ? '' : '-') + (Math.random() * 100 % 36 | 0).toString(36);
             }).toUpperCase();
             return hypenate ? id : id.replace(/-/g, '');
+        },
+
+        /**
+         * Checks if 'ancestor' is ancestor of 'descendent'.
+         * This is still needed because IE10's element.contains is buggy sometimes.
+         *
+         * @param {HTMLElement} ancestor
+         * @param {HTMLElement} descendent
+         * @return {Boolean} Returns true if 'ancestor' is indeed the ancestor of 'descendent'.
+         * Also returns true if ancestor == descendent.
+         * @method contains
+         */
+        contains: function (ancestor, descendent) {
+            while (descendent) {
+                if (descendent === ancestor) {
+                    return true;
+                }
+                descendent = descendent.parentNode;
+            }
+            return false;
         }
     };
 
-    /**
-     * 'Left' bind<br/>
-     * Same as bind, except that arguments are always prepended.
-     * @param {Function} func Function to bind
-     * @param {Object|null} [context] The context in which func is to be called. null would default to the global object.
-     * @param {Any} [...] Any number of arguments to be binded to func.
-     * @method lbind
-     */
-    Li.lbind = function (func, context) {
-        return Li.bind.apply(null, ([func, context, false]).concat(Li.slice(arguments, 2)));
-    };
-    /**
-     * 'Right' bind<br/>
-     * Same as bind, except that arguments are always appended.
-     * @param {Function} func Function to bind
-     * @param {Object|null} [context] The context in which func is to be called. null would default to the global object.
-     * @param {Any} [...] Any number of arguments to be binded to func.
-     * @method rbind
-     */
-    Li.rbind = function (func, context) {
-        return Li.bind.apply(null, ([func, context, true]).concat(Li.slice(arguments, 2)));
-    };
 
     /**
      * JavaScript Object related functions
