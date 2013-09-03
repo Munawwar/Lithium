@@ -10,7 +10,7 @@
      * Makes a constructor or object an event 'publisher'. Hence all instances created from this constructor ('class' in C++ terms),
      * will follow the Observer (also known as publisher-subscriber) design pattern.<br/>
      *
-     * @class jQuery.observable
+     * @class Li.observable
      * @static
      */
     var methods = {
@@ -18,18 +18,17 @@
          * Call all events listeners for the given event name.<br/>
          * @param {String} eventType
          * @param {Any} ... n number of arguments. These shall be directly passed onto the event listeners.
-         * @method fireEvent
+         * @method trigger
          */
-        fireEvent: function (eventType) {
+        trigger: function (eventType) {
             eventType = eventType.toLowerCase();
-            this._eventMap = this._eventMap || {};
-            //TODO: Think of a way to enable debugging on development mode
-            //if ((!this._eventTypes || !this._eventTypes[eventType])) {
-                //console.warn(eventType + "? This event type has not been registered.");
-            //}
-            if (!this._suspendEvents && this._eventMap[eventType]) {
+            this._eventMap_ = this._eventMap_ || {};
+            if ((!this._eventTypes_ || !this._eventTypes_[eventType]) && Li.warnings) {
+                console.warn(eventType + "? This event type has not been registered.");
+            }
+            if (!this._suspendEvents_ && this._eventMap_[eventType]) {
                 var i, len,
-                    events = this._eventMap[eventType];
+                    events = this._eventMap_[eventType];
                 for (i = 0, len = events.length; i < len; i += 1) {
                     events[i].fn.apply(events[i].scope, Li.slice(arguments, 1));
                 }
@@ -38,27 +37,38 @@
 
         /**
          * Adds a listener.
-         * @param {Object} object The object which you want to listen to.
-         * This object's constructor (or any ancestor) must have been initialized with {{#crossLink "Li.observable"}}{{/crossLink}}.<br/>
+         * @param {String|Object} object The event type that you want to listen to as string.
+         * Or an object with event types and handlers as key-value pairs (with event type as the keys).
          * You can also subscribe for an event that has not yet been registered as an event. Hence the order of registeration is not a concern.
+         * @param {Function} handler Function that gets notfied when a event of 'eventType' gets fired. This param is used only when eventType is a string.
+         * @param {Object} scope The context in which the function should be called.
          * @method on
          * @alias addListener
          * @return A UUID which can be used to remove the event when required.
          */
+        //TODO: Add option to bind arguments
         on: (function () {
             var uuidGen = 1;
             //TODO: Also set config like onetime = true etc
             return function (eventType, handler, scope) {
-                this._eventMap = this._eventMap || {};
-                var events = this._eventMap,
-                    id = 'ls' + (uuidGen++);
-                events[eventType] = events[eventType] || [];
-                events[eventType].push({
-                    uuid: id,
-                    fn: handler,
-                    scope: scope
-                });
-                return id;
+                if (Li.isObject(eventType)) {
+                    var ret = {};
+                    Li.forEach(eventType, function (handler, type) {
+                        ret[type] = this.on(type, handler, scope);
+                    }, this);
+                    return ret;
+                } else {
+                    this._eventMap_ = this._eventMap_ || {};
+                    var events = this._eventMap_,
+                        id = 'ls' + (uuidGen++);
+                    events[eventType] = events[eventType] || [];
+                    events[eventType].push({
+                        uuid: id,
+                        fn: handler,
+                        scope: scope
+                    });
+                    return id;
+                }
             };
         }()),
 
@@ -67,7 +77,7 @@
          * @method suspendEvents
          */
         suspendEvents: function () {
-            this._suspendEvents = true;
+            this._suspendEvents_ = true;
         },
 
         /**
@@ -75,7 +85,7 @@
          * @method resumeEvents
          */
         resumeEvents: function () {
-            this._suspendEvents = false;
+            this._suspendEvents_ = false;
         },
 
         /**
@@ -92,10 +102,10 @@
                 this.fireEvent.apply(this, ([eventType]).join(args));
             };
             return function (observable, eventTypes) {
-                if (!observable._eventTypes) {
+                if (!observable._eventTypes_) {
                     throw new Error('Object passed is not a publisher');
                 }
-                eventTypes = eventTypes || Object.keys(observable._eventTypes);
+                eventTypes = eventTypes || Object.keys(observable._eventTypes_);
                 var i, len = eventTypes.length, eventType;
                 for (i = 0; i < len; i += 1) {
                     eventType = eventTypes[i];
@@ -115,9 +125,9 @@
         off: function (eventType, uuidORfunc) {
             eventType = eventType.toLowerCase();
             var found = false;
-            if (this._eventMap) {
-                var events = this._eventMap[eventType], i, len,
-                    type = typeof uuidORfunc === 'string' ? "uuid" : "fn",
+            if (this._eventMap_) {
+                var events = this._eventMap_[eventType], i, len,
+                    type = Li.isString(uuidORfunc) ? "uuid" : "fn",
                     value = uuidORfunc;
                 if (events) {
                     for (i = 0, len = events.length; i < len; i++) {
@@ -140,7 +150,7 @@
      * If you dislike this idea of dynamically adding methods to an object, then you could create an observable base class for yourself.
      * @param {Function | Object} constructorFuncOrObj A constructor to augment, or an object to which methods will be added.
      * @param {Array} eventTypes A list of event types that the publisher will fire.
-     * @method observable
+     * @method Li.observable
      * @example
      *      obj = {}, myClass = function() {};
      *      Li.observable(obj, ['hide']);
@@ -155,54 +165,34 @@
     Li.observable = (function () {
         var P = function () {}; //Proxy
         return function (constructorFuncOrObj, eventTypes) {
+            eventTypes = eventTypes || [];
             var c = constructorFuncOrObj, x, i, len;
             if (typeof constructorFuncOrObj === 'function') {
                 //Make a copy of event types from prototype chain
                 P.prototype = constructorFuncOrObj.prototype;
-                var types = (new P())._eventTypes;
+                var types = (new P())._eventTypes_;
                 if (types) {
                     for (x in types) {
                         if (types.hasOwnProperty(x)) {
                             types[x] = true;
                         }
                     }
-                    constructorFuncOrObj.prototype._eventTypes = types;
+                    constructorFuncOrObj.prototype._eventTypes_ = types;
                 }
                 c = constructorFuncOrObj.prototype;
             }
-            c._eventTypes = c._eventTypes || {};
+            c._eventTypes_ = c._eventTypes_ || {};
             var temp;
             for (i = 0, len = eventTypes.length; i < len; i += 1) {
                 temp = eventTypes[i].toLowerCase();
-                c._eventTypes[temp] = true;
+                c._eventTypes_[temp] = true;
             }
-            c.fireEvent = methods.fireEvent;
+            c.trigger = methods.trigger;
             c.on = methods.on;
             c.off = methods.off;
-            c.addListener = methods.on;
-            c.removeListener = methods.off;
             c.suspendEvents = methods.suspendEvents;
             c.resumeEvents = methods.resumeEvents;
             c.relayEvents = methods.relayEvents;
         };
     }());
-
-    /**
-     * @class jQuery
-     * @static
-     */
-
-    /**
-     * A quick way of adding a listener (This API might remind you of Qt (C++) connect function).<br/>
-     * @param {Object} publisher Must be an observable
-     * @param {String} eventType Event to listen to
-     * @param {Object} scope The scope in which the listener will be called. Generally this would be the instance of a class
-     * @param {Function} handler Function that does something when event gets fired. Generally this would be a method of a class instance.
-     * I advise not to use anonymous function here, as a convention. If you need to use anonymous function, then use publisher.on method directly.<br/>
-     * Example: Li.connect(obj1, 'save', obj2, obj2.onSave);
-     * @method connect
-     */
-    Li.connect = function (publisher, eventType, scope, handler) {
-        publisher.on(eventType, handler, scope);
-    };
 }(window.Li));
