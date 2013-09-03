@@ -141,7 +141,11 @@
         extend: (function () {
             function superFunc(args) {
                 var fn = superFunc.caller;
-                return fn._class_[fn._methodName_].apply(this, args);
+                return fn._baseclass_[fn._methodName_].apply(this, args);
+            };
+            function superClassFunc() {
+                var fn = superClassFunc.caller;
+                return fn._baseclass_;
             };
             var P = function () {}; //proxy
             return function (baseC, derived) {
@@ -156,11 +160,12 @@
                 derivedC.prototype = new P();
                 derivedC.super = baseC.prototype;
                 derivedC.prototype.super = superFunc;
+                derivedC.prototype.superclass = superClassFunc;
 
                 Li.forEach(derived, function (val, prop) {
                     if ($.isFunction(val)) {
                         val._methodName_ = prop;
-                        val._class_ = baseC.prototype;
+                        val._baseclass_ = baseC.prototype;
                     }
                     derivedC.prototype[prop] = val;
                 });
