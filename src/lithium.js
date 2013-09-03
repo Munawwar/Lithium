@@ -29,6 +29,36 @@
         },
 
         /**
+         * Returns true for all values that are of type 'boolean'<br/>
+         * Note that booleans declared with 'new' keyword are objects and aren't considered "boolean"s.
+         * @param {Any} val
+         * @method isBoolean
+         */
+        isBoolean: function (val) {
+            return (typeof val === 'boolean');
+        },
+
+        /**
+         * Any value that is an object (excluding null).<br/>
+         * Note that arrays, functions and all data declared with 'new' keyword is an object.
+         * @param {Any} val
+         * @method isObject
+         */
+        isObject: function (val) {
+            return val !== null && (typeof val === 'object' || $.isFunction(val));
+        },
+
+        /**
+         * Checks whether a given value is a string.<br/>
+         * Note that strings declared with 'new' keyword are objects and aren't considered "string"s.
+         * @param {Any} val
+         * @method isString
+         */
+        isString: function (val) {
+            return (typeof val === 'string');
+        },
+
+        /**
          * Checks whether a given value is a DOM Element (Text nodes aren't included, nodeType should = 1)
          * @param {Object} obj
          * @method isElement
@@ -229,7 +259,7 @@
          * //output of both: <div class="box">
          */
         format: function (str, arg) {
-            if (typeof arg !== 'object') {
+            if (!Li.isObject(arg)) {
                 arg = Li.slice(arguments, 1);
             }
             return str.replace(/(^|[^\\])\{(\w+)\}/g, function (m, p, index) {
