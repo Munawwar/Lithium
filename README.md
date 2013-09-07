@@ -24,6 +24,10 @@ Li.isElement(o) - Returns true if o is an instance of HTMLElement
 
 Li.isNaN(val) - Returns true if val is NaN.
 
+Similarly Li.isObject, Li.isString, Li.isBoolean.
+
+jQuery already has $.isFunction, $.isNumeric etc.
+
 ### Patterns
 
 * Li.namespace(string) - Creates a global namespace.
@@ -105,19 +109,30 @@ Li.isNaN(val) - Returns true if val is NaN.
 * Li.uuid([len=10, hypenate=false]) - Returns a random UID with length 'len' and hyphenated if hypenate=true, as string.
 * Li.object.value(obj) - Returns all values of an object. Object.keys(obj) would return keys of an object.
 * Li.object.size(obj) - Returns the number of enumerable properties of the object.
-* Li.string.htmlEncode and Li.string.htmlDecode - Encodes/DEcodes >,<," and &.
+* Li.string.htmlEncode and Li.string.htmlDecode - Encodes/Decodes >,<," and &.
+* Li.format(formatString, ...) - A quick string format method
+  
+  <pre><code>Li.format('&lt;div class="{0}"&gt;&lt;/div&gt;, 'box');
+  Li.format('&lt;div class="{cls}"&gt;&lt;/div&gt;, {cls: 'box'});
+  //Both returns '&lt;div class="box"&gt;&lt;/div&gt;'</code></pre>
+
+* Li.dom(htmlString, ...) - Converts htmlString to DOM, inserts them into a document fragment and returns the fragment.
+  Internally this uses Li.format for string formatting.
+
+  <pre><code>var df = Cu.dom('&lt;div class="{cls}" data-id="{id}"&gt;&lt;/div&gt;', {cls: 'box', id: Cu.uuid()}); //DocumentFragment
+  document.body.appendChild(df);</code></pre>
 
 ### Browser Detection
 
 <pre><code>Li.isIE - will be set when browser is MS IE.
-Li.isIE9 - will be set when browser is MS IE.
+Li.isIE9 - will be set when browser is MS IE 9.
 Li.isChrome
 Li.isWebKit
 ...similar for other browsers and versions
 Li.isAndroid
 Li.isIPhone
 Li.isIPad
-Li.isMobile - True if iPhone, Android, BlackBerry, Windows Phone or Symbian.
+Li.isMobile - True if iPhone, Android, BlackBerry (Phone), Windows Phone or Symbian.
 
 Additionally:
 Li.browser.name - e.g. 'IE'
