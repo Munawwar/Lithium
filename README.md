@@ -32,14 +32,29 @@ Li.isNaN(val) - Returns true if val is NaN.
 
 * Li.extend(base, obj) - Classical inheritence
 
-    <pre><code>var myClass = Li.extend(Object, {
+    <pre><code>var myClass1 = Li.extend(Object, {
         constructor: function (cfg) {
             $.extend(this, cfg);
         },
         prop: "Lithium",
-        method: function () {/*...*/},
+        method: function () { return 1;},
         statics: { //Special property to defined static methods/properties
             staticProp: "prop"
+        }
+    });
+    
+    //Create myClass2 using myClass1 as base class.
+    var myClass2 = Li.extend(myClass1, {
+        constructor: function (cfg) {
+            this.super([cfg]); //call base class constructor
+            
+            //alternatively, this.super(arguments);
+            //or this.superClass().constructor.call(this, cfg);
+        },
+        //Override 'method'
+        method: function () {
+            //Add 1 to the result of base class 'method'.
+            return 1 + this.super(arugments);
         }
     });</code></pre>
 
