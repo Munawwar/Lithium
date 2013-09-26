@@ -19,6 +19,7 @@
         browserList = [
             [/iemobile.([\d\.]+)/, 'IEMobile'],
             [/msie.([\d\.]+)/, 'IE'],
+            [/trident.+rv.([\d\.]+)/, 'IE'],
             [/chrome.([\d\.]+)/, 'Chrome'],
             [/firefox.([\d\.]+)/, 'Firefox'],
             [/version\/([\d\.]+).+?safari/, 'Safari'],
