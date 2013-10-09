@@ -37,6 +37,7 @@
 
         /**
          * Adds a listener.
+         * If no parameters are specified, then this would re-enable events that were switched off by observable.off();
          * @param {String|Object} object The event type that you want to listen to as string.
          * Or an object with event types and handlers as key-value pairs (with event type as the keys).
          * You can also subscribe for an event that has not yet been registered as an event. Hence the order of registeration is not a concern.
@@ -51,7 +52,9 @@
             var uuidGen = 1;
             //TODO: Also set config like onetime = true etc
             return function (eventType, handler, scope) {
-                if (Li.isObject(eventType)) {
+                if (!Li.isDefined(eventType)) {
+                    this._suspendEvents_ = false;
+                } else if (Li.isObject(eventType)) {
                     var ret = {};
                     Li.forEach(eventType, function (handler, type) {
                         ret[type] = this.on(type, handler, scope);
@@ -73,22 +76,6 @@
         }()),
 
         /**
-         * Disables firing of events. Calls to fireEvent method will return silently without doing anything (until you call resumeEvents method).
-         * @method suspendEvents
-         */
-        suspendEvents: function () {
-            this._suspendEvents_ = true;
-        },
-
-        /**
-         * Resumes event firing (that you disabled through the suspendEvents method).
-         * @method resumeEvents
-         */
-        resumeEvents: function () {
-            this._suspendEvents_ = false;
-        },
-
-        /**
          * This function listens to a given publisher on the given event types,
          * and refires the events from itself (scope of the event fired would be this object).
          * This useful for chaining events.
@@ -99,7 +86,7 @@
         relayEvents: (function () {
             var relayThis = function (eventType) {
                 var args = Li.slice(arguments, 1);
-                this.fireEvent.apply(this, ([eventType]).join(args));
+                this.trigger.apply(this, ([eventType]).join(args));
             };
             return function (observable, eventTypes) {
                 if (!observable._eventTypes_) {
@@ -116,6 +103,7 @@
 
         /**
          * Remove an event listener.
+         * If no parameters are specified, then all events are switched off till you call observable.on().
          * @param {String|Function} uuidORfunc Can be the event listener as a Function object,
          * OR the UUID returned by 'on' function can also be used.
          * @return {Boolean} Returns true if listener was successfully removed.
@@ -123,6 +111,10 @@
          * @alias removeListener
          */
         off: function (eventType, uuidORfunc) {
+            if (!Li.isDefined(eventType)) {
+                this._suspendEvents_ = true;
+                return;
+            }
             eventType = eventType.toLowerCase();
             var found = false;
             if (this._eventMap_) {
@@ -190,8 +182,6 @@
             c.trigger = methods.trigger;
             c.on = methods.on;
             c.off = methods.off;
-            c.suspendEvents = methods.suspendEvents;
-            c.resumeEvents = methods.resumeEvents;
             c.relayEvents = methods.relayEvents;
         };
     }());
