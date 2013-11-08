@@ -211,7 +211,7 @@
          */
         forEach: function (obj, callback, context) {
             if ($.isArray(obj)) {
-                obj.forEach(obj, callback, context);
+                obj.forEach(callback, context);
             } else {
                 for (var x in obj) {
                     if (obj.hasOwnProperty(x)) {
