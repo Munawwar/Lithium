@@ -65,7 +65,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "src\\lithium.observable.js",
-            "line": 9,
+            "line": 13,
             "description": "Publisher-Subscriber pattern utility class",
             "requires": [
                 "core"
@@ -129,7 +129,7 @@
             "module": "observable",
             "namespace": "",
             "file": "src\\lithium.observable.js",
-            "line": 9,
+            "line": 13,
             "description": "Makes a constructor or object an event 'publisher'. Hence all instances created from this constructor ('class' in C++ terms),\nwill follow the Observer (also known as publisher-subscriber) design pattern.<br/>",
             "static": 1
         }
@@ -137,7 +137,7 @@
     "classitems": [
         {
             "file": "src\\lithium.browser.js",
-            "line": 5,
+            "line": 10,
             "description": "Browser information. This object has 3 sub-properties: name, version and OS.<br/>\nOverrides jQuery.browser.\nYou also get three 'is' prefixed boolean properties attached to Li:<br/>\n1. for OS (e.g Li.isWindows), 2. for browser vendor (e.g Li.isIE), and 3. vendor+version (e.g Li.isIE8).",
             "itemtype": "property",
             "name": "browser",
@@ -150,7 +150,7 @@
             "file": "src\\lithium.js",
             "line": 1,
             "author": "Munawwar Firoz",
-            "version": "1.0.0\nMIT License\nLithium for jQuery. Aimed at making software development easier.",
+            "version": "0.1.0\nMIT License\nLithium for jQuery. Aimed at making software development easier.",
             "class": "Li"
         },
         {
@@ -667,7 +667,7 @@
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 17,
+            "line": 21,
             "description": "Call all events listeners for the given event name.<br/>",
             "params": [
                 {
@@ -688,7 +688,7 @@
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 38,
+            "line": 42,
             "description": "Adds a listener.\nIf no parameters are specified, then this would re-enable events that were switched off by observable.off();",
             "params": [
                 {
@@ -718,7 +718,7 @@
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 78,
+            "line": 82,
             "description": "This function listens to a given publisher on the given event types,\nand refires the events from itself (scope of the event fired would be this object).\nThis useful for chaining events.",
             "params": [
                 {
@@ -739,7 +739,7 @@
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 104,
+            "line": 108,
             "description": "Remove an event listener.\nIf no parameters are specified, then all events are switched off till you call observable.on().",
             "params": [
                 {
@@ -760,7 +760,7 @@
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 138,
+            "line": 142,
             "description": "When Li.observable() is called on a function or object, methods are added to that function/object to make it an observable/publisher.<br/>\nAll the other methods listed here are methods that are added to the object.<br/>\n<br/>\nIf you dislike this idea of dynamically adding methods to an object, then you could create an observable base class for yourself.",
             "params": [
                 {
@@ -787,7 +787,7 @@
     "warnings": [
         {
             "message": "unknown tag: credits",
-            "line": " src\\lithium.browser.js:5"
+            "line": " src\\lithium.browser.js:10"
         },
         {
             "message": "unknown tag: version",
@@ -815,11 +815,11 @@
         },
         {
             "message": "unknown tag: alias",
-            "line": " src\\lithium.observable.js:38"
+            "line": " src\\lithium.observable.js:42"
         },
         {
             "message": "unknown tag: alias",
-            "line": " src\\lithium.observable.js:104"
+            "line": " src\\lithium.observable.js:108"
         },
         {
             "message": "Missing item type",

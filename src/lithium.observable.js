@@ -1,10 +1,14 @@
+/*
+ * Lithium JS version 0.1.0
+ * Observable
+ */
+
 /**
  * Publisher-Subscriber pattern utility class
  * @module observable
  * @requires core
  * @title Lithium Observable
  */
-
 (function (Li) {
     /**
      * Makes a constructor or object an event 'publisher'. Hence all instances created from this constructor ('class' in C++ terms),

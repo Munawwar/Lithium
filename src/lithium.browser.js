@@ -1,3 +1,8 @@
+/*
+ * Lithium JS version 0.1.0
+ * Browser detection.
+ */
+
 /**
  * @class Li
  */

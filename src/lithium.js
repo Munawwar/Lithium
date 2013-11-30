@@ -1,6 +1,6 @@
 /**
  * @author Munawwar Firoz
- * @version 1.0.0
+ * @version 0.1.0
  * MIT License
  * Lithium for jQuery. Aimed at making software development easier.
  */
