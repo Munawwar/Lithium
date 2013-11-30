@@ -283,14 +283,10 @@
          * @method dom
          */
         dom: function (html) {
-            var frag = document.createDocumentFragment(),
-                tmp = document.createElement('body'),
-                childNodes, child;
-            tmp.innerHTML = Li.format.apply(this, arguments);
-            childNodes = Li.slice(tmp.childNodes);
-            while ((child = childNodes.shift())) {
-                frag.appendChild(child);
-            }
+            var frag = document.createDocumentFragment();
+            $(Li.format.apply(this, arguments)).each(function (i, node) {
+                frag.appendChild(node);
+            })
             return frag;
         },
 

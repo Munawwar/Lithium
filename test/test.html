@@ -18,6 +18,7 @@
             }
 
             (function () {
+                //Test 1
                 var check = true;
                 (['a', 'b', 'c']).forEach(function(v, i, a) {
                     if (a[i] !== v) {
@@ -26,14 +27,16 @@
                 });
                 assert(check, "Array.forEach test");
 
+                //Test 2
                 Li.namespace('blah.space.test');
                 assert(blah && blah.space && blah.space.test, "Li.namespace test");
 
+                //Test 3
                 var myClass = Li.extend(Object, {
                     constructor: function (cfg) {
                         $.extend(this, cfg);
                         //superclass test
-                        myClass.superclass.call(this);
+                        this.super(arguments);
                     },
                     prop: 45,
                     statics: {
@@ -43,15 +46,22 @@
                 var x = new myClass({prop2: 'blah'});
                 assert(x.prop && x.prop2 && myClass.prop, "Li.extend test");
 
-
+                //Test 4
                 Li.lbind(function (v) {
                     assert((v === 10 && this === document.body), "Li.lbind test");
                 }, document.body, 10)();
 
+                //Test 5
                 var html = '<p>"&"</p>';
                 assert(Li.string.htmlDecode(Li.string.htmlEncode(html)) === html, "htmlEncode/htmlDecode test");
 
+                //Test 6
                 assert(!!Li.uuid().match(/^[\w]+$/), 'uuid test');
+
+                //Test 7
+                var x = Li.dom('<th>{0}</th>', 'Head');
+                assert(x.firstChild.nodeName === 'TH', 'Li.dom TH test');
+                assert(x.firstChild.firstChild.nodeValue === 'Head', 'Li.dom format test');
             }());
         </script>
     </body>
