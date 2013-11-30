@@ -16,6 +16,8 @@ Latest Chrome,Firefox,Safari,Opera and IE8+.
 
 ## API
 
+[Complete API documentation](http://munawwar.github.com/Lithium/doc/).
+
 ### Data types
 
 Li.isDefined(val) - Returns true if val isn't undefined.
