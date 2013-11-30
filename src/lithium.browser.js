@@ -1,12 +1,12 @@
 /**
- * @class jQuery
+ * @class Li
  */
 
 /**
  * Browser information. This object has 3 sub-properties: name, version and OS.<br/>
  * Overrides jQuery.browser.
- * You also get three 'is' prefixed boolean properties attached to ion:<br/>
- * 1. for OS (e.g ion.isWindows), 2. for browser vendor (e.g ion.isIE), and 3. vendor+version (e.g ion.isIE8).
+ * You also get three 'is' prefixed boolean properties attached to Li:<br/>
+ * 1. for OS (e.g Li.isWindows), 2. for browser vendor (e.g Li.isIE), and 3. vendor+version (e.g Li.isIE8).
  * @property browser
  * @type Object
  * @final

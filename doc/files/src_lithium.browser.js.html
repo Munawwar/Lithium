@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\lithium.browser.js - Lithium</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0pr2&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.8.0pr2&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="cu yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1>Lithium</h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/Li.html">Li</a></li>
+            
+                <li><a href="..&#x2F;classes/Li.object.html">Li.object</a></li>
+            
+                <li><a href="..&#x2F;classes/Li.observable.html">Li.observable</a></li>
+            
+                <li><a href="..&#x2F;classes/Li.string.html">Li.string</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/core.html">core</a></li>
+            
+                <li><a href="..&#x2F;modules/observable.html">observable</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src\lithium.browser.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+ * @class Li
+ *&#x2F;
+
+&#x2F;**
+ * Browser information. This object has 3 sub-properties: name, version and OS.&lt;br&#x2F;&gt;
+ * Overrides jQuery.browser.
+ * You also get three &#x27;is&#x27; prefixed boolean properties attached to Li:&lt;br&#x2F;&gt;
+ * 1. for OS (e.g Li.isWindows), 2. for browser vendor (e.g Li.isIE), and 3. vendor+version (e.g Li.isIE8).
+ * @property browser
+ * @type Object
+ * @final
+ * @credits Modified code from from http:&#x2F;&#x2F;www.quirksmode.org&#x2F;js&#x2F;detect.html.
+ *&#x2F;
+(function (Li) {
+    var agent = navigator.userAgent.toLowerCase(),
+        it, match,
+        name, version, OS, OSVersion,
+        browserList = [
+            [&#x2F;iemobile.([\d\.]+)&#x2F;, &#x27;IEMobile&#x27;],
+            [&#x2F;msie.([\d\.]+)&#x2F;, &#x27;IE&#x27;],
+            [&#x2F;trident.+rv.([\d\.]+)&#x2F;, &#x27;IE&#x27;],
+            [&#x2F;chrome.([\d\.]+)&#x2F;, &#x27;Chrome&#x27;],
+            [&#x2F;firefox.([\d\.]+)&#x2F;, &#x27;Firefox&#x27;],
+            [&#x2F;version\&#x2F;([\d\.]+).+?safari&#x2F;, &#x27;Safari&#x27;],
+            [&#x2F;opera.+?version\&#x2F;([\d\.]+)&#x2F;, &#x27;Opera&#x27;],
+            [&#x2F;rv.([\d\.]+).+?gecko&#x2F;, &#x27;Gecko&#x27;],
+            [&#x2F;applewebkit.([\d\.]+)&#x2F;, &#x27;WebKit&#x27;]
+        ],
+        OSList = [
+            [&#x2F;windows phone os ([\d\.]+)&#x2F;, &quot;WindowsPhone&quot;],
+            [&#x2F;windows (nt [\d\.]+)&#x2F;, &quot;Windows&quot;],
+            [&#x2F;mac os x ([\d_]+)&#x2F;, &quot;Mac&quot;],
+            [&#x2F;android ([\d\.]+)&#x2F;, &quot;Android&quot;],
+            [&#x2F;linux&#x2F;, &quot;Linux&quot;],
+            [&#x2F;iphone os ([\d_]+)&#x2F;, &quot;IPhone&quot;],
+            [&#x2F;ipad.+?os ([\d_]+)&#x2F;, &quot;IPad&quot;],
+            [&#x2F;blackberry (\d+)&#x2F;, &quot;BlackBerry&quot;],
+            [&#x2F;symbianos.([\d\.]+)&#x2F;, &quot;Symbian&quot;]
+        ];
+
+    while ((it = browserList.shift())) {
+        match = agent.match(it[0]);
+        if (match) {
+            name = it[1];
+            version = match[1];
+            break;
+        }
+    }
+
+    if (name) {
+        Li[&quot;is&quot; + name] = true;
+        if (version) {
+            Li[&quot;is&quot; + name + parseInt(version, 10)] = true;
+        }
+    }
+
+    Li.isWebKit = Li.isChrome || Li.isSafari || Li.isWebKit;
+    Li.isGecko = Li.isFirefox || Li.isGecko;
+    Li.isIOS = Li.isIPhone || Li.isIPad;
+    Li.isMobile = Li.isAndroid || Li.isIPhone || Li.isBlackBerry || Li.isWindowsPhone || Li.isSymbian;
+    &#x2F;&#x2F;Detecting &#x27; mobile &#x27; from user agent isn&#x27;t perfect but good enough.
+    &#x2F;&#x2F;http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;5341637&#x2F;how-do-detect-android-tablets-in-general-useragent
+    if ((Li.isAndroid || Li.isBlackBerry) &amp;&amp; !(&#x2F; mobile &#x2F;).test(agent)) {
+        delete Li.isMobile;
+    }
+
+    &#x2F;&#x2F;TODO: Detect Googlebot
+    &#x2F;&#x2F;TODO: Detect IE compatibility mode
+
+    while ((it = OSList.shift())) {
+        match = agent.match(it[0]);
+        if (match) {
+            OS = it[1];
+            if ((OSVersion = match[1])) {
+                OSVersion = OSVersion.replace(&#x27;_&#x27;, &#x27;.&#x27;);
+            }
+            break;
+        }
+    }
+    if (OS) {
+        Li[&quot;is&quot; + OS] = true;
+    }
+
+    &#x2F;&#x2F;Bug that WebKit is being detected as Safari on non-iOS phones&#x2F;tablets
+    if (Li.isSafari &amp;&amp; (Li.isAndroid || Li.isBlackBerry || Li.isSymbian)) {
+        delete Li.isSafari;
+        delete Li[&quot;is&quot; + name + parseInt(version, 10)];
+        name = &#x27;WebKit&#x27;;
+        version = agent.match(&#x2F;applewebkit.([\d\.]+)&#x2F;)[1];
+        Li[&quot;is&quot; + name + parseInt(version, 10)] = true;
+    }
+
+    Li.browser = {
+        name: name,
+        version: version,
+        OS: OS,
+        OSVersion: OSVersion
+    };
+}(window.Li));
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

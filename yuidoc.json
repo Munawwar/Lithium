@@ -1,0 +1,12 @@
+{
+    "name": "Lithium",
+    "description": "Lithium",
+    "version": "1.0.0",
+    "url": "https://github.com/Munawwar/Lithium/tree/gh-pages",
+    "logo": "",
+    "options": {
+        "paths": "./src/",
+        "exclude": "ie.lang.js",
+        "outdir": "./doc/"
+    }
+}

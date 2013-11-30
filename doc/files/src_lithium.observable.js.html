@@ -1,56 +1,154 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\lithium.observable.js - Lithium</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0pr2&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.8.0pr2&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="cu yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1>Lithium</h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/Li.html">Li</a></li>
+            
+                <li><a href="..&#x2F;classes/Li.object.html">Li.object</a></li>
+            
+                <li><a href="..&#x2F;classes/Li.observable.html">Li.observable</a></li>
+            
+                <li><a href="..&#x2F;classes/Li.string.html">Li.string</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/core.html">core</a></li>
+            
+                <li><a href="..&#x2F;modules/observable.html">observable</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src\lithium.observable.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
  * Publisher-Subscriber pattern utility class
  * @module observable
  * @requires core
  * @title Lithium Observable
- */
+ *&#x2F;
 
 (function (Li) {
-    /**
-     * Makes a constructor or object an event 'publisher'. Hence all instances created from this constructor ('class' in C++ terms),
-     * will follow the Observer (also known as publisher-subscriber) design pattern.<br/>
+    &#x2F;**
+     * Makes a constructor or object an event &#x27;publisher&#x27;. Hence all instances created from this constructor (&#x27;class&#x27; in C++ terms),
+     * will follow the Observer (also known as publisher-subscriber) design pattern.&lt;br&#x2F;&gt;
      *
      * @class Li.observable
      * @static
-     */
+     *&#x2F;
     var methods = {
-        /**
-         * Call all events listeners for the given event name.<br/>
+        &#x2F;**
+         * Call all events listeners for the given event name.&lt;br&#x2F;&gt;
          * @param {String} eventType
          * @param {Any} ... n number of arguments. These shall be directly passed onto the event listeners.
          * @method trigger
-         */
+         *&#x2F;
         trigger: function (eventType) {
             eventType = eventType.toLowerCase();
             this._eventMap_ = this._eventMap_ || {};
-            if ((!this._eventTypes_ || !this._eventTypes_[eventType]) && Li.warnings) {
-                console.warn(eventType + "? This event type has not been registered.");
+            if ((!this._eventTypes_ || !this._eventTypes_[eventType]) &amp;&amp; Li.warnings) {
+                console.warn(eventType + &quot;? This event type has not been registered.&quot;);
             }
-            if (!this._suspendEvents_ && this._eventMap_[eventType]) {
+            if (!this._suspendEvents_ &amp;&amp; this._eventMap_[eventType]) {
                 var i, len,
                     events = this._eventMap_[eventType];
-                for (i = 0, len = events.length; i < len; i += 1) {
+                for (i = 0, len = events.length; i &lt; len; i += 1) {
                     events[i].fn.apply(events[i].scope, Li.slice(arguments, 1));
                 }
             }
         },
 
-        /**
+        &#x2F;**
          * Adds a listener.
          * If no parameters are specified, then this would re-enable events that were switched off by observable.off();
          * @param {String|Object} object The event type that you want to listen to as string.
          * Or an object with event types and handlers as key-value pairs (with event type as the keys).
          * You can also subscribe for an event that has not yet been registered as an event. Hence the order of registeration is not a concern.
-         * @param {Function} handler Function that gets notfied when a event of 'eventType' gets fired. This param is used only when eventType is a string.
+         * @param {Function} handler Function that gets notfied when a event of &#x27;eventType&#x27; gets fired. This param is used only when eventType is a string.
          * @param {Object} scope The context in which the function should be called.
          * @method on
          * @alias addListener
          * @return A UUID which can be used to remove the event when required.
-         */
-        //TODO: Add option to bind arguments
+         *&#x2F;
+        &#x2F;&#x2F;TODO: Add option to bind arguments
         on: (function () {
             var uuidGen = 1;
-            //TODO: Also set config like onetime = true etc
+            &#x2F;&#x2F;TODO: Also set config like onetime = true etc
             return function (eventType, handler, scope) {
                 if (!Li.isDefined(eventType)) {
                     this._suspendEvents_ = false;
@@ -63,7 +161,7 @@
                 } else {
                     this._eventMap_ = this._eventMap_ || {};
                     var events = this._eventMap_,
-                        id = 'ls' + (uuidGen++);
+                        id = &#x27;ls&#x27; + (uuidGen++);
                     events[eventType] = events[eventType] || [];
                     events[eventType].push({
                         uuid: id,
@@ -75,14 +173,14 @@
             };
         }()),
 
-        /**
+        &#x2F;**
          * This function listens to a given publisher on the given event types,
          * and refires the events from itself (scope of the event fired would be this object).
          * This useful for chaining events.
          * @param {observable} observable An observable object.
          * @param {Array|null} eventTypes Event types to listen on. If eventType is null, it listens to all events of the publisher.
          * @method relayEvents
-         */
+         *&#x2F;
         relayEvents: (function () {
             var relayThis = function (eventType) {
                 var args = Li.slice(arguments, 1);
@@ -90,26 +188,26 @@
             };
             return function (observable, eventTypes) {
                 if (!observable._eventTypes_) {
-                    throw new Error('Object passed is not a publisher');
+                    throw new Error(&#x27;Object passed is not a publisher&#x27;);
                 }
                 eventTypes = eventTypes || Object.keys(observable._eventTypes_);
                 var i, len = eventTypes.length, eventType;
-                for (i = 0; i < len; i += 1) {
+                for (i = 0; i &lt; len; i += 1) {
                     eventType = eventTypes[i];
                     observable.on(eventType, Li.bind(relayThis, null, false, eventType), this);
                 }
             };
         }()),
 
-        /**
+        &#x2F;**
          * Remove an event listener.
          * If no parameters are specified, then all events are switched off till you call observable.on().
          * @param {String|Function} uuidORfunc Can be the event listener as a Function object,
-         * OR the UUID returned by 'on' function can also be used.
+         * OR the UUID returned by &#x27;on&#x27; function can also be used.
          * @return {Boolean} Returns true if listener was successfully removed.
          * @method off
          * @alias removeListener
-         */
+         *&#x2F;
         off: function (eventType, uuidORfunc) {
             if (!Li.isDefined(eventType)) {
                 this._suspendEvents_ = true;
@@ -119,10 +217,10 @@
             var found = false;
             if (this._eventMap_) {
                 var events = this._eventMap_[eventType], i, len,
-                    type = Li.isString(uuidORfunc) ? "uuid" : "fn",
+                    type = Li.isString(uuidORfunc) ? &quot;uuid&quot; : &quot;fn&quot;,
                     value = uuidORfunc;
                 if (events) {
-                    for (i = 0, len = events.length; i < len; i++) {
+                    for (i = 0, len = events.length; i &lt; len; i++) {
                         if (events[i][type] === value) {
                             events.splice(i, 1);
                             found = true;
@@ -135,32 +233,32 @@
         }
     };
 
-    /**
-     * When Li.observable() is called on a function or object, methods are added to that function/object to make it an observable/publisher.<br/>
-     * All the other methods listed here are methods that are added to the object.<br/>
-     * <br/>
+    &#x2F;**
+     * When Li.observable() is called on a function or object, methods are added to that function&#x2F;object to make it an observable&#x2F;publisher.&lt;br&#x2F;&gt;
+     * All the other methods listed here are methods that are added to the object.&lt;br&#x2F;&gt;
+     * &lt;br&#x2F;&gt;
      * If you dislike this idea of dynamically adding methods to an object, then you could create an observable base class for yourself.
      * @param {Function | Object} constructorFuncOrObj A constructor to augment, or an object to which methods will be added.
      * @param {Array} eventTypes A list of event types that the publisher will fire.
      * @method Li.observable
      * @example
      *      obj = {}, myClass = function() {};
-     *      Li.observable(obj, ['hide']);
-     *      Li.observable(myClass, ['show']);
+     *      Li.observable(obj, [&#x27;hide&#x27;]);
+     *      Li.observable(myClass, [&#x27;show&#x27;]);
      *
      * @example
      *      Create an observable base class:
      *      this.Observable = Li.extend(Object, {});
      *      Li.observable(this.Observable, []);
-     */
-    //TODO: Update tests on case when constructorFuncOrObj is an object instance.
+     *&#x2F;
+    &#x2F;&#x2F;TODO: Update tests on case when constructorFuncOrObj is an object instance.
     Li.observable = (function () {
-        var P = function () {}; //Proxy
+        var P = function () {}; &#x2F;&#x2F;Proxy
         return function (constructorFuncOrObj, eventTypes) {
             eventTypes = eventTypes || [];
             var c = constructorFuncOrObj, x, i, len;
-            if (typeof constructorFuncOrObj === 'function') {
-                //Make a copy of event types from prototype chain
+            if (typeof constructorFuncOrObj === &#x27;function&#x27;) {
+                &#x2F;&#x2F;Make a copy of event types from prototype chain
                 P.prototype = constructorFuncOrObj.prototype;
                 var types = (new P())._eventTypes_;
                 if (types) {
@@ -175,7 +273,7 @@
             }
             c._eventTypes_ = c._eventTypes_ || {};
             var temp;
-            for (i = 0, len = eventTypes.length; i < len; i += 1) {
+            for (i = 0, len = eventTypes.length; i &lt; len; i += 1) {
                 temp = eventTypes[i].toLowerCase();
                 c._eventTypes_[temp] = true;
             }
@@ -186,3 +284,23 @@
         };
     }());
 }(window.Li));
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 /**
  * IE8 polyfills for Object, Array and String.
  * @module IE Lang
- * @title  Ion IE8 Lang
+ * @title  Lithium IE8 Lang
  */
 (function () {
     function apply(target, obj) {
