@@ -142,11 +142,11 @@
             function superFunc(args) {
                 var fn = superFunc.caller;
                 return fn._baseclass_[fn._methodName_].apply(this, args);
-            };
+            }
             function superClassFunc() {
                 var fn = superClassFunc.caller;
                 return fn._baseclass_;
-            };
+            }
             var P = function () {}; //proxy
             return function (baseC, derived) {
                 derived = derived || {};
@@ -284,9 +284,9 @@
          */
         dom: function (html) {
             var frag = document.createDocumentFragment();
-            $(Li.format.apply(this, arguments)).each(function (i, node) {
+            $.parseHTML(Li.format.apply(this, arguments)).forEach(function (node) {
                 frag.appendChild(node);
-            })
+            });
             return frag;
         },
 
