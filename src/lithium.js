@@ -59,6 +59,28 @@
         },
 
         /**
+         * Returns true for any number (including Infinity).
+         * Note that numbers declared with 'new' keyword are objects and aren't considered "number"s.
+         * @param {Any} val
+         */
+        isNumber: function (val) {
+            return (typeof val === 'number' && !isNaN(val));
+        },
+
+        /**
+         * Returns true for any finite number.
+         * Note that numbers declared with 'new' keyword are objects and aren't considered "number"s.
+         * @param {Any} val
+         */
+        isFinite: function (val) {
+            return (typeof val === 'number' && isFinite(val));
+        },
+
+        /*For completeness*/
+        isArray: $.isArray,
+        isFunction: $.isFunction,
+
+        /**
          * Checks whether a given value is a DOM Element (Text nodes aren't included, nodeType should = 1)
          * @param {Object} obj
          * @method isElement
