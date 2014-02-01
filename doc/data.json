@@ -2,7 +2,7 @@
     "project": {
         "name": "Lithium",
         "description": "Lithium",
-        "version": "1.0.0",
+        "version": "0.2.0",
         "url": "https://github.com/Munawwar/Lithium/tree/gh-pages",
         "logo": ""
     },
@@ -21,7 +21,6 @@
             },
             "classes": {
                 "Li": 1,
-                "Li.object": 1,
                 "Li.string": 1
             },
             "fors": {},
@@ -45,14 +44,13 @@
             "submodules": {},
             "classes": {
                 "Li": 1,
-                "Li.object": 1,
                 "Li.string": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
             "file": "src\\lithium.js",
-            "line": 391,
+            "line": 381,
             "description": "Contains core utility functions and classes."
         },
         "observable": {
@@ -88,21 +86,6 @@
             "description": "Contains useful and most frequently used functions.",
             "static": 1
         },
-        "Li.object": {
-            "name": "Li.object",
-            "shortname": "Li.object",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "core",
-            "namespace": "",
-            "file": "src\\lithium.js",
-            "line": 355,
-            "description": "JavaScript Object related functions",
-            "static": 1
-        },
         "Li.string": {
             "name": "Li.string",
             "shortname": "Li.string",
@@ -114,7 +97,7 @@
             "module": "core",
             "namespace": "",
             "file": "src\\lithium.js",
-            "line": 391,
+            "line": 381,
             "description": "String related functions",
             "static": 1
         },
@@ -150,7 +133,7 @@
             "file": "src\\lithium.js",
             "line": 1,
             "author": "Munawwar Firoz",
-            "version": "0.1.0\nMIT License\nLithium for jQuery. Aimed at making software development easier.",
+            "version": "0.2.0\nMIT License\nLithium for jQuery. Aimed at making software development easier.",
             "class": "Li"
         },
         {
@@ -220,6 +203,34 @@
         {
             "file": "src\\lithium.js",
             "line": 61,
+            "description": "Returns true for any number (including Infinity).\nNote that numbers declared with 'new' keyword are objects and aren't considered \"number\"s.",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "",
+                    "type": "Any"
+                }
+            ],
+            "class": "Li",
+            "module": "core"
+        },
+        {
+            "file": "src\\lithium.js",
+            "line": 70,
+            "description": "Returns true for any finite number.\nNote that numbers declared with 'new' keyword are objects and aren't considered \"number\"s.",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "",
+                    "type": "Any"
+                }
+            ],
+            "class": "Li",
+            "module": "core"
+        },
+        {
+            "file": "src\\lithium.js",
+            "line": 83,
             "description": "Checks whether a given value is a DOM Element (Text nodes aren't included, nodeType should = 1)",
             "params": [
                 {
@@ -235,7 +246,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 74,
+            "line": 96,
             "description": "Returns true only when value is NaN.",
             "params": [
                 {
@@ -251,7 +262,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 87,
+            "line": 109,
             "description": "The arguments sent to this new function, followed by the optional arguments which were sent to 'bind', will be forwarded to func.<br/>\nSimilar to JS 1.8.5 bind, but with append as extra parameter.",
             "params": [
                 {
@@ -289,7 +300,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 107,
+            "line": 129,
             "description": "'Left' bind<br/>\nSame as bind, except that arguments are always prepended.",
             "params": [
                 {
@@ -317,7 +328,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 119,
+            "line": 141,
             "description": "'Right' bind<br/>\nSame as bind, except that arguments are always appended.",
             "params": [
                 {
@@ -345,7 +356,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 131,
+            "line": 153,
             "description": "Classical inheritence, where only prototype is inherited.",
             "params": [
                 {
@@ -382,7 +393,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 183,
+            "line": 205,
             "description": "Move properties from one object to another.\nProperty is only moved if source.hasOwnProperty(property).",
             "params": [
                 {
@@ -412,7 +423,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 202,
+            "line": 224,
             "description": "Iterate through an array or object.<br/>\nIterates through an object's properties and calls the given callback for each (enumerable) property.\n\nNote: For arrays, this method calls Array.forEach, so for IE8 you must include lithium.ie.lang module.",
             "params": [
                 {
@@ -439,8 +450,8 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 224,
-            "description": "Adds properties (and methods) to a function's prototype.",
+            "line": 246,
+            "description": "Adds properties (and methods) to a function's prototype.\nNote: You won't be warned if you overwrite an existing method/property.",
             "itemtype": "method",
             "name": "augment",
             "class": "Li",
@@ -448,7 +459,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 232,
+            "line": 268,
             "params": [
                 {
                     "name": "path",
@@ -463,27 +474,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 245,
-            "description": "Experimental: Overrides the method with the given one. The the older function will be sent as the first argument to the given function.",
-            "params": [
-                {
-                    "name": "instance",
-                    "description": "",
-                    "type": "Object"
-                },
-                {
-                    "name": "methodName",
-                    "description": "",
-                    "type": "String"
-                }
-            ],
-            "para": "{Function} func The function to override.",
-            "class": "Li",
-            "module": "core"
-        },
-        {
-            "file": "src\\lithium.js",
-            "line": 256,
+            "line": 281,
             "description": "String formatting",
             "params": [
                 {
@@ -505,7 +496,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 276,
+            "line": 301,
             "description": "Converts html string to a document fragment.<br/>\nThe html string and arguments are first sent to Li.format to get the\nfinal html string.",
             "params": [
                 {
@@ -530,7 +521,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 293,
+            "line": 318,
             "description": "Same as Array.slice except that it can work on array-like data types (i.e arguments, element.childNodes, NodeList...)",
             "itemtype": "method",
             "name": "slice",
@@ -539,7 +530,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 318,
+            "line": 343,
             "description": "Generates an unique alpha-numeric identifier.<br/>\nTo get the same permutation as RFC-4122 use len=24.",
             "params": [
                 {
@@ -566,7 +557,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 333,
+            "line": 358,
             "description": "Checks if 'ancestor' is ancestor of 'descendent'.\nThis is still needed because IE10's element.contains is buggy sometimes.",
             "params": [
                 {
@@ -591,43 +582,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 361,
-            "description": "Get a list of all enumerable values of the object. Doesn't include prototype's properties.",
-            "params": [
-                {
-                    "name": "obj",
-                    "description": "An object.",
-                    "type": "Object"
-                }
-            ],
-            "return": {
-                "description": "Array of values.",
-                "type": "Array"
-            },
-            "itemtype": "method",
-            "name": "values",
-            "class": "Li.object",
-            "module": "core"
-        },
-        {
-            "file": "src\\lithium.js",
-            "line": 375,
-            "description": "Returns the number of properties in an object",
-            "params": [
-                {
-                    "name": "obj",
-                    "description": "",
-                    "type": "Object"
-                }
-            ],
-            "itemtype": "method",
-            "name": "size",
-            "class": "Li.object",
-            "module": "core"
-        },
-        {
-            "file": "src\\lithium.js",
-            "line": 397,
+            "line": 387,
             "description": "Encodes &,<,> and \".",
             "itemtype": "method",
             "name": "htmlEncode",
@@ -647,7 +602,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 407,
+            "line": 397,
             "description": "Decodes string encoded by htmlEncode",
             "itemtype": "method",
             "name": "htmlDecode",
@@ -795,23 +750,19 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src\\lithium.js:183"
-        },
-        {
-            "message": "unknown tag: para",
-            "line": " src\\lithium.js:245"
+            "line": " src\\lithium.js:205"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src\\lithium.js:276"
+            "line": " src\\lithium.js:301"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src\\lithium.js:387"
         },
         {
             "message": "replacing incorrect tag: returns with return",
             "line": " src\\lithium.js:397"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " src\\lithium.js:407"
         },
         {
             "message": "unknown tag: alias",
@@ -826,12 +777,16 @@
             "line": " src\\lithium.js:1"
         },
         {
-            "message": "Missing item type\nExperimental: Overrides the method with the given one. The the older function will be sent as the first argument to the given function.",
-            "line": " src\\lithium.js:245"
+            "message": "Missing item type\nReturns true for any number (including Infinity).\nNote that numbers declared with 'new' keyword are objects and aren't considered \"number\"s.",
+            "line": " src\\lithium.js:61"
+        },
+        {
+            "message": "Missing item type\nReturns true for any finite number.\nNote that numbers declared with 'new' keyword are objects and aren't considered \"number\"s.",
+            "line": " src\\lithium.js:70"
         },
         {
             "message": "Missing item type\nString formatting",
-            "line": " src\\lithium.js:256"
+            "line": " src\\lithium.js:281"
         }
     ]
 }

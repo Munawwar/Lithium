@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 1.0.0</em>
+            <em>API Docs for: 0.2.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -42,8 +42,6 @@
             <ul id="api-classes" class="apis classes">
             
                 <li><a href="..&#x2F;classes/Li.html">Li</a></li>
-            
-                <li><a href="..&#x2F;classes/Li.object.html">Li.object</a></li>
             
                 <li><a href="..&#x2F;classes/Li.observable.html">Li.observable</a></li>
             
@@ -98,7 +96,7 @@
     <pre class="code prettyprint linenums">
 &#x2F;**
  * @author Munawwar Firoz
- * @version 0.1.0
+ * @version 0.2.0
  * MIT License
  * Lithium for jQuery. Aimed at making software development easier.
  *&#x2F;
@@ -108,7 +106,7 @@
  * @module core
  *&#x2F;
 
-&#x2F;*global HTMLElement*&#x2F;
+&#x2F;*global jQuery, HTMLElement*&#x2F;
 (function ($) {
     &#x2F;**
      * Contains useful and most frequently used functions.
@@ -155,6 +153,28 @@
         isString: function (val) {
             return (typeof val === &#x27;string&#x27;);
         },
+
+        &#x2F;**
+         * Returns true for any number (including Infinity).
+         * Note that numbers declared with &#x27;new&#x27; keyword are objects and aren&#x27;t considered &quot;number&quot;s.
+         * @param {Any} val
+         *&#x2F;
+        isNumber: function (val) {
+            return (typeof val === &#x27;number&#x27; &amp;&amp; !isNaN(val));
+        },
+
+        &#x2F;**
+         * Returns true for any finite number.
+         * Note that numbers declared with &#x27;new&#x27; keyword are objects and aren&#x27;t considered &quot;number&quot;s.
+         * @param {Any} val
+         *&#x2F;
+        isFinite: function (val) {
+            return (typeof val === &#x27;number&#x27; &amp;&amp; isFinite(val));
+        },
+
+        &#x2F;*For completeness*&#x2F;
+        isArray: $.isArray,
+        isFunction: $.isFunction,
 
         &#x2F;**
          * Checks whether a given value is a DOM Element (Text nodes aren&#x27;t included, nodeType should = 1)
@@ -240,11 +260,11 @@
             function superFunc(args) {
                 var fn = superFunc.caller;
                 return fn._baseclass_[fn._methodName_].apply(this, args);
-            };
+            }
             function superClassFunc() {
                 var fn = superClassFunc.caller;
                 return fn._baseclass_;
-            };
+            }
             var P = function () {}; &#x2F;&#x2F;proxy
             return function (baseC, derived) {
                 derived = derived || {};
@@ -321,10 +341,24 @@
 
         &#x2F;**
          * Adds properties (and methods) to a function&#x27;s prototype.
+         * Note: You won&#x27;t be warned if you overwrite an existing method&#x2F;property.
          * @method augment
          *&#x2F;
-        augment: function (classRef, properties, conflicts) {
-            $.extend(classRef.prototype, properties, conflicts);
+        augment: function (classRef, properties) {
+            Li.forEach(properties, function (val, prop) {
+                if ($.isFunction(val)) {
+                    val._methodName_ = prop;
+                    val._baseclass_ = classRef.super;
+                }
+                classRef.prototype[prop] = val;
+            });
+
+            &#x2F;&#x2F;Add static properties to constructor
+            var statics = properties.statics;
+            if (statics) {
+                delete properties.statics;
+                $.extend(classRef, statics);
+            }
         },
 
         &#x2F;**
@@ -338,17 +372,6 @@
                 part[temp] = part[temp] || {};
                 part = part[temp];
             }
-        },
-
-        &#x2F;**
-         * Experimental: Overrides the method with the given one. The the older function will be sent as the first argument to the given function.
-         * @param {Object} instance
-         * @param {String} methodName
-         * @para {Function} func The function to override.
-         *&#x2F;
-        decorator: function (instance, methodName, func) {
-            var old = instance[methodName] || $.noop;
-            return (instance[methodName] = Li.lbind(func, instance, old));
         },
 
         &#x2F;**
@@ -382,9 +405,9 @@
          *&#x2F;
         dom: function (html) {
             var frag = document.createDocumentFragment();
-            $(Li.format.apply(this, arguments)).each(function (i, node) {
+            $.parseHTML(Li.format.apply(this, arguments)).forEach(function (node) {
                 frag.appendChild(node);
-            })
+            });
             return frag;
         },
 
@@ -446,41 +469,6 @@
                 descendent = descendent.parentNode;
             }
             return false;
-        }
-    };
-
-
-    &#x2F;**
-     * JavaScript Object related functions
-     * @class Li.object
-     * @static
-     *&#x2F;
-    Li.object = {
-        &#x2F;**
-         * Get a list of all enumerable values of the object. Doesn&#x27;t include prototype&#x27;s properties.
-         * @param {Object} obj An object.
-         * @return {Array} Array of values.
-         * @method values
-         *&#x2F;
-        values: function (obj) {
-            var values = [];
-            Li.forEach(obj, function (value) {
-                values.push(value);
-            });
-            return values;
-        },
-
-        &#x2F;**
-         * Returns the number of properties in an object
-         * @param {Object} obj
-         * @method size
-         *&#x2F;
-        size: function (obj) {
-            var count = 0;
-            Li.forEach(obj, function () {
-                count += 1;
-            });
-            return count;
         }
     };
 

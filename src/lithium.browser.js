@@ -1,5 +1,5 @@
 /*
- * Lithium JS version 0.1.0
+ * Lithium JS version 0.2.0
  * Browser detection.
  */
 
