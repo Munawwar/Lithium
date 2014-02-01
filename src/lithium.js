@@ -362,41 +362,6 @@
         }
     };
 
-
-    /**
-     * JavaScript Object related functions
-     * @class Li.object
-     * @static
-     */
-    Li.object = {
-        /**
-         * Get a list of all enumerable values of the object. Doesn't include prototype's properties.
-         * @param {Object} obj An object.
-         * @return {Array} Array of values.
-         * @method values
-         */
-        values: function (obj) {
-            var values = [];
-            Li.forEach(obj, function (value) {
-                values.push(value);
-            });
-            return values;
-        },
-
-        /**
-         * Returns the number of properties in an object
-         * @param {Object} obj
-         * @method size
-         */
-        size: function (obj) {
-            var count = 0;
-            Li.forEach(obj, function () {
-                count += 1;
-            });
-            return count;
-        }
-    };
-
     /*TODO: Date formatting and convertion methods missing*/
 
     /**
