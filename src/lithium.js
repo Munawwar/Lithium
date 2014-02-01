@@ -10,7 +10,7 @@
  * @module core
  */
 
-/*global HTMLElement*/
+/*global jQuery, HTMLElement*/
 (function ($) {
     /**
      * Contains useful and most frequently used functions.
@@ -245,10 +245,24 @@
 
         /**
          * Adds properties (and methods) to a function's prototype.
+         * Note: You won't be warned if you overwrite an existing method/property.
          * @method augment
          */
-        augment: function (classRef, properties, conflicts) {
-            $.extend(classRef.prototype, properties, conflicts);
+        augment: function (classRef, properties) {
+            Li.forEach(properties, function (val, prop) {
+                if ($.isFunction(val)) {
+                    val._methodName_ = prop;
+                    val._baseclass_ = classRef.super;
+                }
+                classRef.prototype[prop] = val;
+            });
+
+            //Add static properties to constructor
+            var statics = properties.statics;
+            if (statics) {
+                delete properties.statics;
+                $.extend(classRef, statics);
+            }
         },
 
         /**
