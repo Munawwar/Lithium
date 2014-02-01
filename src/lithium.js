@@ -265,17 +265,6 @@
         },
 
         /**
-         * Experimental: Overrides the method with the given one. The the older function will be sent as the first argument to the given function.
-         * @param {Object} instance
-         * @param {String} methodName
-         * @para {Function} func The function to override.
-         */
-        decorator: function (instance, methodName, func) {
-            var old = instance[methodName] || $.noop;
-            return (instance[methodName] = Li.lbind(func, instance, old));
-        },
-
-        /**
          * String formatting
          * @param {String} str String with placeholders
          * @param {Object|...} arg If object then you can use {propertyName} as placeholder.
