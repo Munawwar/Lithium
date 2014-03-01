@@ -19,7 +19,9 @@ Latest Chrome,Firefox,Safari,Opera and IE8+.
 Lithium is split into 3 modules:
 
 lithium.js - Core (other modules depends on this module).
-lithium.observable.js - Observable (aka Pub-Sub).
+
+lithium.observable.js - Observable (aka Publisher-Subscriber).
+
 lithium.browser.js - Browser detection.
 
 ## API
