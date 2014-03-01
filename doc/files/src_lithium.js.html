@@ -158,6 +158,7 @@
          * Returns true for any number (including Infinity).
          * Note that numbers declared with &#x27;new&#x27; keyword are objects and aren&#x27;t considered &quot;number&quot;s.
          * @param {Any} val
+         * @method isNumber
          *&#x2F;
         isNumber: function (val) {
             return (typeof val === &#x27;number&#x27; &amp;&amp; !isNaN(val));
@@ -167,13 +168,22 @@
          * Returns true for any finite number.
          * Note that numbers declared with &#x27;new&#x27; keyword are objects and aren&#x27;t considered &quot;number&quot;s.
          * @param {Any} val
+         * @method isFinite
          *&#x2F;
         isFinite: function (val) {
             return (typeof val === &#x27;number&#x27; &amp;&amp; isFinite(val));
         },
 
         &#x2F;*For completeness*&#x2F;
+        &#x2F;**
+         * Same as jQuery.isArray
+         * @method isArray
+         *&#x2F;
         isArray: $.isArray,
+        &#x2F;**
+         * Same as jQuery.isFunction
+         * @method isFunction
+         *&#x2F;
         isFunction: $.isFunction,
 
         &#x2F;**
@@ -351,6 +361,7 @@
         &#x2F;**
          * @param {String} path
          * @method namespace
+         * @example Li.namespace(&#x27;mynamespace.ui.widgets&#x27;);
          *&#x2F;
         namespace: function (path) {
             var part = (function () {return this; }()), temp;
@@ -365,11 +376,14 @@
          * String formatting
          * @param {String} str String with placeholders
          * @param {Object|...} arg If object then you can use {propertyName} as placeholder.
-         * Else you can supply n number of args as use {argument index} as placholder
+         * Else you can supply n number of args and use {argument index} as placholder
+         * @method format
          * @example
-         * Li.format(&#x27;&lt;div class=&quot;{0}&quot;&gt;, &#x27;box&#x27;);
-         * Li.format(&#x27;&lt;div class=&quot;{cls}&quot;&gt;, {cls: &#x27;box&#x27;});
-         * &#x2F;&#x2F;output of both: &lt;div class=&quot;box&quot;&gt;
+         *
+         *     Li.format(&#x27;&lt;div class=&quot;{0}&quot;&gt;&#x27;, &#x27;box&#x27;);
+         *     Li.format(&#x27;&lt;div class=&quot;{cls}&quot;&gt;&#x27;, {cls: &#x27;box&#x27;});
+         *     &#x2F;&#x2F;output of both: &lt;div class=&quot;box&quot;&gt;
+         *
          *&#x2F;
         format: function (str, arg) {
             if (!Li.isObject(arg)) {
@@ -400,7 +414,9 @@
 
         &#x2F;**
          * Same as Array.slice except that it can work on array-like data types (i.e arguments, element.childNodes, NodeList...)
+         * @param {Array-like} array Array like values.
          * @method slice
+         * @example var elements = Li.slice(document.body.childNodes, 3); &#x2F;&#x2F;get first 3 nodes.
          *&#x2F;
         slice: function (array, from, end) {
             var len = array.length, i, arr;

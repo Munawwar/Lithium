@@ -186,6 +186,20 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_format">format</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_isArray">isArray</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_isBoolean">isBoolean</a>
 
                                 
@@ -207,7 +221,28 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_isFinite">isFinite</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_isFunction">isFunction</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_isNaN">isNaN</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_isNumber">isNumber</a>
 
                                 
                                 
@@ -332,7 +367,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l233"><code>src\lithium.js:233</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l243"><code>src\lithium.js:243</code></a>
         
         </p>
 
@@ -419,7 +454,7 @@ Note: You won't be warned if you overwrite an existing method/property.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l109"><code>src\lithium.js:109</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l119"><code>src\lithium.js:119</code></a>
         
         </p>
 
@@ -704,7 +739,7 @@ Also returns true if ancestor == descendent.
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l288"><code>src\lithium.js:288</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l302"><code>src\lithium.js:302</code></a>
         
         </p>
 
@@ -830,7 +865,7 @@ final html string.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l153"><code>src\lithium.js:153</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l163"><code>src\lithium.js:163</code></a>
         
         </p>
 
@@ -991,7 +1026,7 @@ final html string.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l209"><code>src\lithium.js:209</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l219"><code>src\lithium.js:219</code></a>
         
         </p>
 
@@ -1077,6 +1112,180 @@ Iterates through an object's properties and calls the given callback for each (e
                 
             </div>
         </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_format" class="method item">
+    <h3 class="name"><code>format</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>str</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>arg</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l279"><code>src\lithium.js:279</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>String formatting</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">str</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>String with placeholders</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">arg</code>
+                        <span class="type">Object | ...</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>If object then you can use {propertyName} as placeholder.
+Else you can supply n number of args and use {argument index} as placholder</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>Li.format('&lt;div class="{0}"&gt;', 'box');
+Li.format('&lt;div class="{cls}"&gt;', {cls: 'box'});
+//output of both: &lt;div class="box"&gt;
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_isArray" class="method item">
+    <h3 class="name"><code>isArray</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l82"><code>src\lithium.js:82</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Same as jQuery.isArray</p>
+    </div>
+
+    
+
     
 
     
@@ -1300,7 +1509,7 @@ Note that booleans declared with 'new' keyword are objects and aren't considered
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l83"><code>src\lithium.js:83</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l93"><code>src\lithium.js:93</code></a>
         
         </p>
 
@@ -1337,6 +1546,148 @@ Note that booleans declared with 'new' keyword are objects and aren't considered
             
             </ul>
         </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_isFinite" class="method item">
+    <h3 class="name"><code>isFinite</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>val</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l71"><code>src\lithium.js:71</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns true for any finite number.
+Note that numbers declared with 'new' keyword are objects and aren't considered "number"s.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">val</code>
+                        <span class="type">Any</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_isFunction" class="method item">
+    <h3 class="name"><code>isFunction</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l87"><code>src\lithium.js:87</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Same as jQuery.isFunction</p>
+    </div>
+
     
 
     
@@ -1387,7 +1738,7 @@ Note that booleans declared with 'new' keyword are objects and aren't considered
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l96"><code>src\lithium.js:96</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l106"><code>src\lithium.js:106</code></a>
         
         </p>
 
@@ -1399,6 +1750,94 @@ Note that booleans declared with 'new' keyword are objects and aren't considered
 
     <div class="description">
         <p>Returns true only when value is NaN.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">val</code>
+                        <span class="type">Any</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_isNumber" class="method item">
+    <h3 class="name"><code>isNumber</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>val</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l61"><code>src\lithium.js:61</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns true for any number (including Infinity).
+Note that numbers declared with 'new' keyword are objects and aren't considered "number"s.</p>
     </div>
 
     
@@ -1662,7 +2101,7 @@ Note that strings declared with 'new' keyword are objects and aren't considered 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l129"><code>src\lithium.js:129</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l139"><code>src\lithium.js:139</code></a>
         
         </p>
 
@@ -1809,8 +2248,8 @@ Same as bind, except that arguments are always prepended.</p>
     </div>
 
     <div class="description">
-        <p>Move properties from one object to another.
-Property is only moved if source.hasOwnProperty(property).</p>
+        <p>Move properties from one object to another.<br/>
+Property is only moved if source.hasOwnProperty(property) is true.</p>
     </div>
 
     
@@ -1929,7 +2368,7 @@ Property is only moved if source.hasOwnProperty(property).</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l255"><code>src\lithium.js:255</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l265"><code>src\lithium.js:265</code></a>
         
         </p>
 
@@ -1970,6 +2409,14 @@ Property is only moved if source.hasOwnProperty(property).</p>
 
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <p>Li.namespace('mynamespace.ui.widgets');</p>
+            </div>
+        </div>
     
 </div>
 
@@ -2028,7 +2475,7 @@ Property is only moved if source.hasOwnProperty(property).</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l141"><code>src\lithium.js:141</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l151"><code>src\lithium.js:151</code></a>
         
         </p>
 
@@ -2110,7 +2557,17 @@ Same as bind, except that arguments are always appended.</p>
     <h3 class="name"><code>slice</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>array</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -2138,7 +2595,7 @@ Same as bind, except that arguments are always appended.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l305"><code>src\lithium.js:305</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l319"><code>src\lithium.js:319</code></a>
         
         </p>
 
@@ -2153,9 +2610,40 @@ Same as bind, except that arguments are always appended.</p>
     </div>
 
     
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">array</code>
+                        <span class="type">Array-like</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Array like values.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
 
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <p>var elements = Li.slice(document.body.childNodes, 3); //get first 3 nodes.</p>
+            </div>
+        </div>
     
 </div>
 
@@ -2212,7 +2700,7 @@ Same as bind, except that arguments are always appended.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l330"><code>src\lithium.js:330</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.js.html#l346"><code>src\lithium.js:346</code></a>
         
         </p>
 

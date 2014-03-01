@@ -110,11 +110,10 @@
      * Base class for Publishers.&lt;br&#x2F;&gt;
      * This class helps you to achieve the Observer (also known as publisher-subscriber) design pattern.&lt;br&#x2F;&gt;
      *
-     * You class may have a property named &#x27;eventTypes&#x27; which is a list (i.e array) of eventTypes
+     * Your class prototype may have a property named &#x27;eventTypes&#x27; which is a list (i.e array) of eventTypes
      * that the class as a publisher would&#x2F;can trigger.
      *
      * @class Li.Observable
-     * @static
      *&#x2F;
     Li.Observable = Li.extend(Object, {
         &#x2F;**
@@ -147,7 +146,6 @@
          * @param {Function} handler Function that gets notfied when a event of &#x27;eventType&#x27; gets fired. This param is used only when eventType is a string.
          * @param {Object} scope The context in which the function should be called.
          * @method on
-         * @alias addListener
          * @return A UUID which can be used to remove the event when required.
          *&#x2F;
         &#x2F;&#x2F;TODO: Add option to bind arguments
@@ -211,7 +209,6 @@
          * OR the UUID returned by &#x27;on&#x27; function can also be used.
          * @return {Boolean} Returns true if listener was successfully removed.
          * @method off
-         * @alias removeListener
          *&#x2F;
         off: function (eventType, uuidORfunc) {
             if (!Li.isDefined(eventType)) {

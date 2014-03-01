@@ -13,8 +13,8 @@
 (function (Li) {
     $.extend(Li, {
         /**
-         * Move properties from one object to another.
-         * Property is only moved if source.hasOwnProperty(property).
+         * Move properties from one object to another.<br/>
+         * Property is only moved if source.hasOwnProperty(property) is true.
          * @param {Object} target Object to which properties are to be moved
          * @param {Object} source Object from which properties are to moved.
          * @param {Array[string]} props Array of properties to move.
