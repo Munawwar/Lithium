@@ -14,6 +14,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\lithium.extras.js": {
+            "name": "src\\lithium.extras.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\lithium.js": {
             "name": "src\\lithium.js",
             "modules": {
@@ -32,7 +39,7 @@
                 "observable": 1
             },
             "classes": {
-                "Li.observable": 1
+                "Li.Observable": 1
             },
             "fors": {},
             "namespaces": {}
@@ -50,14 +57,14 @@
             "namespaces": {},
             "tag": "module",
             "file": "src\\lithium.js",
-            "line": 381,
+            "line": 346,
             "description": "Contains core utility functions and classes."
         },
         "observable": {
             "name": "observable",
             "submodules": {},
             "classes": {
-                "Li.observable": 1
+                "Li.Observable": 1
             },
             "fors": {},
             "namespaces": {},
@@ -97,13 +104,13 @@
             "module": "core",
             "namespace": "",
             "file": "src\\lithium.js",
-            "line": 381,
+            "line": 346,
             "description": "String related functions",
             "static": 1
         },
-        "Li.observable": {
-            "name": "Li.observable",
-            "shortname": "Li.observable",
+        "Li.Observable": {
+            "name": "Li.Observable",
+            "shortname": "Li.Observable",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -113,7 +120,7 @@
             "namespace": "",
             "file": "src\\lithium.observable.js",
             "line": 13,
-            "description": "Makes a constructor or object an event 'publisher'. Hence all instances created from this constructor ('class' in C++ terms),\nwill follow the Observer (also known as publisher-subscriber) design pattern.<br/>",
+            "description": "Base class for Publishers.<br/>\nThis class helps you to achieve the Observer (also known as publisher-subscriber) design pattern.<br/>\n\nYou class may have a property named 'eventTypes' which is a list (i.e array) of eventTypes\nthat the class as a publisher would/can trigger.",
             "static": 1
         }
     },
@@ -130,10 +137,82 @@
             "class": "Li"
         },
         {
+            "file": "src\\lithium.extras.js",
+            "line": 10,
+            "description": "Extra utility methods",
+            "class": "Li"
+        },
+        {
+            "file": "src\\lithium.extras.js",
+            "line": 15,
+            "description": "Move properties from one object to another.\nProperty is only moved if source.hasOwnProperty(property).",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "Object to which properties are to be moved",
+                    "type": "Object"
+                },
+                {
+                    "name": "source",
+                    "description": "Object from which properties are to moved.",
+                    "type": "Object"
+                },
+                {
+                    "name": "props",
+                    "description": "Array of properties to move.",
+                    "type": "Array[string]"
+                }
+            ],
+            "return": {
+                "description": "target Returns target object",
+                "type": "Object"
+            },
+            "itemtype": "method",
+            "name": "move",
+            "class": "Li"
+        },
+        {
+            "file": "src\\lithium.extras.js",
+            "line": 34,
+            "description": "Delete undefined properties from object",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "Li"
+        },
+        {
+            "file": "src\\lithium.extras.js",
+            "line": 47,
+            "description": "Checks if 'ancestor' is ancestor of 'descendent'.\nThis is still needed because IE10's element.contains is buggy sometimes.",
+            "params": [
+                {
+                    "name": "ancestor",
+                    "description": "",
+                    "type": "HTMLElement"
+                },
+                {
+                    "name": "descendent",
+                    "description": "",
+                    "type": "HTMLElement"
+                }
+            ],
+            "return": {
+                "description": "Returns true if 'ancestor' is indeed the ancestor of 'descendent'.\nAlso returns true if ancestor == descendent.",
+                "type": "Boolean"
+            },
+            "itemtype": "method",
+            "name": "contains",
+            "class": "Li"
+        },
+        {
             "file": "src\\lithium.js",
             "line": 1,
             "author": "Munawwar Firoz",
-            "version": "0.2.0\nMIT License\nLithium for jQuery. Aimed at making software development easier.",
+            "version": "0.3.0\nMIT License\nLithium for jQuery. Aimed at making software development easier.",
             "class": "Li"
         },
         {
@@ -393,37 +472,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 205,
-            "description": "Move properties from one object to another.\nProperty is only moved if source.hasOwnProperty(property).",
-            "params": [
-                {
-                    "name": "target",
-                    "description": "Object to which properties are to be moved",
-                    "type": "Object"
-                },
-                {
-                    "name": "source",
-                    "description": "Object from which properties are to moved.",
-                    "type": "Object"
-                },
-                {
-                    "name": "props",
-                    "description": "Array of properties to move.",
-                    "type": "Array[string]"
-                }
-            ],
-            "return": {
-                "description": "target Returns target object",
-                "type": "Object"
-            },
-            "itemtype": "method",
-            "name": "move",
-            "class": "Li",
-            "module": "core"
-        },
-        {
-            "file": "src\\lithium.js",
-            "line": 224,
+            "line": 209,
             "description": "Iterate through an array or object.<br/>\nIterates through an object's properties and calls the given callback for each (enumerable) property.\n\nNote: For arrays, this method calls Array.forEach, so for IE8 you must include lithium.ie.lang module.",
             "params": [
                 {
@@ -443,6 +492,10 @@
                     "optional": true
                 }
             ],
+            "return": {
+                "description": "obj",
+                "type": "Object"
+            },
             "itemtype": "method",
             "name": "forEach",
             "class": "Li",
@@ -450,7 +503,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 246,
+            "line": 233,
             "description": "Adds properties (and methods) to a function's prototype.\nNote: You won't be warned if you overwrite an existing method/property.",
             "itemtype": "method",
             "name": "augment",
@@ -459,7 +512,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 268,
+            "line": 255,
             "params": [
                 {
                     "name": "path",
@@ -474,7 +527,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 281,
+            "line": 268,
             "description": "String formatting",
             "params": [
                 {
@@ -496,7 +549,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 301,
+            "line": 288,
             "description": "Converts html string to a document fragment.<br/>\nThe html string and arguments are first sent to Li.format to get the\nfinal html string.",
             "params": [
                 {
@@ -521,7 +574,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 318,
+            "line": 305,
             "description": "Same as Array.slice except that it can work on array-like data types (i.e arguments, element.childNodes, NodeList...)",
             "itemtype": "method",
             "name": "slice",
@@ -530,7 +583,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 343,
+            "line": 330,
             "description": "Generates an unique alpha-numeric identifier.<br/>\nTo get the same permutation as RFC-4122 use len=24.",
             "params": [
                 {
@@ -557,32 +610,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 358,
-            "description": "Checks if 'ancestor' is ancestor of 'descendent'.\nThis is still needed because IE10's element.contains is buggy sometimes.",
-            "params": [
-                {
-                    "name": "ancestor",
-                    "description": "",
-                    "type": "HTMLElement"
-                },
-                {
-                    "name": "descendent",
-                    "description": "",
-                    "type": "HTMLElement"
-                }
-            ],
-            "return": {
-                "description": "Returns true if 'ancestor' is indeed the ancestor of 'descendent'.\nAlso returns true if ancestor == descendent.",
-                "type": "Boolean"
-            },
-            "itemtype": "method",
-            "name": "contains",
-            "class": "Li",
-            "module": "core"
-        },
-        {
-            "file": "src\\lithium.js",
-            "line": 387,
+            "line": 352,
             "description": "Encodes &,<,> and \".",
             "itemtype": "method",
             "name": "htmlEncode",
@@ -602,7 +630,7 @@
         },
         {
             "file": "src\\lithium.js",
-            "line": 397,
+            "line": 362,
             "description": "Decodes string encoded by htmlEncode",
             "itemtype": "method",
             "name": "htmlDecode",
@@ -622,7 +650,7 @@
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 21,
+            "line": 24,
             "description": "Call all events listeners for the given event name.<br/>",
             "params": [
                 {
@@ -638,12 +666,12 @@
             ],
             "itemtype": "method",
             "name": "trigger",
-            "class": "Li.observable",
+            "class": "Li.Observable",
             "module": "observable"
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 42,
+            "line": 45,
             "description": "Adds a listener.\nIf no parameters are specified, then this would re-enable events that were switched off by observable.off();",
             "params": [
                 {
@@ -668,12 +696,12 @@
             "return": {
                 "description": "A UUID which can be used to remove the event when required."
             },
-            "class": "Li.observable",
+            "class": "Li.Observable",
             "module": "observable"
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 82,
+            "line": 85,
             "description": "This function listens to a given publisher on the given event types,\nand refires the events from itself (scope of the event fired would be this object).\nThis useful for chaining events.",
             "params": [
                 {
@@ -689,12 +717,12 @@
             ],
             "itemtype": "method",
             "name": "relayEvents",
-            "class": "Li.observable",
+            "class": "Li.Observable",
             "module": "observable"
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 108,
+            "line": 111,
             "description": "Remove an event listener.\nIf no parameters are specified, then all events are switched off till you call observable.on().",
             "params": [
                 {
@@ -710,32 +738,16 @@
             "itemtype": "method",
             "name": "off",
             "alias": "removeListener",
-            "class": "Li.observable",
+            "class": "Li.Observable",
             "module": "observable"
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 142,
-            "description": "When Li.observable() is called on a function or object, methods are added to that function/object to make it an observable/publisher.<br/>\nAll the other methods listed here are methods that are added to the object.<br/>\n<br/>\nIf you dislike this idea of dynamically adding methods to an object, then you could create an observable base class for yourself.",
-            "params": [
-                {
-                    "name": "constructorFuncOrObj",
-                    "description": "A constructor to augment, or an object to which methods will be added.",
-                    "type": "Function | Object"
-                },
-                {
-                    "name": "eventTypes",
-                    "description": "A list of event types that the publisher will fire.",
-                    "type": "Array"
-                }
-            ],
-            "itemtype": "method",
-            "name": "Li.observable",
-            "example": [
-                "\n     obj = {}, myClass = function() {};\n     Li.observable(obj, ['hide']);\n     Li.observable(myClass, ['show']);",
-                "\n     Create an observable base class:\n     this.Observable = Li.extend(Object, {});\n     Li.observable(this.Observable, []);"
-            ],
-            "class": "Li.observable",
+            "line": 145,
+            "description": "Given a class, it inherits event types from base class.",
+            "access": "private",
+            "tagname": "",
+            "class": "Li.Observable",
             "module": "observable"
         }
     ],
@@ -745,32 +757,40 @@
             "line": " src\\lithium.browser.js:10"
         },
         {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src\\lithium.extras.js:15"
+        },
+        {
             "message": "unknown tag: version",
             "line": " src\\lithium.js:1"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src\\lithium.js:205"
+            "line": " src\\lithium.js:288"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src\\lithium.js:301"
+            "line": " src\\lithium.js:352"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src\\lithium.js:387"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " src\\lithium.js:397"
+            "line": " src\\lithium.js:362"
         },
         {
             "message": "unknown tag: alias",
-            "line": " src\\lithium.observable.js:42"
+            "line": " src\\lithium.observable.js:45"
         },
         {
             "message": "unknown tag: alias",
-            "line": " src\\lithium.observable.js:108"
+            "line": " src\\lithium.observable.js:111"
+        },
+        {
+            "message": "Missing item type\nExtra utility methods",
+            "line": " src\\lithium.extras.js:10"
+        },
+        {
+            "message": "Missing item type\nDelete undefined properties from object",
+            "line": " src\\lithium.extras.js:34"
         },
         {
             "message": "Missing item type",
@@ -786,7 +806,11 @@
         },
         {
             "message": "Missing item type\nString formatting",
-            "line": " src\\lithium.js:281"
+            "line": " src\\lithium.js:268"
+        },
+        {
+            "message": "Missing item type\nGiven a class, it inherits event types from base class.",
+            "line": " src\\lithium.observable.js:145"
         }
     ]
 }

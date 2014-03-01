@@ -2,7 +2,7 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "Li",
-        "Li.observable",
+        "Li.Observable",
         "Li.string"
     ],
     "modules": [

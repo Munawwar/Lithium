@@ -16,13 +16,15 @@ Latest Chrome,Firefox,Safari,Opera and IE8+.
 
 ## Usage
 
-Lithium is split into 3 modules:
+Lithium is split into 4 modules:
 
 lithium.js - Core (other modules depends on this module).
 
 lithium.observable.js - Observable (aka Publisher-Subscriber).
 
 lithium.browser.js - Browser detection.
+
+lithium.extras.js - Contains additional utility methods.
 
 ## API
 
@@ -56,12 +58,12 @@ Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.i
             staticProp: "prop"
         }
     });
-    
+
     //Create myClass2 using myClass1 as base class.
     var myClass2 = Li.extend(myClass1, {
         constructor: function (cfg) {
             this.super([cfg]); //call base class constructor
-            
+
             //alternatively, this.super(arguments);
             //or this.superclass().constructor.call(this, cfg);
         },
@@ -74,13 +76,15 @@ Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.i
 
 * Observable
 
-    <pre><code>var Restaurant = Li.extend(Object, {
+    <pre><code>
+    //Publisher class
+    var Restaurant = Li.extend(Li.Observable, {
+        eventType: ['freefood'], //list of events this class may fire.
         //Methods
         salesOffer: function () {
-            this.fireEvent('freefood', '1.00 PM');
+            this.trigger('freefood', '1.00 PM');
         }
     });
-    Li.observable(Restaurant, ['freefood']); //Make class a publisher
 
     /*Subscriber/Listener*/
     var HungryMan = Li.extend(Object, {
@@ -88,7 +92,7 @@ Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.i
             this.name = name;
             //Add listener
             restaurant.on('freefood', function (time) {
-                console.log(name + ' says: Yay! free food!');
+                console.log(name + ' says: Yay! Free food!');
             }, this);
         }
     });
@@ -97,13 +101,13 @@ Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.i
     /*Demonstration*/
     /*----------------------------------*/
     var someRestaurant = new Restaurant();
-    var a = new HungryMan('man1', someRestaurant),
-        b = new HungryMan('man2', someRestaurant);
+    new HungryMan('man1', someRestaurant),
+    new HungryMan('man2', someRestaurant);
 
     //Somewhere in a onclick event we execute...
     someRestaurant.salesOffer(); //...this would call all listeners. In this case it will display..
-    //man1 says: Yay! free food!
-    //man2 says: Yay! free food!</code></pre>
+    //man1 says: Yay! Free food!
+    //man2 says: Yay! Free food!</code></pre>
 
 * Li.lbind(fn [, context, args...]) - Binds context and arguments to a function (like the [JS.1.8.1 Function.bind](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind)). Argument list is prepended to fn.
 
@@ -119,7 +123,7 @@ Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.i
 * Li.uuid([len=10, hypenate=false]) - Returns a random UID with length 'len' and hyphenated if hypenate=true, as string.
 * Li.string.htmlEncode and Li.string.htmlDecode - Encodes/Decodes >,<," and &.
 * Li.format(formatString, ...) - A quick string format method
-  
+
   <pre><code>Li.format('&lt;div class="{0}"&gt;&lt;/div&gt;, 'box');
   Li.format('&lt;div class="{cls}"&gt;&lt;/div&gt;, {cls: 'box'});
   //Both returns '&lt;div class="box"&gt;&lt;/div&gt;'</code></pre>

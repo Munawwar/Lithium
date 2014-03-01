@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>observable - Lithium</title>
+    <title>src\lithium.extras.js - Lithium</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0pr2&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -90,58 +90,79 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>observable Module</h1>
-<div class="box clearfix meta">
-    
+                        <h1 class="file-heading">File: src\lithium.extras.js</h1>
 
-    
-        <div class="uses">
-            Requires
-            <ul class="inline commas">
-                
-                    <li></li>
-                
-            </ul>
-        </div>
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;*
+ * Lithium JS version 0.3.0
+ * Browser detection.
+ *&#x2F;
 
-    
-        <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_lithium.observable.js.html#l13"><code>src\lithium.observable.js:13</code></a>
-        </div>
-    
+&#x2F;**
+ * @class Li
+ *&#x2F;
 
-    
-</div>
+&#x2F;**
+ * Extra utility methods
+ *&#x2F;
+(function (Li) {
+    $.extend(Li, {
+        &#x2F;**
+         * Move properties from one object to another.
+         * Property is only moved if source.hasOwnProperty(property).
+         * @param {Object} target Object to which properties are to be moved
+         * @param {Object} source Object from which properties are to moved.
+         * @param {Array[string]} props Array of properties to move.
+         * @returns {Object} target Returns target object
+         * @method move
+         *&#x2F;
+        move: function (target, source, props) {
+            props.forEach(function (prop) {
+                if (source.hasOwnProperty(prop)) {
+                    target[prop] = source[prop];
+                    delete source[prop];
+                }
+            });
+            return target;
+        },
 
+        &#x2F;**
+         * Delete undefined properties from object
+         * @param {Object} obj
+         *&#x2F;
+        compact: function (obj) {
+            Object.keys(obj).forEach(function(key) {
+                if (!Li.isDefined(obj[key])) {
+                    delete obj[key];
+                }
+            });
+            return obj;
+        },
 
+        &#x2F;**
+         * Checks if &#x27;ancestor&#x27; is ancestor of &#x27;descendent&#x27;.
+         * This is still needed because IE10&#x27;s element.contains is buggy sometimes.
+         *
+         * @param {HTMLElement} ancestor
+         * @param {HTMLElement} descendent
+         * @return {Boolean} Returns true if &#x27;ancestor&#x27; is indeed the ancestor of &#x27;descendent&#x27;.
+         * Also returns true if ancestor == descendent.
+         * @method contains
+         *&#x2F;
+        contains: function (ancestor, descendent) {
+            while (descendent) {
+                if (descendent === ancestor) {
+                    return true;
+                }
+                descendent = descendent.parentNode;
+            }
+            return false;
+        }
+    });
+}(window.Li));
 
-<div class="box intro">
-    <p>Publisher-Subscriber pattern utility class</p>
-</div>
-
-
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/Li.Observable.html">
-                        Li.Observable
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
-
-    <div class="yui3-u-1-2">
-        
-    </div>
+    </pre>
 </div>
 
                     </div>
