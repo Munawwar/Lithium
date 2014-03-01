@@ -14,6 +14,14 @@ Lithium depends on jQuery. Lithium is seperated into modules, so you use only wh
 
 Latest Chrome,Firefox,Safari,Opera and IE8+.
 
+## Usage
+
+Lithium is split into 3 modules:
+
+lithium.js - Core (other modules depends on this module).
+lithium.observable.js - Observable (aka Pub-Sub).
+lithium.browser.js - Browser detection.
+
 ## API
 
 [Complete API documentation](http://munawwar.github.com/Lithium/doc/).
@@ -26,9 +34,7 @@ Li.isElement(o) - Returns true if o is an instance of HTMLElement
 
 Li.isNaN(val) - Returns true if val is NaN.
 
-Similarly Li.isObject, Li.isString, Li.isBoolean.
-
-jQuery already has $.isFunction, $.isNumeric etc.
+Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.isBoolean, Li.isString.
 
 ### Patterns
 
@@ -55,7 +61,7 @@ jQuery already has $.isFunction, $.isNumeric etc.
             this.super([cfg]); //call base class constructor
             
             //alternatively, this.super(arguments);
-            //or this.superClass().constructor.call(this, cfg);
+            //or this.superclass().constructor.call(this, cfg);
         },
         //Override 'method'
         method: function () {
@@ -109,8 +115,6 @@ jQuery already has $.isFunction, $.isNumeric etc.
 
 * Li.forEach(obj [, callback, context]) - forEach on any object. For arrays, Array.forEach is called internally.
 * Li.uuid([len=10, hypenate=false]) - Returns a random UID with length 'len' and hyphenated if hypenate=true, as string.
-* Li.object.value(obj) - Returns all values of an object. Object.keys(obj) would return keys of an object.
-* Li.object.size(obj) - Returns the number of enumerable properties of the object.
 * Li.string.htmlEncode and Li.string.htmlDecode - Encodes/Decodes >,<," and &.
 * Li.format(formatString, ...) - A quick string format method
   
@@ -121,16 +125,18 @@ jQuery already has $.isFunction, $.isNumeric etc.
 * Li.dom(htmlString, ...) - Converts htmlString to DOM, inserts them into a document fragment and returns the fragment.
   Internally this uses Li.format for string formatting.
 
-  <pre><code>var df = Cu.dom('&lt;div class="{cls}" data-id="{id}"&gt;&lt;/div&gt;', {cls: 'box', id: Cu.uuid()}); //DocumentFragment
+  <pre><code>var df = Li.dom('&lt;div class="{cls}" data-id="{id}"&gt;&lt;/div&gt;', {cls: 'box', id: Li.uuid()}); //DocumentFragment
   document.body.appendChild(df);</code></pre>
 
 ### Browser Detection
 
 <pre><code>Li.isIE - will be set when browser is MS IE.
+Li.isIE - will be set when browser is MS IE.
 Li.isIE9 - will be set when browser is MS IE 9.
 Li.isChrome
 Li.isWebKit
 ...similar for other browsers and versions
+Li.isWindows
 Li.isAndroid
 Li.isIPhone
 Li.isIPad
