@@ -209,6 +209,7 @@
          * @param {Object} obj The array/object to iterate through.
          * @param {Function} callback Callback function. Value, index/key and a reference to the array/object are sent as parameters (in order) to the callback.
          * @param {Object} [context] Optional The value of the 'this' keyword within the callback.
+         * @return {object} obj
          * @method forEach
          */
         forEach: function (obj, callback, context) {
@@ -221,6 +222,7 @@
                     }
                 }
             }
+            return obj;
         },
 
         /**
