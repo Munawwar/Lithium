@@ -17,7 +17,8 @@
      * Your class prototype may have a property named 'eventTypes' which is a list (i.e array) of eventTypes
      * that the class as a publisher would/can trigger.
      *
-     * @class Li.Observable
+     * @namespace Li
+     * @class Observable
      */
     Li.Observable = Li.extend(Object, {
         /**

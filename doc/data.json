@@ -42,7 +42,9 @@
                 "Li.Observable": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Li": 1
+            }
         }
     },
     "modules": {
@@ -67,7 +69,9 @@
                 "Li.Observable": 1
             },
             "fors": {},
-            "namespaces": {},
+            "namespaces": {
+                "Li": 1
+            },
             "tag": "module",
             "file": "src\\lithium.observable.js",
             "line": 13,
@@ -117,7 +121,7 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "observable",
-            "namespace": "",
+            "namespace": "Li",
             "file": "src\\lithium.observable.js",
             "line": 13,
             "description": "Base class for Publishers.<br/>\nThis class helps you to achieve the Observer (also known as publisher-subscriber) design pattern.<br/>\n\nYour class prototype may have a property named 'eventTypes' which is a list (i.e array) of eventTypes\nthat the class as a publisher would/can trigger."
@@ -686,7 +690,7 @@
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 23,
+            "line": 24,
             "description": "Call all events listeners for the given event name.<br/>",
             "params": [
                 {
@@ -703,11 +707,12 @@
             "itemtype": "method",
             "name": "trigger",
             "class": "Li.Observable",
-            "module": "observable"
+            "module": "observable",
+            "namespace": "Li"
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 44,
+            "line": 45,
             "description": "Adds a listener.\nIf no parameters are specified, then this would re-enable events that were switched off by observable.off();",
             "params": [
                 {
@@ -732,11 +737,12 @@
                 "description": "A UUID which can be used to remove the event when required."
             },
             "class": "Li.Observable",
-            "module": "observable"
+            "module": "observable",
+            "namespace": "Li"
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 83,
+            "line": 84,
             "description": "This function listens to a given publisher on the given event types,\nand refires the events from itself (scope of the event fired would be this object).\nThis useful for chaining events.",
             "params": [
                 {
@@ -753,11 +759,12 @@
             "itemtype": "method",
             "name": "relayEvents",
             "class": "Li.Observable",
-            "module": "observable"
+            "module": "observable",
+            "namespace": "Li"
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 109,
+            "line": 110,
             "description": "Remove an event listener.\nIf no parameters are specified, then all events are switched off till you call observable.on().",
             "params": [
                 {
@@ -773,16 +780,18 @@
             "itemtype": "method",
             "name": "off",
             "class": "Li.Observable",
-            "module": "observable"
+            "module": "observable",
+            "namespace": "Li"
         },
         {
             "file": "src\\lithium.observable.js",
-            "line": 142,
+            "line": 143,
             "description": "Given a class, it inherits event types from base class.",
             "access": "private",
             "tagname": "",
             "class": "Li.Observable",
-            "module": "observable"
+            "module": "observable",
+            "namespace": "Li"
         }
     ],
     "warnings": [
@@ -824,7 +833,7 @@
         },
         {
             "message": "Missing item type\nGiven a class, it inherits event types from base class.",
-            "line": " src\\lithium.observable.js:142"
+            "line": " src\\lithium.observable.js:143"
         }
     ]
 }
