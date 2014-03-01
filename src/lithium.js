@@ -197,6 +197,11 @@
                     delete derived.statics;
                     $.extend(derivedC, statics);
                 }
+
+                if (Li.Observable && derivedC.prototype instanceof Li.Observable) {
+                    Li.inheritEvents(derivedC);
+                }
+
                 return derivedC;
             };
         }()),

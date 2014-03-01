@@ -18,7 +18,9 @@
             }
 
             (function () {
-                //Test 1
+                Li.warnings = true;
+
+                //Test 1 - Array.forEach test
                 var check = true;
                 (['a', 'b', 'c']).forEach(function(v, i, a) {
                     if (a[i] !== v) {
@@ -27,11 +29,11 @@
                 });
                 assert(check, "Array.forEach test");
 
-                //Test 2
+                //Test 2 - Li.namespace test
                 Li.namespace('blah.space.test');
                 assert(blah && blah.space && blah.space.test, "Li.namespace test");
 
-                //Test 3
+                //Test 3 - Li.extend test
                 var myClass = Li.extend(Object, {
                     constructor: function (cfg) {
                         $.extend(this, cfg);
@@ -46,22 +48,46 @@
                 var x = new myClass({prop2: 'blah'});
                 assert(x.prop && x.prop2 && myClass.prop, "Li.extend test");
 
-                //Test 4
+                //Test 4 - Li.lbind test
                 Li.lbind(function (v) {
                     assert((v === 10 && this === document.body), "Li.lbind test");
                 }, document.body, 10)();
 
-                //Test 5
+                //Test 5 - htmlEncode/htmlDecode test
                 var html = '<p>"&"</p>';
                 assert(Li.string.htmlDecode(Li.string.htmlEncode(html)) === html, "htmlEncode/htmlDecode test");
 
-                //Test 6
+                //Test 6 - uuid test
                 assert(!!Li.uuid().match(/^[\w]+$/), 'uuid test');
 
                 //Test 7
                 var x = Li.dom('<th>{0}</th>', 'Head');
                 assert(x.firstChild.nodeName === 'TH', 'Li.dom TH test');
                 assert(x.firstChild.firstChild.nodeValue === 'Head', 'Li.dom format test');
+
+                //Test 8 - Li.Observable event type inheritance check
+                var myClass1 = Li.extend(Li.Observable,{
+                        eventTypes: ['render', 'afterrender'],
+                        render: function () {
+                            this.trigger('render', 10);
+                        }
+                    }),
+                    myClass2 = Li.extend(myClass1,{
+                        eventTypes: ['show', 'beforeshow']
+                    });
+                x = new myClass2();
+
+                assert(x._eventTypes_.render && x._eventTypes_.afterrender
+                    && x._eventTypes_.show && x._eventTypes_.beforeshow, 'Li.Observable event type inheritance check');
+
+                //Test 9 - Li.Observable trigger and on test
+                var context = {}, pass = false;
+                x.on('render', function (val) {
+                    pass = true;
+                }, context);
+
+                x.render();
+                assert(pass, 'Li.Observable trigger and on test');
             }());
         </script>
     </body>

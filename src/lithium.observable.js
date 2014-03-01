@@ -11,13 +11,16 @@
  */
 (function (Li) {
     /**
-     * Makes a constructor or object an event 'publisher'. Hence all instances created from this constructor ('class' in C++ terms),
-     * will follow the Observer (also known as publisher-subscriber) design pattern.<br/>
+     * Base class for Publishers.<br/>
+     * This class helps you to achieve the Observer (also known as publisher-subscriber) design pattern.<br/>
      *
-     * @class Li.observable
+     * You class may have a property named 'eventTypes' which is a list (i.e array) of eventTypes
+     * that the class as a publisher would/can trigger.
+     *
+     * @class Li.Observable
      * @static
      */
-    var methods = {
+    Li.Observable = Li.extend(Object, {
         /**
          * Call all events listeners for the given event name.<br/>
          * @param {String} eventType
@@ -137,56 +140,24 @@
             }
             return found;
         }
-    };
+    });
 
     /**
-     * When Li.observable() is called on a function or object, methods are added to that function/object to make it an observable/publisher.<br/>
-     * All the other methods listed here are methods that are added to the object.<br/>
-     * <br/>
-     * If you dislike this idea of dynamically adding methods to an object, then you could create an observable base class for yourself.
-     * @param {Function | Object} constructorFuncOrObj A constructor to augment, or an object to which methods will be added.
-     * @param {Array} eventTypes A list of event types that the publisher will fire.
-     * @method Li.observable
-     * @example
-     *      obj = {}, myClass = function() {};
-     *      Li.observable(obj, ['hide']);
-     *      Li.observable(myClass, ['show']);
-     *
-     * @example
-     *      Create an observable base class:
-     *      this.Observable = Li.extend(Object, {});
-     *      Li.observable(this.Observable, []);
+     * Given a class, it inherits event types from base class.
+     * @private
      */
-    //TODO: Update tests on case when constructorFuncOrObj is an object instance.
-    Li.observable = (function () {
-        var P = function () {}; //Proxy
-        return function (constructorFuncOrObj, eventTypes) {
-            eventTypes = eventTypes || [];
-            var c = constructorFuncOrObj, x, i, len;
-            if (typeof constructorFuncOrObj === 'function') {
-                //Make a copy of event types from prototype chain
-                P.prototype = constructorFuncOrObj.prototype;
-                var types = (new P())._eventTypes_;
-                if (types) {
-                    for (x in types) {
-                        if (types.hasOwnProperty(x)) {
-                            types[x] = true;
-                        }
-                    }
-                    constructorFuncOrObj.prototype._eventTypes_ = types;
-                }
-                c = constructorFuncOrObj.prototype;
-            }
-            c._eventTypes_ = c._eventTypes_ || {};
-            var temp;
-            for (i = 0, len = eventTypes.length; i < len; i += 1) {
-                temp = eventTypes[i].toLowerCase();
-                c._eventTypes_[temp] = true;
-            }
-            c.trigger = methods.trigger;
-            c.on = methods.on;
-            c.off = methods.off;
-            c.relayEvents = methods.relayEvents;
-        };
-    }());
+    Li.inheritEvents = function (func) {
+        //No need to do anything if class hasn't added any new event types.
+        var proto = func.prototype;
+        if (proto.eventTypes) {
+            var eventTypes = proto.eventTypes || [],
+                types = proto._eventTypes_; //This should recursively go up prototype
+                                                  //chain and find the first _eventTypes_
+            proto._eventTypes_ = $.extend({}, types);
+            eventTypes.forEach(function (eventType) {
+                proto._eventTypes_[eventType.toLowerCase()] = true;
+            });
+        }
+    };
+
 }(window.Li));
