@@ -197,29 +197,9 @@
                     delete derived.statics;
                     $.extend(derivedC, statics);
                 }
-
                 return derivedC;
             };
         }()),
-
-        /**
-         * Move properties from one object to another.
-         * Property is only moved if source.hasOwnProperty(property).
-         * @param {Object} target Object to which properties are to be moved
-         * @param {Object} source Object from which properties are to moved.
-         * @param {Array[string]} props Array of properties to move.
-         * @returns {Object} target Returns target object
-         * @method move
-         */
-        move: function (target, source, props) {
-            props.forEach(function (prop) {
-                if (source.hasOwnProperty(prop)) {
-                    target[prop] = source[prop];
-                    delete source[prop];
-                }
-            });
-            return target;
-        },
 
         /**
          * Iterate through an array or object.<br/>
@@ -353,30 +333,8 @@
                 return ((count++ % 5) ? '' : '-') + (Math.random() * 100 % 36 | 0).toString(36);
             }).toUpperCase();
             return hypenate ? id : id.replace(/-/g, '');
-        },
-
-        /**
-         * Checks if 'ancestor' is ancestor of 'descendent'.
-         * This is still needed because IE10's element.contains is buggy sometimes.
-         *
-         * @param {HTMLElement} ancestor
-         * @param {HTMLElement} descendent
-         * @return {Boolean} Returns true if 'ancestor' is indeed the ancestor of 'descendent'.
-         * Also returns true if ancestor == descendent.
-         * @method contains
-         */
-        contains: function (ancestor, descendent) {
-            while (descendent) {
-                if (descendent === ancestor) {
-                    return true;
-                }
-                descendent = descendent.parentNode;
-            }
-            return false;
         }
     };
-
-    /*TODO: Date formatting and convertion methods missing*/
 
     /**
      * String related functions
