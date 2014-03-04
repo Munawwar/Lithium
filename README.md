@@ -76,8 +76,7 @@ Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.i
 
 * Observable
 
-    <pre><code>
-    //Publisher class
+    <pre><code>//Publisher class
     var Restaurant = Li.extend(Li.Observable, {
         eventType: ['freefood'], //list of events this class may fire.
         //Methods
@@ -109,6 +108,21 @@ Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.i
     //man1 says: Yay! Free food!
     //man2 says: Yay! Free food!</code></pre>
 
+* Li.forEach(obj [, callback, context]) - forEach on any object. For arrays, Array.forEach is called internally.
+
+* Li.format(formatString, ...) - A quick string format method
+
+  <pre><code>Li.format('&lt;div class="{0}"&gt;&lt;/div&gt;, 'box');
+  Li.format('&lt;div class="{cls}"&gt;&lt;/div&gt;, {cls: 'box'});
+  //Both returns '&lt;div class="box"&gt;&lt;/div&gt;'</code></pre>
+
+* Li.dom(htmlString, ...) - Converts htmlString to DOM, inserts them into a document fragment and returns the fragment.
+
+  Internally this uses Li.format for string formatting.
+
+  <pre><code>var df = Li.dom('&lt;div class="{cls}" data-id="{id}"&gt;&lt;/div&gt;', {cls: 'box', id: Li.uuid()}); //DocumentFragment
+  document.body.appendChild(df);</code></pre>
+
 * Li.lbind(fn [, context, args...]) - Binds context and arguments to a function (like the [JS.1.8.1 Function.bind](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind)). Argument list is prepended to fn.
 
     <pre><code>element.onclick = Li.lbind(function (val, e) {
@@ -118,26 +132,12 @@ Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.i
     }, element, 10);</code></pre>
 
 * Li.rbind - Same as lbind, except that arguments are appended to fn arugment list.
-
-* Li.forEach(obj [, callback, context]) - forEach on any object. For arrays, Array.forEach is called internally.
 * Li.uuid([len=10, hypenate=false]) - Returns a random UID with length 'len' and hyphenated if hypenate=true, as string.
 * Li.string.htmlEncode and Li.string.htmlDecode - Encodes/Decodes >,<," and &.
-* Li.format(formatString, ...) - A quick string format method
-
-  <pre><code>Li.format('&lt;div class="{0}"&gt;&lt;/div&gt;, 'box');
-  Li.format('&lt;div class="{cls}"&gt;&lt;/div&gt;, {cls: 'box'});
-  //Both returns '&lt;div class="box"&gt;&lt;/div&gt;'</code></pre>
-
-* Li.dom(htmlString, ...) - Converts htmlString to DOM, inserts them into a document fragment and returns the fragment.
-  Internally this uses Li.format for string formatting.
-
-  <pre><code>var df = Li.dom('&lt;div class="{cls}" data-id="{id}"&gt;&lt;/div&gt;', {cls: 'box', id: Li.uuid()}); //DocumentFragment
-  document.body.appendChild(df);</code></pre>
 
 ### Browser Detection
 
 <pre><code>Li.isIE - will be set when browser is MS IE.
-Li.isIE - will be set when browser is MS IE.
 Li.isIE9 - will be set when browser is MS IE 9.
 Li.isChrome
 Li.isWebKit
