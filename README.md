@@ -74,6 +74,21 @@ Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.i
         }
     });</code></pre>
 
+* Li.forEach(obj [, callback, context]) - forEach on any object. For arrays, Array.forEach is called internally.
+
+* Li.format(formatString, ...) - A quick string format method
+
+  <pre><code>Li.format('&lt;div class="{0}"&gt;&lt;/div&gt;, 'box');
+  Li.format('&lt;div class="{cls}"&gt;&lt;/div&gt;, {cls: 'box'});
+  //Both returns '&lt;div class="box"&gt;&lt;/div&gt;'</code></pre>
+
+* Li.dom(htmlString, ...) - Converts htmlString to DOM, inserts them into a document fragment and returns the fragment.
+
+  Internally this uses Li.format for string formatting.
+
+  <pre><code>var df = Li.dom('&lt;div class="{cls}" data-id="{id}"&gt;&lt;/div&gt;', {cls: 'box', id: Li.uuid()}); //DocumentFragment
+  document.body.appendChild(df);</code></pre>
+
 * Observable
 
     <pre><code>//Publisher class
@@ -107,21 +122,6 @@ Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.i
     someRestaurant.salesOffer(); //...this would call all listeners. In this case it will display..
     //man1 says: Yay! Free food!
     //man2 says: Yay! Free food!</code></pre>
-
-* Li.forEach(obj [, callback, context]) - forEach on any object. For arrays, Array.forEach is called internally.
-
-* Li.format(formatString, ...) - A quick string format method
-
-  <pre><code>Li.format('&lt;div class="{0}"&gt;&lt;/div&gt;, 'box');
-  Li.format('&lt;div class="{cls}"&gt;&lt;/div&gt;, {cls: 'box'});
-  //Both returns '&lt;div class="box"&gt;&lt;/div&gt;'</code></pre>
-
-* Li.dom(htmlString, ...) - Converts htmlString to DOM, inserts them into a document fragment and returns the fragment.
-
-  Internally this uses Li.format for string formatting.
-
-  <pre><code>var df = Li.dom('&lt;div class="{cls}" data-id="{id}"&gt;&lt;/div&gt;', {cls: 'box', id: Li.uuid()}); //DocumentFragment
-  document.body.appendChild(df);</code></pre>
 
 * Li.lbind(fn [, context, args...]) - Binds context and arguments to a function (like the [JS.1.8.1 Function.bind](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind)). Argument list is prepended to fn.
 
