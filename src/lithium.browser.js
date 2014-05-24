@@ -17,7 +17,13 @@
  * @final
  * @credits Modified code from from http://www.quirksmode.org/js/detect.html.
  */
-(function (Li) {
+(function (factory) {
+    if (typeof define === "function" && define.amd) {
+        define(['./lithium', 'jquery'], factory);
+    } else { //global
+        factory(window.Li, jQuery);
+    }
+}(function (Li) {
     var agent = navigator.userAgent.toLowerCase(),
         it, match,
         name, version, OS, OSVersion,
@@ -102,4 +108,6 @@
         OS: OS,
         OSVersion: OSVersion
     };
-}(window.Li));
+
+    return Li;
+}));

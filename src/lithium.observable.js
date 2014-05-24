@@ -9,7 +9,13 @@
  * @requires core
  * @title Lithium Observable
  */
-(function (Li) {
+(function (factory) {
+    if (typeof define === "function" && define.amd) {
+        define(['./lithium', 'jquery'], factory);
+    } else { //global
+        factory(window.Li, jQuery);
+    }
+}(function (Li, $) {
     /**
      * Base class for Publishers.<br/>
      * This class helps you to achieve the Observer (also known as publisher-subscriber) design pattern.<br/>
@@ -158,4 +164,5 @@
         }
     };
 
-}(window.Li));
+    return Li;
+}));

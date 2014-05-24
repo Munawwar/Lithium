@@ -10,7 +10,15 @@
 /**
  * Extra utility methods
  */
-(function (Li) {
+(function (factory) {
+    if (typeof define === "function" && define.amd) {
+        define(['./lithium', 'jquery'], factory);
+    } else if (typeof exports === 'object') { //For NodeJS
+        module.exports = factory(require('./lithium'), require('jquery'));
+    } else { //global
+        factory(window.Li, jQuery);
+    }
+}(function (Li, $) {
     $.extend(Li, {
         /**
          * Move properties from one object to another.<br/>
@@ -64,4 +72,6 @@
             return false;
         }
     });
-}(window.Li));
+
+    return Li;
+}));

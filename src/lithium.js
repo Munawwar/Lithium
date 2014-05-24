@@ -11,7 +11,15 @@
  */
 
 /*global jQuery, HTMLElement*/
-(function ($) {
+(function (root, factory) {
+    if (typeof define === "function" && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') { //For NodeJS
+        module.exports = factory(require('jquery'));
+    } else { //global
+        root.Li = factory(jQuery);
+    }
+}(this, function ($) {
     /**
      * Contains useful and most frequently used functions.
      * @class Li
@@ -386,5 +394,5 @@
         }
     };
 
-    window.Li = Li;
-}(jQuery));
+    return Li;
+}));
