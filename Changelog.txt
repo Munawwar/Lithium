@@ -1,3 +1,7 @@
+v0.4.0
+------
+Added RequireJS/AMD support.
+
 v0.3.0
 ------
 * Observable API changed: In 0.2 Li.observable could take any function or object and could make it a publisher.

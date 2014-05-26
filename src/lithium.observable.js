@@ -1,5 +1,5 @@
 /*
- * Lithium JS version 0.3.0
+ * Lithium JS version 0.4.0
  * Observable
  */
 
