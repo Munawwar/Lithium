@@ -1,3 +1,7 @@
+v0.5.0
+------
+Renamed Li.Observable to Li.Publisher. Renamed file lithium.observable.js to lithium.pubsub.js.
+
 v0.4.0
 ------
 Added RequireJS/AMD support.
