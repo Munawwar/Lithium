@@ -1,13 +1,13 @@
 /*
  * Lithium JS version 0.4.0
- * Observable
+ * Publisher-Subscriber
  */
 
 /**
- * Publisher-Subscriber pattern utility class
- * @module observable
+ * Publisher-subscriber pattern utility class
+ * @module pubsub
  * @requires core
- * @title Lithium Observable
+ * @title Lithium Publisher-Subscriber
  */
 (function (factory) {
     if (typeof define === "function" && define.amd) {
@@ -24,9 +24,9 @@
      * that the class as a publisher would/can trigger.
      *
      * @namespace Li
-     * @class Observable
+     * @class Publisher
      */
-    Li.Observable = Li.extend(Object, {
+    Li.Publisher = Li.extend(Object, {
         /**
          * Call all events listeners for the given event name.<br/>
          * @param {String} eventType
@@ -50,7 +50,7 @@
 
         /**
          * Adds a listener.
-         * If no parameters are specified, then this would re-enable events that were switched off by observable.off();
+         * If no parameters are specified, then this would re-enable events that were switched off by publisher.off();
          * @param {String|Object} object The event type that you want to listen to as string.
          * Or an object with event types and handlers as key-value pairs (with event type as the keys).
          * You can also subscribe for an event that has not yet been registered as an event. Hence the order of registeration is not a concern.
@@ -91,7 +91,7 @@
          * This function listens to a given publisher on the given event types,
          * and refires the events from itself (scope of the event fired would be this object).
          * This useful for chaining events.
-         * @param {observable} observable An observable object.
+         * @param {Li.Publisher} publisher A publisher instance.
          * @param {Array|null} eventTypes Event types to listen on. If eventType is null, it listens to all events of the publisher.
          * @method relayEvents
          */
@@ -100,22 +100,22 @@
                 var args = Li.slice(arguments, 1);
                 this.trigger.apply(this, ([eventType]).join(args));
             };
-            return function (observable, eventTypes) {
-                if (!observable._eventTypes_) {
+            return function (publisher, eventTypes) {
+                if (!publisher._eventTypes_) {
                     throw new Error('Object passed is not a publisher');
                 }
-                eventTypes = eventTypes || Object.keys(observable._eventTypes_);
+                eventTypes = eventTypes || Object.keys(publisher._eventTypes_);
                 var i, len = eventTypes.length, eventType;
                 for (i = 0; i < len; i += 1) {
                     eventType = eventTypes[i];
-                    observable.on(eventType, Li.bind(relayThis, null, false, eventType), this);
+                    publisher.on(eventType, Li.bind(relayThis, null, false, eventType), this);
                 }
             };
         }()),
 
         /**
          * Remove an event listener.
-         * If no parameters are specified, then all events are switched off till you call observable.on().
+         * If no parameters are specified, then all events are switched off till you call publisher.on().
          * @param {String|Function} uuidORfunc Can be the event listener as a Function object,
          * OR the UUID returned by 'on' function can also be used.
          * @return {Boolean} Returns true if listener was successfully removed.
