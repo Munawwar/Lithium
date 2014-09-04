@@ -2,12 +2,12 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "Li",
-        "Li.Observable",
+        "Li.Publisher",
         "Li.string"
     ],
     "modules": [
         "core",
-        "observable"
+        "pubsub"
     ],
     "allModules": [
         {
@@ -16,9 +16,9 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Contains core utility functions and classes."
         },
         {
-            "displayName": "observable",
-            "name": "observable",
-            "description": "Publisher-Subscriber pattern utility class"
+            "displayName": "pubsub",
+            "name": "pubsub",
+            "description": "Publisher-subscriber pattern utility class"
         }
     ]
 } };

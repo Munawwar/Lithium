@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Li.Observable - Lithium</title>
+    <title>Li.Publisher - Lithium</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0pr2&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.0</em>
+            <em>API Docs for: 0.4.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -43,7 +43,7 @@
             
                 <li><a href="..&#x2F;classes/Li.html">Li</a></li>
             
-                <li><a href="..&#x2F;classes/Li.Observable.html">Li.Observable</a></li>
+                <li><a href="..&#x2F;classes/Li.Publisher.html">Li.Publisher</a></li>
             
                 <li><a href="..&#x2F;classes/Li.string.html">Li.string</a></li>
             
@@ -53,7 +53,7 @@
             
                 <li><a href="..&#x2F;modules/core.html">core</a></li>
             
-                <li><a href="..&#x2F;modules/observable.html">observable</a></li>
+                <li><a href="..&#x2F;modules/pubsub.html">pubsub</a></li>
             
             </ul>
         </div>
@@ -90,7 +90,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Li.Observable Class</h1>
+                        <h1>Li.Publisher Class</h1>
 <div class="box meta">
     
 
@@ -98,13 +98,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_lithium.observable.js.html#l13"><code>src\lithium.observable.js:13</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l19"><code>src\lithium.pubsub.js:19</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/observable.html">observable</a>
+            Module: <a href="../modules/pubsub.html">pubsub</a>
         
     
 
@@ -235,7 +235,7 @@ that the class as a publisher would/can trigger.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.observable.js.html#l110"><code>src\lithium.observable.js:110</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l116"><code>src\lithium.pubsub.js:116</code></a>
         
         </p>
 
@@ -247,7 +247,7 @@ that the class as a publisher would/can trigger.</p>
 
     <div class="description">
         <p>Remove an event listener.
-If no parameters are specified, then all events are switched off till you call observable.on().</p>
+If no parameters are specified, then all events are switched off till you call publisher.on().</p>
     </div>
 
     
@@ -353,7 +353,7 @@ OR the UUID returned by 'on' function can also be used.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.observable.js.html#l45"><code>src\lithium.observable.js:45</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l51"><code>src\lithium.pubsub.js:51</code></a>
         
         </p>
 
@@ -365,7 +365,7 @@ OR the UUID returned by 'on' function can also be used.</p>
 
     <div class="description">
         <p>Adds a listener.
-If no parameters are specified, then this would re-enable events that were switched off by observable.off();</p>
+If no parameters are specified, then this would re-enable events that were switched off by publisher.off();</p>
     </div>
 
     
@@ -451,7 +451,7 @@ You can also subscribe for an event that has not yet been registered as an event
             
                 <li class="arg">
                     
-                        <code>observable</code>
+                        <code>publisher</code>
                     
                 </li>
             
@@ -490,7 +490,7 @@ You can also subscribe for an event that has not yet been registered as an event
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.observable.js.html#l84"><code>src\lithium.observable.js:84</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l90"><code>src\lithium.pubsub.js:90</code></a>
         
         </p>
 
@@ -514,14 +514,14 @@ This useful for chaining events.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">observable</code>
-                        <span class="type">Observable</span>
+                        <code class="param-name">publisher</code>
+                        <span class="type"><a href="..\classes\Li.Publisher.html" class="crosslink">Li.Publisher</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>An observable object.</p>
+                        <p>A publisher instance.</p>
                     </div>
 
                     
@@ -600,7 +600,7 @@ This useful for chaining events.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.observable.js.html#l24"><code>src\lithium.observable.js:24</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l30"><code>src\lithium.pubsub.js:30</code></a>
         
         </p>
 

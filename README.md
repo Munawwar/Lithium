@@ -4,9 +4,9 @@ Lithium adds the following useful APIs to be used along with jQuery:
 
 1. Data type assertion: isDefined,isElement...
 2. Things like bind,inherit,namespace...
-3. Observable (Publisher-subscriber pattern) that can be used to communicate between loosly coupled modules/components.
+3. Publisher-subscriber pattern that can be used to communicate between loosly coupled modules/components.
 3. IE8 JS 1.6 and JS 1.8 polyfills, like string trim, array forEach,lastIndexOf,filter,reduce...
-4. Browser detection (which is still useful in rare cases..like for statistics).
+4. Browser detection (which is still useful for fixing certain bugs or for statistics).
 
 Lithium depends on jQuery. Lithium is seperated into modules, so you use only what you need.
 
@@ -20,7 +20,7 @@ Lithium is split into 4 modules:
 
 lithium.js - Core (other modules depends on this module).
 
-lithium.observable.js - Observable (aka Publisher-Subscriber).
+lithium.pubsub.js - Publisher-Subscriber.
 
 lithium.browser.js - Browser detection.
 
@@ -89,10 +89,10 @@ Similarly Li.isObject, Li.isArray, Li.isFunction, Li.isNumber, Li.isFinite, Li.i
   <pre><code>var df = Li.dom('&lt;div class="{cls}" data-id="{id}"&gt;&lt;/div&gt;', {cls: 'box', id: Li.uuid()}); //DocumentFragment
   document.body.appendChild(df);</code></pre>
 
-* Observable
+* Publisher-Subscriber
 
     <pre><code>//Publisher class
-    var Restaurant = Li.extend(Li.Observable, {
+    var Restaurant = Li.extend(Li.Publisher, {
         eventType: ['freefood'], //list of events this class may fire.
         //Methods
         salesOffer: function () {

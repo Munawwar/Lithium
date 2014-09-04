@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.0</em>
+            <em>API Docs for: 0.4.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -43,7 +43,7 @@
             
                 <li><a href="..&#x2F;classes/Li.html">Li</a></li>
             
-                <li><a href="..&#x2F;classes/Li.Observable.html">Li.Observable</a></li>
+                <li><a href="..&#x2F;classes/Li.Publisher.html">Li.Publisher</a></li>
             
                 <li><a href="..&#x2F;classes/Li.string.html">Li.string</a></li>
             
@@ -53,7 +53,7 @@
             
                 <li><a href="..&#x2F;modules/core.html">core</a></li>
             
-                <li><a href="..&#x2F;modules/observable.html">observable</a></li>
+                <li><a href="..&#x2F;modules/pubsub.html">pubsub</a></li>
             
             </ul>
         </div>
@@ -95,7 +95,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;*
- * Lithium JS version 0.3.0
+ * Lithium JS version 0.4.0
  * Browser detection.
  *&#x2F;
 
@@ -113,7 +113,13 @@
  * @final
  * @credits Modified code from from http:&#x2F;&#x2F;www.quirksmode.org&#x2F;js&#x2F;detect.html.
  *&#x2F;
-(function (Li) {
+(function (factory) {
+    if (typeof define === &quot;function&quot; &amp;&amp; define.amd) {
+        define([&#x27;.&#x2F;lithium&#x27;, &#x27;jquery&#x27;], factory);
+    } else { &#x2F;&#x2F;global
+        factory(window.Li, jQuery);
+    }
+}(function (Li) {
     var agent = navigator.userAgent.toLowerCase(),
         it, match,
         name, version, OS, OSVersion,
@@ -198,7 +204,9 @@
         OS: OS,
         OSVersion: OSVersion
     };
-}(window.Li));
+
+    return Li;
+}));
 
     </pre>
 </div>
