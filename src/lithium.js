@@ -15,7 +15,7 @@
     if (typeof define === "function" && define.amd) {
         define(['jquery'], factory);
     } else if (typeof exports === 'object') { //For NodeJS
-        module.exports = factory(require('jquery'));
+        module.exports = factory(require('jquery-node'));
     } else { //global
         root.Li = factory(jQuery);
     }
