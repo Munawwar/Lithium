@@ -1,0 +1,22 @@
+{
+    "name": "lithium",
+    "author": "munawwar",
+    "description": "Lithium",
+    "version": "0.6.0",
+    "main": "src/lithium.js",
+    "dependencies": {
+    },
+    "devDependencies": {
+        "yuidocjs": "0.3.35"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Munawwar/Lithium"
+    },
+    "keywords": [],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Munawwar/Lithium/issues"
+    },
+    "homepage": "https://github.com/Munawwar/Lithium"
+}

@@ -16,13 +16,15 @@ Latest Chrome,Firefox,Safari,Opera and IE8+.
 
 ## Usage
 
-Lithium is split into 4 modules:
+Lithium is split into 5 modules:
 
 lithium.js - Core (other modules depends on this module).
 
 lithium.pubsub.js - Publisher-Subscriber.
 
 lithium.browser.js - Browser detection.
+
+lithium.dom.js - Advanced DOM utilities
 
 lithium.extras.js - Contains additional utility methods.
 

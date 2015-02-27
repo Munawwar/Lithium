@@ -1,8 +1,7 @@
 /**
- * @author Munawwar Firoz
- * @version 0.4.0
+ * Lithium - Utilities that jQuery doesn't have.
+ * Intended to be used along with jQuery.
  * MIT License
- * Lithium for jQuery. Aimed at making software development easier.
  */
 
 /**

@@ -1,14 +1,9 @@
-/*
- * Lithium JS version 0.4.0
- * DOM util
- */
-
 /**
  * @class Li
  */
 
 /**
- * Extra utility methods
+ * DOM utility methods
  */
 (function (factory) {
     if (typeof define === "function" && define.amd) {
@@ -42,6 +37,7 @@
          *
          * relation: The relation compared to the previously traversed node.
          * @param {Object} [scope] Value of 'this' keyword within callback
+         * @method traverse
          */
         traverse: function (node, ancestor, callback, scope) {
             //if node = ancestor, we still can traverse it's child nodes
@@ -83,6 +79,7 @@
          * Converts DOM to HTML string
          * @param {DocumentFragment} frag
          * @return {String}
+         * @method toHTML
          */
         toHTML: (function () {
             function unwrap(str) {
@@ -127,6 +124,7 @@
 
         /**
          * jQuery's index() method doesn't return the child index properly for non-element nodes (like text node, comment).
+         * @method childIndex
          */
         childIndex: function (node) {
             return Li.slice(node.parentNode.childNodes).indexOf(node);

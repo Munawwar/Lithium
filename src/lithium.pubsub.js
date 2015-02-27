@@ -1,8 +1,3 @@
-/*
- * Lithium JS version 0.4.0
- * Publisher-Subscriber
- */
-
 /**
  * Publisher-subscriber pattern utility class
  * @module pubsub
