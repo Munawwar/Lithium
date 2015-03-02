@@ -110,7 +110,7 @@
         factory(window.Li, jQuery);
     }
 }(function (Li, $) {
-    $.extend(Li, {
+    Li.mix(Li, {
         &#x2F;**
          * Given a DOM node, this method finds the next tag&#x2F;node that would appear in the dom.
          * WARNING: Do not remove or add nodes while traversing, because it could cause the traversal logic to go crazy.

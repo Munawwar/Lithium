@@ -21,7 +21,7 @@
          * @param {Object} target Object to which properties are to be moved
          * @param {Object} source Object from which properties are to moved.
          * @param {Array[string]} props Array of properties to move.
-         * @returns {Object} target Returns target object
+         * @return {Object} target Returns target object
          * @method move
          */
         move: function (target, source, props) {

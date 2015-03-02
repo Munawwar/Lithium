@@ -66,7 +66,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "src/lithium.js",
-            "line": 369,
+            "line": 388,
             "description": "Contains core utility functions and classes."
         },
         "pubsub": {
@@ -115,7 +115,7 @@
             "module": "core",
             "namespace": "",
             "file": "src/lithium.js",
-            "line": 369,
+            "line": 388,
             "description": "String related functions",
             "static": 1
         },
@@ -385,7 +385,7 @@
         {
             "file": "src/lithium.js",
             "line": 89,
-            "description": "Same as jQuery.isArray",
+            "description": "Same as Array.isArray",
             "itemtype": "method",
             "name": "isArray",
             "class": "Li",
@@ -393,7 +393,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 94,
+            "line": 95,
             "description": "Same as jQuery.isFunction",
             "itemtype": "method",
             "name": "isFunction",
@@ -402,7 +402,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 100,
+            "line": 103,
             "description": "Checks whether a given value is a DOM Element (Text nodes aren't included, nodeType should = 1)",
             "params": [
                 {
@@ -418,7 +418,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 113,
+            "line": 116,
             "description": "Returns true only when value is NaN.",
             "params": [
                 {
@@ -434,7 +434,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 126,
+            "line": 129,
             "description": "The arguments sent to this new function, followed by the optional arguments which were sent to 'bind', will be forwarded to func.<br/>\nSimilar to JS 1.8.5 bind, but with append as extra parameter.",
             "params": [
                 {
@@ -472,7 +472,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 146,
+            "line": 149,
             "description": "'Left' bind<br/>\nSame as bind, except that arguments are always prepended.",
             "params": [
                 {
@@ -500,7 +500,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 158,
+            "line": 161,
             "description": "'Right' bind<br/>\nSame as bind, except that arguments are always appended.",
             "params": [
                 {
@@ -528,7 +528,34 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 170,
+            "line": 173,
+            "description": "Copies properties of given object(s) into a target object. Only does a shallow copy.",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "Target object into which properties of source object is copies to.",
+                    "type": "Object"
+                },
+                {
+                    "name": "source",
+                    "description": "One or more objects from which the properties are taken from.",
+                    "type": "Object"
+                },
+                {
+                    "name": "...",
+                    "description": "",
+                    "type": "Arguments",
+                    "optional": true
+                }
+            ],
+            "itemtype": "method",
+            "name": "mix",
+            "class": "Li",
+            "module": "core"
+        },
+        {
+            "file": "src/lithium.js",
+            "line": 189,
             "description": "Classical inheritence, where only prototype is inherited.",
             "params": [
                 {
@@ -565,7 +592,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 226,
+            "line": 245,
             "description": "Iterate through an array or object.<br/>\nIterates through an object's properties and calls the given callback for each (enumerable) property.\n\nNote: For arrays, this method calls Array.forEach, so for IE8 you must include lithium.ie.lang module.",
             "params": [
                 {
@@ -596,7 +623,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 250,
+            "line": 269,
             "description": "Adds properties (and methods) to a function's prototype.\nNote: You won't be warned if you overwrite an existing method/property.",
             "itemtype": "method",
             "name": "augment",
@@ -605,7 +632,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 272,
+            "line": 291,
             "params": [
                 {
                     "name": "path",
@@ -623,7 +650,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 286,
+            "line": 305,
             "description": "String formatting",
             "params": [
                 {
@@ -647,7 +674,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 309,
+            "line": 328,
             "description": "Converts html string to a document fragment.<br/>\nThe html string and arguments are first sent to Li.format to get the\nfinal html string.",
             "params": [
                 {
@@ -672,7 +699,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 326,
+            "line": 345,
             "description": "Same as Array.slice except that it can work on array-like data types (i.e arguments, element.childNodes, NodeList...)",
             "params": [
                 {
@@ -691,7 +718,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 353,
+            "line": 372,
             "description": "Generates an unique alpha-numeric identifier.<br/>\nTo get the same permutation as RFC-4122 use len=24.",
             "params": [
                 {
@@ -718,7 +745,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 375,
+            "line": 394,
             "description": "Encodes &,<,> and \".",
             "itemtype": "method",
             "name": "htmlEncode",
@@ -738,7 +765,7 @@
         },
         {
             "file": "src/lithium.js",
-            "line": 385,
+            "line": 404,
             "description": "Decodes string encoded by htmlEncode",
             "itemtype": "method",
             "name": "htmlDecode",
@@ -866,22 +893,6 @@
         {
             "message": "unknown tag: credits",
             "line": " src/lithium.browser.js:5"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " src/lithium.extras.js:18"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " src/lithium.js:309"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " src/lithium.js:375"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " src/lithium.js:385"
         },
         {
             "message": "Missing item type\nDOM utility methods",

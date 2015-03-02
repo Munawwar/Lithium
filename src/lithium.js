@@ -170,8 +170,14 @@
             return Li.bind.apply(null, ([func, context, true]).concat(Li.slice(arguments, 2)));
         },
 
-        mix: function () {
-            var target = arguments[0];
+        /**
+         * Copies properties of given object(s) into a target object. Only does a shallow copy.
+         * @param {Object} target Target object into which properties of source object is copies to.
+         * @param {Object} source One or more objects from which the properties are taken from.
+         * @param {Arguments} [...]
+         * @method mix
+         */
+        mix: function (target) {
             Li.slice(arguments, 1).forEach(function (obj) {
                 Object.keys(obj).forEach(function (key) {
                     target[key] = obj[key];
@@ -325,7 +331,7 @@
          * final html string.
          * @param {String} html
          * @param {...} Any number of arguments that will be passed on to Li.format. Check Li.format documentation for more information.
-         * @returns {DocumentFragment}
+         * @return {DocumentFragment}
          * @method dom
          */
         dom: function (html) {
@@ -389,7 +395,7 @@
          * Encodes &,<,> and ".
          * @method htmlEncode
          * @param {String} html
-         * @returns {String} HTML encoded String.
+         * @return {String} HTML encoded String.
          */
         htmlEncode: function (html) {
             return html.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
@@ -399,7 +405,7 @@
          * Decodes string encoded by htmlEncode
          * @method htmlDecode
          * @param {String} html
-         * @returns {String} HTML decoded String.
+         * @return {String} HTML decoded String.
          */
         htmlDecode: function (html) {
             return html.replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"').replace(/&amp;/g, "&");

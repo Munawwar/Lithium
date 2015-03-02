@@ -148,7 +148,7 @@
          * @method isObject
          *&#x2F;
         isObject: function (val) {
-            return val !== null &amp;&amp; (typeof val === &#x27;object&#x27; || $.isFunction(val));
+            return val !== null &amp;&amp; (typeof val === &#x27;object&#x27; || Li.isFunction(val));
         },
 
         &#x2F;**
@@ -183,15 +183,18 @@
 
         &#x2F;*For completeness*&#x2F;
         &#x2F;**
-         * Same as jQuery.isArray
+         * Same as Array.isArray
          * @method isArray
          *&#x2F;
-        isArray: $.isArray,
+        isArray: Array.isArray,
+
         &#x2F;**
          * Same as jQuery.isFunction
          * @method isFunction
          *&#x2F;
-        isFunction: $.isFunction,
+        isFunction: function (f) {
+            return typeof f === &#x27;function&#x27; || f instanceof Function;
+        },
 
         &#x2F;**
          * Checks whether a given value is a DOM Element (Text nodes aren&#x27;t included, nodeType should = 1)
@@ -264,6 +267,22 @@
         },
 
         &#x2F;**
+         * Copies properties of given object(s) into a target object. Only does a shallow copy.
+         * @param {Object} target Target object into which properties of source object is copies to.
+         * @param {Object} source One or more objects from which the properties are taken from.
+         * @param {Arguments} [...]
+         * @method mix
+         *&#x2F;
+        mix: function (target) {
+            Li.slice(arguments, 1).forEach(function (obj) {
+                Object.keys(obj).forEach(function (key) {
+                    target[key] = obj[key];
+                });
+            });
+            return target;
+        },
+
+        &#x2F;**
          * Classical inheritence, where only prototype is inherited.
          * @param {Function} baseC The constructor to be inherited from (the parent)
          * @param {Object} derived The object which has a constructor and methods&#x2F;properties. This will be the derived class.
@@ -298,7 +317,7 @@
                 derivedC.prototype.superclass = superClassFunc;
 
                 Li.forEach(derived, function (val, prop) {
-                    if ($.isFunction(val)) {
+                    if (Li.isFunction(val)) {
                         val._methodName_ = prop;
                         val._baseclass_ = baseC.prototype;
                     }
@@ -308,7 +327,7 @@
                 &#x2F;&#x2F;Add static properties to constructor
                 if (statics) {
                     delete derived.statics;
-                    $.extend(derivedC, statics);
+                    Li.mix(derivedC, statics);
                 }
 
                 if (Li.Observable &amp;&amp; derivedC.prototype instanceof Li.Observable) {
@@ -331,7 +350,7 @@
          * @method forEach
          *&#x2F;
         forEach: function (obj, callback, context) {
-            if ($.isArray(obj)) {
+            if (Li.isArray(obj)) {
                 obj.forEach(callback, context);
             } else {
                 for (var x in obj) {
@@ -350,7 +369,7 @@
          *&#x2F;
         augment: function (classRef, properties) {
             Li.forEach(properties, function (val, prop) {
-                if ($.isFunction(val)) {
+                if (Li.isFunction(val)) {
                     val._methodName_ = prop;
                     val._baseclass_ = classRef.super;
                 }
@@ -361,7 +380,7 @@
             var statics = properties.statics;
             if (statics) {
                 delete properties.statics;
-                $.extend(classRef, statics);
+                Li.mix(classRef, statics);
             }
         },
 
@@ -408,7 +427,7 @@
          * final html string.
          * @param {String} html
          * @param {...} Any number of arguments that will be passed on to Li.format. Check Li.format documentation for more information.
-         * @returns {DocumentFragment}
+         * @return {DocumentFragment}
          * @method dom
          *&#x2F;
         dom: function (html) {
@@ -432,7 +451,7 @@
             try {
                 return Array.prototype.slice.call(array, from, end);
             } catch (e) {
-                &#x2F;&#x2F;Array.slice don&#x27;t work on NodeList on IE8.
+                &#x2F;&#x2F;Array.slice doesn&#x27;t work on NodeList on IE8.
                 if (from &lt; 0) {
                     from += len;
                 }
@@ -472,7 +491,7 @@
          * Encodes &amp;,&lt;,&gt; and &quot;.
          * @method htmlEncode
          * @param {String} html
-         * @returns {String} HTML encoded String.
+         * @return {String} HTML encoded String.
          *&#x2F;
         htmlEncode: function (html) {
             return html.replace(&#x2F;&amp;&#x2F;g, &quot;&amp;amp;&quot;).replace(&#x2F;&gt;&#x2F;g, &quot;&amp;gt;&quot;).replace(&#x2F;&lt;&#x2F;g, &quot;&amp;lt;&quot;).replace(&#x2F;&quot;&#x2F;g, &quot;&amp;quot;&quot;);
@@ -482,7 +501,7 @@
          * Decodes string encoded by htmlEncode
          * @method htmlDecode
          * @param {String} html
-         * @returns {String} HTML decoded String.
+         * @return {String} HTML decoded String.
          *&#x2F;
         htmlDecode: function (html) {
             return html.replace(&#x2F;&amp;gt;&#x2F;g, &quot;&gt;&quot;).replace(&#x2F;&amp;lt;&#x2F;g, &quot;&lt;&quot;).replace(&#x2F;&amp;quot;&#x2F;g, &#x27;&quot;&#x27;).replace(&#x2F;&amp;amp;&#x2F;g, &quot;&amp;&quot;);

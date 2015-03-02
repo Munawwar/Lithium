@@ -110,14 +110,14 @@
         factory(window.Li, jQuery);
     }
 }(function (Li, $) {
-    $.extend(Li, {
+    Li.mix(Li, {
         &#x2F;**
          * Move properties from one object to another.&lt;br&#x2F;&gt;
          * Property is only moved if source.hasOwnProperty(property) is true.
          * @param {Object} target Object to which properties are to be moved
          * @param {Object} source Object from which properties are to moved.
          * @param {Array[string]} props Array of properties to move.
-         * @returns {Object} target Returns target object
+         * @return {Object} target Returns target object
          * @method move
          *&#x2F;
         move: function (target, source, props) {
@@ -135,7 +135,7 @@
          * @param {Object} obj
          *&#x2F;
         compact: function (obj) {
-            Object.keys(obj).forEach(function(key) {
+            Object.keys(obj).forEach(function (key) {
                 if (!Li.isDefined(obj[key])) {
                     delete obj[key];
                 }
