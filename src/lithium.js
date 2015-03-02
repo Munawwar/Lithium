@@ -52,7 +52,7 @@
          * @method isObject
          */
         isObject: function (val) {
-            return val !== null && (typeof val === 'object' || $.isFunction(val));
+            return val !== null && (typeof val === 'object' || Li.isFunction(val));
         },
 
         /**
@@ -87,15 +87,18 @@
 
         /*For completeness*/
         /**
-         * Same as jQuery.isArray
+         * Same as Array.isArray
          * @method isArray
          */
-        isArray: $.isArray,
+        isArray: Array.isArray,
+
         /**
          * Same as jQuery.isFunction
          * @method isFunction
          */
-        isFunction: $.isFunction,
+        isFunction: function (f) {
+            return typeof f === 'function' || f instanceof Function;
+        },
 
         /**
          * Checks whether a given value is a DOM Element (Text nodes aren't included, nodeType should = 1)
@@ -167,6 +170,16 @@
             return Li.bind.apply(null, ([func, context, true]).concat(Li.slice(arguments, 2)));
         },
 
+        mix: function () {
+            var target = arguments[0];
+            Li.slice(arguments, 1).forEach(function (obj) {
+                Object.keys(obj).forEach(function (key) {
+                    target[key] = obj[key];
+                });
+            });
+            return target;
+        },
+
         /**
          * Classical inheritence, where only prototype is inherited.
          * @param {Function} baseC The constructor to be inherited from (the parent)
@@ -202,7 +215,7 @@
                 derivedC.prototype.superclass = superClassFunc;
 
                 Li.forEach(derived, function (val, prop) {
-                    if ($.isFunction(val)) {
+                    if (Li.isFunction(val)) {
                         val._methodName_ = prop;
                         val._baseclass_ = baseC.prototype;
                     }
@@ -212,7 +225,7 @@
                 //Add static properties to constructor
                 if (statics) {
                     delete derived.statics;
-                    $.extend(derivedC, statics);
+                    Li.mix(derivedC, statics);
                 }
 
                 if (Li.Observable && derivedC.prototype instanceof Li.Observable) {
@@ -235,7 +248,7 @@
          * @method forEach
          */
         forEach: function (obj, callback, context) {
-            if ($.isArray(obj)) {
+            if (Li.isArray(obj)) {
                 obj.forEach(callback, context);
             } else {
                 for (var x in obj) {
@@ -254,7 +267,7 @@
          */
         augment: function (classRef, properties) {
             Li.forEach(properties, function (val, prop) {
-                if ($.isFunction(val)) {
+                if (Li.isFunction(val)) {
                     val._methodName_ = prop;
                     val._baseclass_ = classRef.super;
                 }
@@ -265,7 +278,7 @@
             var statics = properties.statics;
             if (statics) {
                 delete properties.statics;
-                $.extend(classRef, statics);
+                Li.mix(classRef, statics);
             }
         },
 
@@ -336,7 +349,7 @@
             try {
                 return Array.prototype.slice.call(array, from, end);
             } catch (e) {
-                //Array.slice don't work on NodeList on IE8.
+                //Array.slice doesn't work on NodeList on IE8.
                 if (from < 0) {
                     from += len;
                 }
