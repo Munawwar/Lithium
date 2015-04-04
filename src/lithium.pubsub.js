@@ -45,17 +45,17 @@
 
         /**
          * Adds a listener.
-         * If no parameters are specified, then this would re-enable events that were switched off by publisher.off();
+         * If no parameters are specified, then this would re-enable events that were switched off by publisher.unsubscribe();
          * @param {String|Object} object The event type that you want to listen to as string.
          * Or an object with event types and handlers as key-value pairs (with event type as the keys).
          * You can also subscribe for an event that has not yet been registered as an event. Hence the order of registeration is not a concern.
          * @param {Function} handler Function that gets notfied when a event of 'eventType' gets fired. This param is used only when eventType is a string.
          * @param {Object} scope The context in which the function should be called.
-         * @method on
+         * @method subscribe
          * @return A UUID which can be used to remove the event when required.
          */
         //TODO: Add option to bind arguments
-        on: (function () {
+        subscribe: (function () {
             var uuidGen = 1;
             //TODO: Also set config like onetime = true etc
             return function (eventType, handler, scope) {
@@ -64,7 +64,7 @@
                 } else if (Li.isObject(eventType)) {
                     var ret = {};
                     Li.forEach(eventType, function (handler, type) {
-                        ret[type] = this.on(type, handler, scope);
+                        ret[type] = this.subscribe(type, handler, scope);
                     }, this);
                     return ret;
                 } else {
@@ -103,20 +103,20 @@
                 var i, len = eventTypes.length, eventType;
                 for (i = 0; i < len; i += 1) {
                     eventType = eventTypes[i];
-                    publisher.on(eventType, Li.bind(relayThis, null, false, eventType), this);
+                    publisher.subscribe(eventType, Li.bind(relayThis, null, false, eventType), this);
                 }
             };
         }()),
 
         /**
          * Remove an event listener.
-         * If no parameters are specified, then all events are switched off till you call publisher.on().
+         * If no parameters are specified, then all events are switched off till you call publisher.subscribe().
          * @param {String|Function} uuidORfunc Can be the event listener as a Function object,
-         * OR the UUID returned by 'on' function can also be used.
+         * OR the UUID returned by 'subscribe' function can also be used.
          * @return {Boolean} Returns true if listener was successfully removed.
-         * @method off
+         * @method unsubscribe
          */
-        off: function (eventType, uuidORfunc) {
+        unsubscribe: function (eventType, uuidORfunc) {
             if (!Li.isDefined(eventType)) {
                 this._suspendEvents_ = true;
                 return;
