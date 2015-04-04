@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.6.0</em>
+            <em>API Docs for: 0.8.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -98,7 +98,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l14"><code>src&#x2F;lithium.pubsub.js:14</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l14"><code>src\lithium.pubsub.js:14</code></a>
         </div>
     
 
@@ -146,20 +146,6 @@ that the class as a publisher would/can trigger.</p>
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_off">off</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_on">on</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
                                 <a href="#method_relayEvents">relayEvents</a>
 
                                 
@@ -167,7 +153,21 @@ that the class as a publisher would/can trigger.</p>
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_subscribe">subscribe</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_trigger">trigger</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_unsubscribe">unsubscribe</a>
 
                                 
                                 
@@ -189,8 +189,8 @@ that the class as a publisher would/can trigger.</p>
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_off" class="method item">
-    <h3 class="name"><code>off</code></h3>
+                    <div id="method_relayEvents" class="method item">
+    <h3 class="name"><code>relayEvents</code></h3>
 
     
         <div class="args">
@@ -198,7 +198,13 @@ that the class as a publisher would/can trigger.</p>
             
                 <li class="arg">
                     
-                        <code>uuidORfunc</code>
+                        <code>publisher</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>eventTypes</code>
                     
                 </li>
             
@@ -206,10 +212,6 @@ that the class as a publisher would/can trigger.</p>
         </div>
     
 
-    
-        <span class="returns-inline">
-            <span class="type">Boolean</span>
-        </span>
     
 
     
@@ -235,7 +237,7 @@ that the class as a publisher would/can trigger.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l111"><code>src&#x2F;lithium.pubsub.js:111</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l85"><code>src\lithium.pubsub.js:85</code></a>
         
         </p>
 
@@ -246,8 +248,9 @@ that the class as a publisher would/can trigger.</p>
     </div>
 
     <div class="description">
-        <p>Remove an event listener.
-If no parameters are specified, then all events are switched off till you call publisher.on().</p>
+        <p>This function listens to a given publisher on the given event types,
+and refires the events from itself (scope of the event fired would be this object).
+This useful for chaining events.</p>
     </div>
 
     
@@ -258,15 +261,29 @@ If no parameters are specified, then all events are switched off till you call p
             
                 <li class="param">
                     
-                        <code class="param-name">uuidORfunc</code>
-                        <span class="type">String | Function</span>
+                        <code class="param-name">publisher</code>
+                        <span class="type"><a href="..\classes\Li.Publisher.html" class="crosslink">Li.Publisher</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Can be the event listener as a Function object,
-OR the UUID returned by 'on' function can also be used.</p>
+                        <p>A publisher instance.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">eventTypes</code>
+                        <span class="type">Array | Null</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Event types to listen on. If eventType is null, it listens to all events of the publisher.</p>
                     </div>
 
                     
@@ -277,26 +294,13 @@ OR the UUID returned by 'on' function can also be used.</p>
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Boolean</span>:
-                    
-                    Returns true if listener was successfully removed.
-                
-            </div>
-        </div>
-    
 
     
 </div>
 
                 
-                    <div id="method_on" class="method item">
-    <h3 class="name"><code>on</code></h3>
+                    <div id="method_subscribe" class="method item">
+    <h3 class="name"><code>subscribe</code></h3>
 
     
         <div class="args">
@@ -353,7 +357,7 @@ OR the UUID returned by 'on' function can also be used.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l46"><code>src&#x2F;lithium.pubsub.js:46</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l46"><code>src\lithium.pubsub.js:46</code></a>
         
         </p>
 
@@ -365,7 +369,7 @@ OR the UUID returned by 'on' function can also be used.</p>
 
     <div class="description">
         <p>Adds a listener.
-If no parameters are specified, then this would re-enable events that were switched off by publisher.off();</p>
+If no parameters are specified, then this would re-enable events that were switched off by publisher.unsubscribe();</p>
     </div>
 
     
@@ -442,116 +446,6 @@ You can also subscribe for an event that has not yet been registered as an event
 </div>
 
                 
-                    <div id="method_relayEvents" class="method item">
-    <h3 class="name"><code>relayEvents</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>publisher</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>eventTypes</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l85"><code>src&#x2F;lithium.pubsub.js:85</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>This function listens to a given publisher on the given event types,
-and refires the events from itself (scope of the event fired would be this object).
-This useful for chaining events.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">publisher</code>
-                        <span class="type"><a href="../classes/Li.Publisher.html" class="crosslink">Li.Publisher</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>A publisher instance.</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">eventTypes</code>
-                        <span class="type">Array | Null</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Event types to listen on. If eventType is null, it listens to all events of the publisher.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="method_trigger" class="method item">
     <h3 class="name"><code>trigger</code></h3>
 
@@ -600,7 +494,7 @@ This useful for chaining events.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l25"><code>src&#x2F;lithium.pubsub.js:25</code></a>
+        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l25"><code>src\lithium.pubsub.js:25</code></a>
         
         </p>
 
@@ -654,6 +548,112 @@ This useful for chaining events.</p>
         </div>
     
 
+    
+
+    
+</div>
+
+                
+                    <div id="method_unsubscribe" class="method item">
+    <h3 class="name"><code>unsubscribe</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>uuidORfunc</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_lithium.pubsub.js.html#l111"><code>src\lithium.pubsub.js:111</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Remove an event listener.
+If no parameters are specified, then all events are switched off till you call publisher.subscribe().</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">uuidORfunc</code>
+                        <span class="type">String | Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Can be the event listener as a Function object,
+OR the UUID returned by 'subscribe' function can also be used.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Boolean</span>:
+                    
+                    Returns true if listener was successfully removed.
+                
+            </div>
+        </div>
     
 
     

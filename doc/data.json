@@ -2,34 +2,34 @@
     "project": {
         "name": "Lithium",
         "description": "Lithium",
-        "version": "0.6.0",
+        "version": "0.8.0",
         "url": "https://github.com/Munawwar/Lithium/tree/gh-pages",
         "logo": ""
     },
     "files": {
-        "src/lithium.browser.js": {
-            "name": "src/lithium.browser.js",
+        "src\\lithium.browser.js": {
+            "name": "src\\lithium.browser.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "src/lithium.dom.js": {
-            "name": "src/lithium.dom.js",
+        "src\\lithium.dom.js": {
+            "name": "src\\lithium.dom.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "src/lithium.extras.js": {
-            "name": "src/lithium.extras.js",
+        "src\\lithium.extras.js": {
+            "name": "src\\lithium.extras.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "src/lithium.js": {
-            "name": "src/lithium.js",
+        "src\\lithium.js": {
+            "name": "src\\lithium.js",
             "modules": {
                 "core": 1
             },
@@ -40,8 +40,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "src/lithium.pubsub.js": {
-            "name": "src/lithium.pubsub.js",
+        "src\\lithium.pubsub.js": {
+            "name": "src\\lithium.pubsub.js",
             "modules": {
                 "pubsub": 1
             },
@@ -65,7 +65,7 @@
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 388,
             "description": "Contains core utility functions and classes."
         },
@@ -80,7 +80,7 @@
                 "Li": 1
             },
             "tag": "module",
-            "file": "src/lithium.pubsub.js",
+            "file": "src\\lithium.pubsub.js",
             "line": 14,
             "description": "Publisher-subscriber pattern utility class",
             "requires": [
@@ -99,7 +99,7 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "core",
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 22,
             "description": "Contains useful and most frequently used functions.",
             "static": 1
@@ -114,7 +114,7 @@
             "extension_for": [],
             "module": "core",
             "namespace": "",
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 388,
             "description": "String related functions",
             "static": 1
@@ -129,14 +129,14 @@
             "extension_for": [],
             "module": "pubsub",
             "namespace": "Li",
-            "file": "src/lithium.pubsub.js",
+            "file": "src\\lithium.pubsub.js",
             "line": 14,
             "description": "Base class for Publishers.<br/>\nThis class helps you to achieve the Observer (also known as publisher-subscriber) design pattern.<br/>\n\nYour class prototype may have a property named 'eventTypes' which is a list (i.e array) of eventTypes\nthat the class as a publisher would/can trigger."
         }
     },
     "classitems": [
         {
-            "file": "src/lithium.browser.js",
+            "file": "src\\lithium.browser.js",
             "line": 5,
             "description": "Browser information. This object has 3 sub-properties: name, version and OS.<br/>\nOverrides jQuery.browser.\nYou also get three 'is' prefixed boolean properties attached to Li:<br/>\n1. for OS (e.g Li.isWindows), 2. for browser vendor (e.g Li.isIE), and 3. vendor+version (e.g Li.isIE8).",
             "itemtype": "property",
@@ -147,13 +147,13 @@
             "class": "Li"
         },
         {
-            "file": "src/lithium.dom.js",
+            "file": "src\\lithium.dom.js",
             "line": 5,
             "description": "DOM utility methods",
             "class": "Li"
         },
         {
-            "file": "src/lithium.dom.js",
+            "file": "src\\lithium.dom.js",
             "line": 18,
             "description": "Given a DOM node, this method finds the next tag/node that would appear in the dom.\nWARNING: Do not remove or add nodes while traversing, because it could cause the traversal logic to go crazy.",
             "params": [
@@ -182,7 +182,7 @@
             "class": "Li"
         },
         {
-            "file": "src/lithium.dom.js",
+            "file": "src\\lithium.dom.js",
             "line": 78,
             "description": "Converts DOM to HTML string",
             "params": [
@@ -201,7 +201,7 @@
             "class": "Li"
         },
         {
-            "file": "src/lithium.dom.js",
+            "file": "src\\lithium.dom.js",
             "line": 125,
             "description": "jQuery's index() method doesn't return the child index properly for non-element nodes (like text node, comment).",
             "itemtype": "method",
@@ -209,13 +209,13 @@
             "class": "Li"
         },
         {
-            "file": "src/lithium.extras.js",
+            "file": "src\\lithium.extras.js",
             "line": 5,
             "description": "Extra utility methods",
             "class": "Li"
         },
         {
-            "file": "src/lithium.extras.js",
+            "file": "src\\lithium.extras.js",
             "line": 18,
             "description": "Move properties from one object to another.<br/>\nProperty is only moved if source.hasOwnProperty(property) is true.",
             "params": [
@@ -244,7 +244,7 @@
             "class": "Li"
         },
         {
-            "file": "src/lithium.extras.js",
+            "file": "src\\lithium.extras.js",
             "line": 37,
             "description": "Delete undefined properties from object",
             "params": [
@@ -257,7 +257,7 @@
             "class": "Li"
         },
         {
-            "file": "src/lithium.extras.js",
+            "file": "src\\lithium.extras.js",
             "line": 50,
             "description": "Checks if 'ancestor' is ancestor of 'descendent'.\nThis is still needed because IE10's element.contains is buggy sometimes.",
             "params": [
@@ -281,13 +281,13 @@
             "class": "Li"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 1,
             "description": "Lithium - Utilities that jQuery doesn't have.\nIntended to be used along with jQuery.\nMIT License",
             "class": "Li"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 29,
             "description": "Checks whether a variable is defined.",
             "params": [
@@ -303,7 +303,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 38,
             "description": "Returns true for all values that are of type 'boolean'<br/>\nNote that booleans declared with 'new' keyword are objects and aren't considered \"boolean\"s.",
             "params": [
@@ -319,7 +319,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 48,
             "description": "Any value that is an object (excluding null).<br/>\nNote that arrays, functions and all data declared with 'new' keyword is an object.",
             "params": [
@@ -335,7 +335,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 58,
             "description": "Checks whether a given value is a string.<br/>\nNote that strings declared with 'new' keyword are objects and aren't considered \"string\"s.",
             "params": [
@@ -351,7 +351,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 68,
             "description": "Returns true for any number (including Infinity).\nNote that numbers declared with 'new' keyword are objects and aren't considered \"number\"s.",
             "params": [
@@ -367,7 +367,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 78,
             "description": "Returns true for any finite number.\nNote that numbers declared with 'new' keyword are objects and aren't considered \"number\"s.",
             "params": [
@@ -383,7 +383,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 89,
             "description": "Same as Array.isArray",
             "itemtype": "method",
@@ -392,7 +392,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 95,
             "description": "Same as jQuery.isFunction",
             "itemtype": "method",
@@ -401,7 +401,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 103,
             "description": "Checks whether a given value is a DOM Element (Text nodes aren't included, nodeType should = 1)",
             "params": [
@@ -417,7 +417,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 116,
             "description": "Returns true only when value is NaN.",
             "params": [
@@ -433,7 +433,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 129,
             "description": "The arguments sent to this new function, followed by the optional arguments which were sent to 'bind', will be forwarded to func.<br/>\nSimilar to JS 1.8.5 bind, but with append as extra parameter.",
             "params": [
@@ -471,7 +471,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 149,
             "description": "'Left' bind<br/>\nSame as bind, except that arguments are always prepended.",
             "params": [
@@ -499,7 +499,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 161,
             "description": "'Right' bind<br/>\nSame as bind, except that arguments are always appended.",
             "params": [
@@ -527,7 +527,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 173,
             "description": "Copies properties of given object(s) into a target object. Only does a shallow copy.",
             "params": [
@@ -554,7 +554,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 189,
             "description": "Classical inheritence, where only prototype is inherited.",
             "params": [
@@ -591,7 +591,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 245,
             "description": "Iterate through an array or object.<br/>\nIterates through an object's properties and calls the given callback for each (enumerable) property.\n\nNote: For arrays, this method calls Array.forEach, so for IE8 you must include lithium.ie.lang module.",
             "params": [
@@ -622,7 +622,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 269,
             "description": "Adds properties (and methods) to a function's prototype.\nNote: You won't be warned if you overwrite an existing method/property.",
             "itemtype": "method",
@@ -631,7 +631,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 291,
             "params": [
                 {
@@ -649,7 +649,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 305,
             "description": "String formatting",
             "params": [
@@ -673,7 +673,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 328,
             "description": "Converts html string to a document fragment.<br/>\nThe html string and arguments are first sent to Li.format to get the\nfinal html string.",
             "params": [
@@ -698,7 +698,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 345,
             "description": "Same as Array.slice except that it can work on array-like data types (i.e arguments, element.childNodes, NodeList...)",
             "params": [
@@ -717,7 +717,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 372,
             "description": "Generates an unique alpha-numeric identifier.<br/>\nTo get the same permutation as RFC-4122 use len=24.",
             "params": [
@@ -744,7 +744,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 394,
             "description": "Encodes &,<,> and \".",
             "itemtype": "method",
@@ -764,7 +764,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.js",
+            "file": "src\\lithium.js",
             "line": 404,
             "description": "Decodes string encoded by htmlEncode",
             "itemtype": "method",
@@ -784,7 +784,7 @@
             "module": "core"
         },
         {
-            "file": "src/lithium.pubsub.js",
+            "file": "src\\lithium.pubsub.js",
             "line": 25,
             "description": "Call all events listeners for the given event name.<br/>",
             "params": [
@@ -806,9 +806,9 @@
             "namespace": "Li"
         },
         {
-            "file": "src/lithium.pubsub.js",
+            "file": "src\\lithium.pubsub.js",
             "line": 46,
-            "description": "Adds a listener.\nIf no parameters are specified, then this would re-enable events that were switched off by publisher.off();",
+            "description": "Adds a listener.\nIf no parameters are specified, then this would re-enable events that were switched off by publisher.unsubscribe();",
             "params": [
                 {
                     "name": "object",
@@ -827,7 +827,7 @@
                 }
             ],
             "itemtype": "method",
-            "name": "on",
+            "name": "subscribe",
             "return": {
                 "description": "A UUID which can be used to remove the event when required."
             },
@@ -836,7 +836,7 @@
             "namespace": "Li"
         },
         {
-            "file": "src/lithium.pubsub.js",
+            "file": "src\\lithium.pubsub.js",
             "line": 85,
             "description": "This function listens to a given publisher on the given event types,\nand refires the events from itself (scope of the event fired would be this object).\nThis useful for chaining events.",
             "params": [
@@ -858,13 +858,13 @@
             "namespace": "Li"
         },
         {
-            "file": "src/lithium.pubsub.js",
+            "file": "src\\lithium.pubsub.js",
             "line": 111,
-            "description": "Remove an event listener.\nIf no parameters are specified, then all events are switched off till you call publisher.on().",
+            "description": "Remove an event listener.\nIf no parameters are specified, then all events are switched off till you call publisher.subscribe().",
             "params": [
                 {
                     "name": "uuidORfunc",
-                    "description": "Can be the event listener as a Function object,\nOR the UUID returned by 'on' function can also be used.",
+                    "description": "Can be the event listener as a Function object,\nOR the UUID returned by 'subscribe' function can also be used.",
                     "type": "String|Function"
                 }
             ],
@@ -873,13 +873,13 @@
                 "type": "Boolean"
             },
             "itemtype": "method",
-            "name": "off",
+            "name": "unsubscribe",
             "class": "Li.Publisher",
             "module": "pubsub",
             "namespace": "Li"
         },
         {
-            "file": "src/lithium.pubsub.js",
+            "file": "src\\lithium.pubsub.js",
             "line": 144,
             "description": "Given a class, it inherits event types from base class.",
             "access": "private",
@@ -892,27 +892,27 @@
     "warnings": [
         {
             "message": "unknown tag: credits",
-            "line": " src/lithium.browser.js:5"
+            "line": " src\\lithium.browser.js:5"
         },
         {
             "message": "Missing item type\nDOM utility methods",
-            "line": " src/lithium.dom.js:5"
+            "line": " src\\lithium.dom.js:5"
         },
         {
             "message": "Missing item type\nExtra utility methods",
-            "line": " src/lithium.extras.js:5"
+            "line": " src\\lithium.extras.js:5"
         },
         {
             "message": "Missing item type\nDelete undefined properties from object",
-            "line": " src/lithium.extras.js:37"
+            "line": " src\\lithium.extras.js:37"
         },
         {
             "message": "Missing item type\nLithium - Utilities that jQuery doesn't have.\nIntended to be used along with jQuery.\nMIT License",
-            "line": " src/lithium.js:1"
+            "line": " src\\lithium.js:1"
         },
         {
             "message": "Missing item type\nGiven a class, it inherits event types from base class.",
-            "line": " src/lithium.pubsub.js:144"
+            "line": " src\\lithium.pubsub.js:144"
         }
     ]
 }

@@ -2,7 +2,7 @@
     "name": "lithium",
     "author": "munawwar",
     "description": "Lithium",
-    "version": "0.6.0",
+    "version": "0.8.0",
     "main": "src/lithium.js",
     "dependencies": {
     },
