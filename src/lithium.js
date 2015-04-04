@@ -47,12 +47,13 @@
 
         /**
          * Any value that is an object (excluding null).<br/>
-         * Note that arrays, functions and all data declared with 'new' keyword is an object.
+         * Note that arrays and all instances created with 'new' keyword are objects.
+         * Functions aren't considered as objects (even though they technically are like objects, excluding them makes the check narrower).
          * @param {Any} val
          * @method isObject
          */
         isObject: function (val) {
-            return val !== null && (typeof val === 'object' || Li.isFunction(val));
+            return val !== null && typeof val === 'object';
         },
 
         /**
