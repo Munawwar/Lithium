@@ -23,6 +23,7 @@
         it, match,
         name, version, OS, OSVersion,
         browserList = [
+            [/edge.([\d\.]+), 'MSEdge'],
             [/iemobile.([\d\.]+)/, 'IEMobile'],
             [/msie.([\d\.]+)/, 'IE'],
             [/trident.+rv.([\d\.]+)/, 'IE'],
