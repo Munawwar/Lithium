@@ -5,14 +5,13 @@ Lithium adds the following useful APIs to be used along with jQuery:
 1. Data type assertion: isDefined,isElement...
 2. Things like bind,inherit,namespace...
 3. Publisher-subscriber pattern that can be used to communicate between loosly coupled modules/components.
-3. IE8 JS 1.6 and JS 1.8 polyfills, like string trim, array forEach,lastIndexOf,filter,reduce...
 4. Browser detection (which is still useful for fixing certain bugs or for statistics).
 
 Lithium depends on jQuery. Lithium is seperated into modules, so you use only what you need.
 
 ## Browser support
 
-Latest Chrome,Firefox,Safari,Opera and IE8+.
+Latest Chrome,Firefox,Safari,Opera,MS Edge and IE9+.
 
 ## Usage
 
