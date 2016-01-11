@@ -56,20 +56,20 @@
                 } else {
                     if (isOpenTag) { // close open tag first
                         callback.call(scope, node, false, 'current');
-					}
+                    }
 
-					if (node.nextSibling && node !== ancestor && ret !== 'break') {
-						node = node.nextSibling;
-						isOpenTag = true;
-						ret = callback.call(scope, node, true, 'nextSibling');
-					} else if (node.parentNode && node !== ancestor) {
-						//Traverse up the dom till you find an element with nextSibling
-						node = node.parentNode;
-						isOpenTag = false;
-						ret = callback.call(scope, node, false, 'parentNode');
-					} else {
-						node = null;
-					}
+    				if (node.nextSibling && node !== ancestor && ret !== 'break') {
+    					node = node.nextSibling;
+    					isOpenTag = true;
+    					ret = callback.call(scope, node, true, 'nextSibling');
+    				} else if (node.parentNode && node !== ancestor) {
+    					//Traverse up the dom till you find an element with nextSibling
+    					node = node.parentNode;
+    					isOpenTag = false;
+    					ret = callback.call(scope, node, false, 'parentNode');
+    				} else {
+    					node = null;
+    				}
                 }
             } while (node && ret !== 'return');
             return node || null;
