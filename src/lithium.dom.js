@@ -55,7 +55,7 @@
                     ret = callback.call(scope, node, true, 'firstChild');
                 } else {
                     if (isOpenTag) { // close open tag first
-						callback.call(scope, node, false, 'current');
+                        callback.call(scope, node, false, 'current');
 					}
 
 					if (node.nextSibling && node !== ancestor && ret !== 'break') {
